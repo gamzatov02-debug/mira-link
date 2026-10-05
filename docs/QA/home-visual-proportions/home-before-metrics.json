@@ -1,0 +1,65 @@
+[
+  {
+    "viewport": 390,
+    "pageOverflow": false,
+    "content": {
+      "width": 390
+    },
+    "hero": {
+      "width": 366,
+      "height": 170,
+      "aspect": 2.152941176470588,
+      "imageHeight": 168,
+      "radius": "20px",
+      "headerGap": 0,
+      "toGrid": 12,
+      "top": 177,
+      "bottom": 347
+    },
+    "grid": {
+      "width": 366,
+      "height": 188,
+      "cardWidth": 85.5,
+      "cardHeight": 90,
+      "hGap": 8,
+      "vGap": 8,
+      "bottom": 547
+    },
+    "promo": {
+      "width": 366,
+      "height": 76,
+      "bottom": 635
+    },
+    "popular": {
+      "headingHeight": 48,
+      "headingY": 651,
+      "cardsTop": 707,
+      "cardWidth": 197.625,
+      "cardHeight": 370.3125,
+      "imageWidth": 195.625,
+      "imageHeight": 146.71875,
+      "imageAspect": 1.3333333333333333,
+      "contentHeight": 205.59375,
+      "gap": 8,
+      "carouselWidth": 366,
+      "visibleCards": 1.7799392097264437,
+      "nextVisibleFraction": 0.8115117014547755,
+      "titleLines": 2,
+      "descriptionLines": 2,
+      "metadataLines": 1,
+      "metadataWhiteSpace": "nowrap",
+      "favourite": {
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "width": 163.625,
+        "height": 48
+      }
+    },
+    "nav": {
+      "top": 832,
+      "height": 68
+    }
+  }
+]

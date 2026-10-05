@@ -1,0 +1,178 @@
+{
+  "assertions": {
+    "simpleAddInline": true,
+    "simpleAddDoesNotOpenDetail": true,
+    "inlineStepper": true,
+    "detailsOpens": true,
+    "menuToDetailSync": true,
+    "detailToMenuSync": true,
+    "cartControlsVisible": true,
+    "cartToMenuSync": true,
+    "favoriteIsolation": true,
+    "requiredModifierSafety": true,
+    "searchAndCategory": true,
+    "eventPropagation": true
+  },
+  "responsive": [
+    {
+      "width": 360,
+      "card": {
+        "width": 336,
+        "height": 145
+      },
+      "image": {
+        "width": 122.390625,
+        "height": 145
+      },
+      "titleLines": 2,
+      "descriptionLines": 2,
+      "controls": [
+        {
+          "label": "Убрать из избранного: Буррата с томатами",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Подробнее: Буррата с томатами",
+          "width": 77.609375,
+          "height": 44
+        },
+        {
+          "label": "Уменьшить количество: Буррата с томатами",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Увеличить количество: Буррата с томатами",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "documentOverflow": 0,
+      "bottomNavOverlap": 0
+    },
+    {
+      "width": 390,
+      "card": {
+        "width": 366,
+        "height": 145
+      },
+      "image": {
+        "width": 128,
+        "height": 145
+      },
+      "titleLines": 2,
+      "descriptionLines": 2,
+      "controls": [
+        {
+          "label": "Убрать из избранного: Буррата с томатами",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Подробнее: Буррата с томатами",
+          "width": 102,
+          "height": 44
+        },
+        {
+          "label": "Уменьшить количество: Буррата с томатами",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Увеличить количество: Буррата с томатами",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "documentOverflow": 0,
+      "bottomNavOverlap": 0
+    },
+    {
+      "width": 430,
+      "card": {
+        "width": 406,
+        "height": 145
+      },
+      "image": {
+        "width": 128,
+        "height": 143
+      },
+      "titleLines": 1,
+      "descriptionLines": 2,
+      "controls": [
+        {
+          "label": "Убрать из избранного: Буррата с томатами",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Подробнее: Буррата с томатами",
+          "width": 142,
+          "height": 44
+        },
+        {
+          "label": "Уменьшить количество: Буррата с томатами",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Увеличить количество: Буррата с томатами",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "documentOverflow": 0,
+      "bottomNavOverlap": 0
+    },
+    {
+      "width": 480,
+      "card": {
+        "width": 456,
+        "height": 145
+      },
+      "image": {
+        "width": 128,
+        "height": 143
+      },
+      "titleLines": 1,
+      "descriptionLines": 2,
+      "controls": [
+        {
+          "label": "Убрать из избранного: Буррата с томатами",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Подробнее: Буррата с томатами",
+          "width": 192,
+          "height": 44
+        },
+        {
+          "label": "Уменьшить количество: Буррата с томатами",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Увеличить количество: Буррата с томатами",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "documentOverflow": 0,
+      "bottomNavOverlap": 0
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "minTouchTarget": 44,
+  "maxHorizontalOverflow": 0,
+  "cardSize390": {
+    "width": 366,
+    "height": 145
+  },
+  "imageSize390": {
+    "width": 128,
+    "height": 145
+  }
+}

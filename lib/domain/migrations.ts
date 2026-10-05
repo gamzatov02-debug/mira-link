@@ -1,0 +1,68 @@
+import type {EmployeeRole,State,Zone} from './model';
+
+type MutableRecord=Record<string,any>;
+
+const array=(value:unknown)=>Array.isArray(value)?value:[];
+const role=(value:unknown):EmployeeRole=>value==='admin'?'admin':'waiter';
+
+/**
+ * The single persisted-state normalization path. It upgrades the Stage 6 v1
+ * demo state and also fills optional collections introduced by later v2 code.
+ */
+export function normalizeState(input:unknown):State{
+ if(!input||typeof input!=='object')throw new Error('Некорректное состояние демо');
+ const source=structuredClone(input) as MutableRecord;
+ if(source.version!==1&&source.version!==2)throw new Error('Неподдерживаемая версия состояния');
+ if(!source.venue||typeof source.venue.id!=='string')throw new Error('Заведение не найдено');
+
+ const venueId=source.venue.id as string;
+ const organizationId=typeof source.venue.organizationId==='string'?source.venue.organizationId:'org-mira';
+ source.organizations=array(source.organizations);
+ if(!source.organizations.some((item:MutableRecord)=>item?.id===organizationId))source.organizations.push({id:organizationId,name:'MIRA LINK Demo Organization'});
+ source.venue={
+  ...source.venue,
+  organizationId,
+  wifi:source.venue.wifi&&typeof source.venue.wifi.ssid==='string'
+   ?source.venue.wifi
+   :{ssid:'MIRA_GUEST',password:'mira2026',security:'WPA'},
+ };
+
+ const defaultZones:Zone[]=[
+  {id:'zone-main',venueId,name:'Основной зал'},
+  {id:'zone-terrace',venueId,name:'Терраса'},
+ ];
+ source.zones=array(source.zones);
+ if(!source.zones.length)source.zones=defaultZones;
+ source.tables=array(source.tables).map((table:MutableRecord)=>({
+  ...table,
+  zoneId:typeof table.zoneId==='string'?table.zoneId:(Number(table.id)<=6?'zone-main':'zone-terrace'),
+ }));
+
+ source.employees=array(source.employees).map((employee:MutableRecord)=>{
+  const legacyRole=role(employee.role);
+  const roles=array(employee.roles).filter((item:unknown):item is EmployeeRole=>item==='waiter'||item==='admin');
+  const canonicalRoles=roles.length?Array.from(new Set(roles)):[legacyRole];
+  const tables=array(employee.tables).filter((item:unknown)=>Number.isInteger(item));
+  const derivedTables=tables.length?tables:source.tables.filter((table:MutableRecord)=>table.waiterId===employee.id).map((table:MutableRecord)=>table.id);
+  const venueAccess=array(employee.venueAccess).filter((item:MutableRecord)=>typeof item?.venueId==='string');
+  return {
+   ...employee,
+   organizationId:typeof employee.organizationId==='string'?employee.organizationId:organizationId,
+   venueAccess:venueAccess.length?venueAccess:[{venueId}],
+   roles:canonicalRoles,
+   status:employee.status==='inactive'?'inactive':'active',
+   role:canonicalRoles[0],
+   shift:typeof employee.shift==='string'?employee.shift:'',
+   tables:derivedTables,
+  };
+ });
+
+ source.employeeAuthContexts=array(source.employeeAuthContexts);
+ source.shifts=array(source.shifts);
+ source.shiftAssignments=array(source.shiftAssignments);
+ source.rentals=array(source.rentals);
+ source.deliveries=array(source.deliveries);
+ source.favorites=array(source.favorites);
+ source.version=2;
+ return source as State;
+}

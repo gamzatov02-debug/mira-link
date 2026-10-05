@@ -1,0 +1,1383 @@
+{
+  "config": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/node_modules/.bin/playwright",
+      "test",
+      "--max-failures=0",
+      "--reporter=list,json"
+    ],
+    "configFile": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/playwright.config.ts",
+    "rootDir": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --port 5173",
+      "url": "http://localhost:5173/demo",
+      "reuseExistingServer": true,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "cycle.spec.ts",
+      "file": "cycle.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Guest → Waiter → Admin, callbacks, close and additional tips",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9974,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:26:07.826Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-0c4f8093414ca7132b07",
+          "file": "cycle.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "active session protection and cross-tab stop list",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8905,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:26:19.496Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-b9c3db3ed42d0f47e3db",
+          "file": "cycle.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "cash remains unpaid until POS confirmation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4998,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:26:28.425Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-aeaa409e32e43ae291ae",
+          "file": "cycle.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "failed payment and reorder after payment",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8056,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:26:33.477Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-8022737cbdd922a5c036",
+          "file": "cycle.spec.ts",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "force close preserves debt and reset is synchronized",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3919,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:26:41.559Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-046bb963e5f9bd384edb",
+          "file": "cycle.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "booking shared with admin, mobile routes have no overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7341,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:26:45.501Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-8e2da97d507359b8bed7",
+          "file": "cycle.spec.ts",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "three guests, partial cashback and equal split",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12874,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:26:52.862Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-3a74305e3b76ed762dd1",
+          "file": "cycle.spec.ts",
+          "line": 12,
+          "column": 1
+        },
+        {
+          "title": "POS failure and retry; anonymous limitations",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5408,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:27:05.753Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-a512787aa4efa00a0fdf",
+          "file": "cycle.spec.ts",
+          "line": 13,
+          "column": 1
+        },
+        {
+          "title": "marketing off, service on and one guest pays all",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8733,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:27:11.176Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-78aaebb522b7b5bd6c48",
+          "file": "cycle.spec.ts",
+          "line": 14,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "design.spec.ts",
+      "file": "design.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "design: 360px, existing screens and touch targets",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5108,
+                  "error": {
+                    "message": "Error: /demo/guest/notifications\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Close\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: /demo/guest/notifications\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Close\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts:11:208",
+                    "location": {
+                      "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts",
+                      "column": 208,
+                      "line": 11
+                    },
+                    "snippet": "   9 |   await page.evaluate(()=>document.fonts.ready);\n  10 |   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route).toBe(true);\n> 11 |   const short=await page.locator('button:visible').evaluateAll(buttons=>buttons.filter(b=>b.getAttribute('role')!=='switch'&&b.getBoundingClientRect().height<43.5).map(b=>b.textContent));expect(short,route).toEqual([]);\n     |                                                                                                                                                                                                                ^\n  12 |   if(route.includes('/guest/')||route==='/demo/full-cycle')expect(await page.locator('.guest-theme').first().evaluate(el=>getComputedStyle(el).fontFamily)).toContain('Inter');\n  13 |  }\n  14 |  await page.screenshot({path:`.test-runtime/redesign-${width}.png`,fullPage:true});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts",
+                        "column": 208,
+                        "line": 11
+                      },
+                      "message": "Error: /demo/guest/notifications\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Close\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   9 |   await page.evaluate(()=>document.fonts.ready);\n  10 |   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route).toBe(true);\n> 11 |   const short=await page.locator('button:visible').evaluateAll(buttons=>buttons.filter(b=>b.getAttribute('role')!=='switch'&&b.getBoundingClientRect().height<43.5).map(b=>b.textContent));expect(short,route).toEqual([]);\n     |                                                                                                                                                                                                                ^\n  12 |   if(route.includes('/guest/')||route==='/demo/full-cycle')expect(await page.locator('.guest-theme').first().evaluate(el=>getComputedStyle(el).fontFamily)).toContain('Inter');\n  13 |  }\n  14 |  await page.screenshot({path:`.test-runtime/redesign-${width}.png`,fullPage:true});\n    at /Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts:11:208"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:27:19.967Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results/design-design-360px-existing-screens-and-touch-targets/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results/design-design-360px-existing-screens-and-touch-targets/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts",
+                    "column": 208,
+                    "line": 11
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a97bb9db443074d9bdd1-5dfb7e3fc284b098c0bd",
+          "file": "design.spec.ts",
+          "line": 3,
+          "column": 38
+        },
+        {
+          "title": "design: 375px, existing screens and touch targets",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5807,
+                  "error": {
+                    "message": "Error: /demo/guest/notifications\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Close\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: /demo/guest/notifications\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Close\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts:11:208",
+                    "location": {
+                      "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts",
+                      "column": 208,
+                      "line": 11
+                    },
+                    "snippet": "   9 |   await page.evaluate(()=>document.fonts.ready);\n  10 |   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route).toBe(true);\n> 11 |   const short=await page.locator('button:visible').evaluateAll(buttons=>buttons.filter(b=>b.getAttribute('role')!=='switch'&&b.getBoundingClientRect().height<43.5).map(b=>b.textContent));expect(short,route).toEqual([]);\n     |                                                                                                                                                                                                                ^\n  12 |   if(route.includes('/guest/')||route==='/demo/full-cycle')expect(await page.locator('.guest-theme').first().evaluate(el=>getComputedStyle(el).fontFamily)).toContain('Inter');\n  13 |  }\n  14 |  await page.screenshot({path:`.test-runtime/redesign-${width}.png`,fullPage:true});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts",
+                        "column": 208,
+                        "line": 11
+                      },
+                      "message": "Error: /demo/guest/notifications\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Close\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   9 |   await page.evaluate(()=>document.fonts.ready);\n  10 |   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route).toBe(true);\n> 11 |   const short=await page.locator('button:visible').evaluateAll(buttons=>buttons.filter(b=>b.getAttribute('role')!=='switch'&&b.getBoundingClientRect().height<43.5).map(b=>b.textContent));expect(short,route).toEqual([]);\n     |                                                                                                                                                                                                                ^\n  12 |   if(route.includes('/guest/')||route==='/demo/full-cycle')expect(await page.locator('.guest-theme').first().evaluate(el=>getComputedStyle(el).fontFamily)).toContain('Inter');\n  13 |  }\n  14 |  await page.screenshot({path:`.test-runtime/redesign-${width}.png`,fullPage:true});\n    at /Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts:11:208"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:27:26.665Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results/design-design-375px-existing-screens-and-touch-targets/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results/design-design-375px-existing-screens-and-touch-targets/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts",
+                    "column": 208,
+                    "line": 11
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a97bb9db443074d9bdd1-3e4da3b25b52e14f4737",
+          "file": "design.spec.ts",
+          "line": 3,
+          "column": 38
+        },
+        {
+          "title": "design: 390px, existing screens and touch targets",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5306,
+                  "error": {
+                    "message": "Error: /demo/guest/notifications\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Close\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: /demo/guest/notifications\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Close\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts:11:208",
+                    "location": {
+                      "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts",
+                      "column": 208,
+                      "line": 11
+                    },
+                    "snippet": "   9 |   await page.evaluate(()=>document.fonts.ready);\n  10 |   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route).toBe(true);\n> 11 |   const short=await page.locator('button:visible').evaluateAll(buttons=>buttons.filter(b=>b.getAttribute('role')!=='switch'&&b.getBoundingClientRect().height<43.5).map(b=>b.textContent));expect(short,route).toEqual([]);\n     |                                                                                                                                                                                                                ^\n  12 |   if(route.includes('/guest/')||route==='/demo/full-cycle')expect(await page.locator('.guest-theme').first().evaluate(el=>getComputedStyle(el).fontFamily)).toContain('Inter');\n  13 |  }\n  14 |  await page.screenshot({path:`.test-runtime/redesign-${width}.png`,fullPage:true});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts",
+                        "column": 208,
+                        "line": 11
+                      },
+                      "message": "Error: /demo/guest/notifications\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Close\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   9 |   await page.evaluate(()=>document.fonts.ready);\n  10 |   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route).toBe(true);\n> 11 |   const short=await page.locator('button:visible').evaluateAll(buttons=>buttons.filter(b=>b.getAttribute('role')!=='switch'&&b.getBoundingClientRect().height<43.5).map(b=>b.textContent));expect(short,route).toEqual([]);\n     |                                                                                                                                                                                                                ^\n  12 |   if(route.includes('/guest/')||route==='/demo/full-cycle')expect(await page.locator('.guest-theme').first().evaluate(el=>getComputedStyle(el).fontFamily)).toContain('Inter');\n  13 |  }\n  14 |  await page.screenshot({path:`.test-runtime/redesign-${width}.png`,fullPage:true});\n    at /Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts:11:208"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:27:34.550Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results/design-design-390px-existing-screens-and-touch-targets/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results/design-design-390px-existing-screens-and-touch-targets/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts",
+                    "column": 208,
+                    "line": 11
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a97bb9db443074d9bdd1-753973f28c6e3ce6e982",
+          "file": "design.spec.ts",
+          "line": 3,
+          "column": 38
+        },
+        {
+          "title": "design: 430px, existing screens and touch targets",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5430,
+                  "error": {
+                    "message": "Error: /demo/guest/notifications\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Close\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: /demo/guest/notifications\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Close\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts:11:208",
+                    "location": {
+                      "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts",
+                      "column": 208,
+                      "line": 11
+                    },
+                    "snippet": "   9 |   await page.evaluate(()=>document.fonts.ready);\n  10 |   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route).toBe(true);\n> 11 |   const short=await page.locator('button:visible').evaluateAll(buttons=>buttons.filter(b=>b.getAttribute('role')!=='switch'&&b.getBoundingClientRect().height<43.5).map(b=>b.textContent));expect(short,route).toEqual([]);\n     |                                                                                                                                                                                                                ^\n  12 |   if(route.includes('/guest/')||route==='/demo/full-cycle')expect(await page.locator('.guest-theme').first().evaluate(el=>getComputedStyle(el).fontFamily)).toContain('Inter');\n  13 |  }\n  14 |  await page.screenshot({path:`.test-runtime/redesign-${width}.png`,fullPage:true});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts",
+                        "column": 208,
+                        "line": 11
+                      },
+                      "message": "Error: /demo/guest/notifications\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Close\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n   9 |   await page.evaluate(()=>document.fonts.ready);\n  10 |   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route).toBe(true);\n> 11 |   const short=await page.locator('button:visible').evaluateAll(buttons=>buttons.filter(b=>b.getAttribute('role')!=='switch'&&b.getBoundingClientRect().height<43.5).map(b=>b.textContent));expect(short,route).toEqual([]);\n     |                                                                                                                                                                                                                ^\n  12 |   if(route.includes('/guest/')||route==='/demo/full-cycle')expect(await page.locator('.guest-theme').first().evaluate(el=>getComputedStyle(el).fontFamily)).toContain('Inter');\n  13 |  }\n  14 |  await page.screenshot({path:`.test-runtime/redesign-${width}.png`,fullPage:true});\n    at /Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts:11:208"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:27:41.644Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results/design-design-430px-existing-screens-and-touch-targets/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results/design-design-430px-existing-screens-and-touch-targets/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/design.spec.ts",
+                    "column": 208,
+                    "line": 11
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a97bb9db443074d9bdd1-b6d0edafcbb8765b490c",
+          "file": "design.spec.ts",
+          "line": 3,
+          "column": 38
+        },
+        {
+          "title": "design: desktop Full Cycle and existing admin sections",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2321,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:27:48.754Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a97bb9db443074d9bdd1-d598c7356fcfc793ecb9",
+          "file": "design.spec.ts",
+          "line": 16,
+          "column": 1
+        },
+        {
+          "title": "welcome: supplied brand and entry preserve demo state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1248,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:27:51.333Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a97bb9db443074d9bdd1-5bf4ff9a71b5973c3cef",
+          "file": "design.spec.ts",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "audit: local media, menu empty state and guest navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5346,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:27:52.596Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a97bb9db443074d9bdd1-5d3ad7ce3dda4ae9d560",
+          "file": "design.spec.ts",
+          "line": 33,
+          "column": 1
+        },
+        {
+          "title": "audit: venue details and nested navigation stay in the existing Guest",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2130,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:27:57.955Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a97bb9db443074d9bdd1-d6f43cbc96c61cd28123",
+          "file": "design.spec.ts",
+          "line": 63,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "guest-service.spec.ts",
+      "file": "guest-service.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "all sixteen dishes have local photos and recipes in Guest, Waiter and Admin",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3785,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:00.113Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8cd72280e8b97a17d87f-652b30c4e2919d5d7b80",
+          "file": "guest-service.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "waiter order joins the current session and leaves the guest cart intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6871,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:03.917Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8cd72280e8b97a17d87f-f9c2acf8e35455c30651",
+          "file": "guest-service.spec.ts",
+          "line": 12,
+          "column": 1
+        },
+        {
+          "title": "waiter opens a free table without guest registration",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1796,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:10.806Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8cd72280e8b97a17d87f-0ebaf698e8908e3eb694",
+          "file": "guest-service.spec.ts",
+          "line": 21,
+          "column": 1
+        },
+        {
+          "title": "nearby map markers open venue details, including when map tiles are offline",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1002,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:12.614Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8cd72280e8b97a17d87f-b83f8be5aa6bf2502ed8",
+          "file": "guest-service.spec.ts",
+          "line": 25,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "guest-theme.spec.ts",
+      "file": "guest-theme.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "all nine approved themes pass semantic contrast validation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:13.648Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "badfe08d5146dfc77688-c5253c08261d17e13d9a",
+          "file": "guest-theme.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "all themes preserve guest geometry and domain state at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6834,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:13.661Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "badfe08d5146dfc77688-898990a362ff03d3a6f6",
+          "file": "guest-theme.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "guest viewport 320px and fixed navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1640,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:20.500Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "badfe08d5146dfc77688-1eb6a8a557180adedee5",
+          "file": "guest-theme.spec.ts",
+          "line": 12,
+          "column": 30
+        },
+        {
+          "title": "guest viewport 480px and fixed navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1708,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:22.153Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "badfe08d5146dfc77688-a1c6f79bec0fc4790597",
+          "file": "guest-theme.spec.ts",
+          "line": 12,
+          "column": 30
+        },
+        {
+          "title": "admin theme picker previews and applies to Guest, including portals",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3006,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:23.871Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "badfe08d5146dfc77688-e5cdebc26754ac2b9cf9",
+          "file": "guest-theme.spec.ts",
+          "line": 13,
+          "column": 1
+        },
+        {
+          "title": "dish favorites can be saved, viewed and removed without a table session",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8062,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Буррата с томатами', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Буррата с томатами', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Буррата с томатами', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Буррата с томатами', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Буррата с томатами', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Буррата с томатами', exact: true })\u001b[22m\n\n    at /Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/guest-theme.spec.ts:18:340",
+                    "location": {
+                      "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/guest-theme.spec.ts",
+                      "column": 340,
+                      "line": 18
+                    },
+                    "snippet": "  16 |\n  17 | test('dish favorites can be saved, viewed and removed without a table session',async({page})=>{\n> 18 |  await page.goto('/demo/guest/home');await page.getByRole('button',{name:'В избранное: Буррата с томатами',exact:true}).click();await page.getByRole('button',{name:'Ещё',exact:true}).click();await page.getByRole('button',{name:'Избранное',exact:true}).click();await expect(page.getByRole('heading',{name:'Буррата с томатами',exact:true})).toBeVisible();await page.getByRole('button',{name:'Фото и состав',exact:true}).click();await expect(page.getByRole('dialog').getByText('Состав блюда',{exact:true})).toBeVisible();await expect(page.getByRole('button',{name:'В корзину',exact:true})).toBeDisabled();await page.keyboard.press('Escape');await page.getByRole('button',{name:'Убрать блюдо из избранного',exact:true}).click();await expect(page.getByText('Здесь появятся любимые блюда. Сохраните понравившееся на главной.',{exact:true})).toBeVisible();\n     |                                                                                                                                                                                                                                                                                                                                                    ^\n  19 | });\n  20 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/guest-theme.spec.ts",
+                        "column": 340,
+                        "line": 18
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Буррата с томатами', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Буррата с томатами', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Буррата с томатами', exact: true })\u001b[22m\n\n\n  16 |\n  17 | test('dish favorites can be saved, viewed and removed without a table session',async({page})=>{\n> 18 |  await page.goto('/demo/guest/home');await page.getByRole('button',{name:'В избранное: Буррата с томатами',exact:true}).click();await page.getByRole('button',{name:'Ещё',exact:true}).click();await page.getByRole('button',{name:'Избранное',exact:true}).click();await expect(page.getByRole('heading',{name:'Буррата с томатами',exact:true})).toBeVisible();await page.getByRole('button',{name:'Фото и состав',exact:true}).click();await expect(page.getByRole('dialog').getByText('Состав блюда',{exact:true})).toBeVisible();await expect(page.getByRole('button',{name:'В корзину',exact:true})).toBeDisabled();await page.keyboard.press('Escape');await page.getByRole('button',{name:'Убрать блюдо из избранного',exact:true}).click();await expect(page.getByText('Здесь появятся любимые блюда. Сохраните понравившееся на главной.',{exact:true})).toBeVisible();\n     |                                                                                                                                                                                                                                                                                                                                                    ^\n  19 | });\n  20 |\n    at /Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/guest-theme.spec.ts:18:340"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:26.891Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results/guest-theme-dish-favorites-185bc-ved-without-a-table-session/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results/guest-theme-dish-favorites-185bc-ved-without-a-table-session/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/guest-theme.spec.ts",
+                    "column": 340,
+                    "line": 18
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "badfe08d5146dfc77688-44fe1ddfd35df92b1669",
+          "file": "guest-theme.spec.ts",
+          "line": 17,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "nearby.spec.ts",
+      "file": "nearby.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "menu categories use two rows and preserve filtering at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1533,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:36.016Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f5cfbb43c738b781d419-a2b48dab79b826ca80fc",
+          "file": "nearby.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "Nearby fallback, search and map selection share six venues",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1120,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:38.254Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f5cfbb43c738b781d419-af1eabcd9520ae5b905c",
+          "file": "nearby.spec.ts",
+          "line": 13,
+          "column": 1
+        },
+        {
+          "title": "Nearby uses granted geolocation to recalculate distances",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 653,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:39.384Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f5cfbb43c738b781d419-e91df553434c1c0a22d0",
+          "file": "nearby.spec.ts",
+          "line": 23,
+          "column": 1
+        },
+        {
+          "title": "venue menus and delivery carts remain separate from the active table",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2607,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:40.050Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f5cfbb43c738b781d419-8a6346565f33ee5d5122",
+          "file": "nearby.spec.ts",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "anonymous venue menu does not create a table session",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2261,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T13:28:42.667Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f5cfbb43c738b781d419-4db6bf392645d0c14694",
+          "file": "nearby.spec.ts",
+          "line": 34,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-30T13:26:01.066Z",
+    "duration": 164013.42,
+    "expected": 27,
+    "skipped": 0,
+    "unexpected": 5,
+    "flaky": 0
+  }
+}

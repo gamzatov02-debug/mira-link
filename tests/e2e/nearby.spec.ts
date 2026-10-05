@@ -1,0 +1,39 @@
+import {test,expect} from '@playwright/test';
+const state=async(page:import('@playwright/test').Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('mira-link-demo-v1')||'{}'));
+test('menu categories use two rows and preserve filtering at 390px',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto('/demo/guest/menu');
+ const nav=page.getByRole('navigation',{name:'Категории меню'});await expect(nav).toBeVisible();
+ expect(await nav.evaluate(el=>getComputedStyle(el).gridAutoFlow)).toBe('column');
+ expect(await nav.locator('button').evaluateAll(els=>new Set(els.map(el=>Math.round(el.getBoundingClientRect().y))).size)).toBe(2);
+ await nav.getByRole('button',{name:'Все',exact:true}).click();await expect(page.locator('.guest-content img[src^="/images/menu/"], .guest-content img[src="/images/burrata.png"]')).toHaveCount(16);
+ await nav.locator('button').last().click();expect(await page.locator('.guest-content img[src^="/images/menu/"], .guest-content img[src="/images/burrata.png"]').count()).toBeLessThan(16);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await page.screenshot({path:'.test-runtime/categories-390.png',fullPage:true});
+});
+test('Nearby fallback, search and map selection share six venues',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto('/demo/guest/nearby');await page.getByRole('button',{name:'Демо-режим',exact:true}).click();
+ await expect(page.locator('.nearby-list [data-venue-id]')).toHaveCount(6);await expect(page.locator('.mira-map-pin')).toHaveCount(6);
+ const distances=await page.locator('.nearby-list [data-venue-id]').evaluateAll(els=>els.map(el=>Number(el.getAttribute('data-distance'))));expect(distances).toEqual([...distances].sort((a,b)=>a-b));
+ await page.getByRole('navigation',{name:'Фильтры заведений'}).getByRole('button',{name:'Кофе',exact:true}).click();await expect(page.locator('.mira-map-pin')).toHaveCount(1);await expect(page.locator('.nearby-list [data-venue-id]')).toHaveCount(1);
+ await page.getByRole('button',{name:'На карте',exact:true}).click();await expect(page.locator('.venue-preview')).toContainText('Garden');
+ await page.getByRole('navigation',{name:'Фильтры заведений'}).getByRole('button',{name:'Все',exact:true}).click();await page.getByLabel('Найти место…',{exact:true}).fill('Atelier');await expect(page.locator('.mira-map-pin')).toHaveCount(1);
+ await page.getByLabel('Найти место…',{exact:true}).fill('несуществующее');await expect(page.locator('.mira-map-pin')).toHaveCount(0);await expect(page.getByText('Места не найдены. Измените запрос или фильтр.')).toBeVisible();
+ await page.getByLabel('Найти место…',{exact:true}).fill('');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:'.test-runtime/nearby-390.png',fullPage:true});
+});
+test('Nearby uses granted geolocation to recalculate distances',async({page,context})=>{
+ await context.grantPermissions(['geolocation']);await context.setGeolocation({latitude:55.771,longitude:37.608});await page.goto('/demo/guest/nearby');await expect(page.getByText('Ваша геопозиция',{exact:true})).toBeVisible();await expect(page.locator('.nearby-list [data-venue-id]').first()).toHaveAttribute('data-venue-id','ember');expect(Number(await page.locator('.nearby-list [data-venue-id]').first().getAttribute('data-distance'))).toBeLessThan(1);
+});
+test('venue menus and delivery carts remain separate from the active table',async({page})=>{
+ await page.goto('/demo/guest/home');await page.getByRole('button',{name:'Сканировать QR стола №12',exact:true}).click();await page.getByRole('button',{name:'Меню',exact:true}).click();await page.getByRole('button',{name:'Выбрать блюдо',exact:true}).first().click();await page.getByRole('button',{name:'В корзину',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);const before=await state(page);
+ await page.getByRole('button',{name:'Рядом',exact:true}).click();await page.locator('[data-venue-id="garden"]').getByRole('button',{name:'Доставка',exact:true}).click();const dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:'Фото и состав',exact:true}).first().click();await dialog.getByRole('button',{name:'В корзину доставки',exact:true}).click();await page.keyboard.press('Escape');
+ await page.locator('[data-venue-id="mira"]').getByRole('button',{name:'Доставка',exact:true}).click();await expect(dialog.getByText('Выберите блюда из меню этого заведения.',{exact:true})).toBeVisible();await page.keyboard.press('Escape');
+ await page.locator('[data-venue-id="garden"]').getByRole('button',{name:'Доставка',exact:true}).click();await dialog.getByLabel('Адрес доставки',{exact:true}).fill('Демо-адрес, дом 12');await dialog.getByLabel('Телефон / контакт',{exact:true}).fill('Демо-гость');await dialog.getByRole('button',{name:'Оформить демо-доставку',exact:true}).click();await expect(dialog.getByText(/Демо-заявка .* создана/)).toBeVisible();
+ const after=await state(page);for(const key of ['sessions','guests','orders','carts','payments','financialSplits'])expect(after[key]).toEqual(before[key]);expect(after.deliveries.length).toBe(before.deliveries.length+1);expect(after.deliveries.at(-1).items).toContain('garden');
+});
+
+test('anonymous venue menu does not create a table session',async({page})=>{
+ await page.goto('/demo/guest/nearby');const before=await state(page);
+ await page.locator('[data-venue-id="atelier"]').getByRole('button',{name:'Открыть',exact:true}).click();
+ const dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:'Меню',exact:true}).click();await dialog.getByRole('button',{name:'Фото и состав',exact:true}).first().click();await expect(dialog.getByText('Состав блюда',{exact:true})).toBeVisible();await expect(dialog.getByRole('button',{name:'В корзину доставки',exact:true})).toHaveCount(0);
+ expect(await state(page)).toEqual(before);
+});

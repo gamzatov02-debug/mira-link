@@ -1,0 +1,7 @@
+Command: npm run test:e2e -- tests/e2e/guest-theme.spec.ts tests/e2e/product-card-layout.spec.ts tests/e2e/nearby.spec.ts tests/e2e/guest-service.spec.ts --reporter=line
+Result: 21 passed
+Failures: 0
+Skipped: 0
+Exit code: 0
+
+The successful run used the same repository tests and configuration with permission to bind the local Playwright web server. An earlier sandboxed start attempt failed before test collection with listen EPERM on 127.0.0.1; that environment-only attempt is retained in stage-7.1-guest-e2e.log.

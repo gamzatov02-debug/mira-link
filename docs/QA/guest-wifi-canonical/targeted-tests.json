@@ -1,0 +1,28 @@
+{
+  "passed": 20,
+  "total": 20,
+  "checks": {
+    "tablePngDecoded": true,
+    "wifiPngDecoded": true,
+    "wifiWpa": true,
+    "wifiWpa2": true,
+    "wifiWep": true,
+    "wifiOpen": true,
+    "wifiHidden": true,
+    "tableRouter": true,
+    "wifiRouter": true,
+    "powerbankRouter": true,
+    "invalidRouter": true,
+    "fallbackFrameDecoded": true,
+    "successfulRouteStopsCamera": true,
+    "rearCameraRequested": true,
+    "constraintFallbackRetried": true,
+    "liveVideo": true,
+    "autoplay": true,
+    "muted": true,
+    "playsInline": true,
+    "closeStopsCamera": true
+  },
+  "tablePayload": "https://mira.link/demo/guest/qr?entry=table&venueId=mira&tableId=12&token=mira-table-12",
+  "wifiPayload": "WIFI:T:WPA;S:MIRA_GUEST;P:mira-demo-2026;;"
+}

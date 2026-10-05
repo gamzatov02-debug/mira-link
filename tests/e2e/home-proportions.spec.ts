@@ -1,0 +1,33 @@
+import {expect,test} from '@playwright/test';
+
+test('Guest Home keeps the approved visual hierarchy at 390px',async({page})=>{
+ await page.setViewportSize({width:390,height:900});
+ await page.goto('/demo/guest/home');
+ await page.evaluate(()=>document.fonts.ready);
+ const hero=page.locator('.restaurant-hero');
+ const grid=page.locator('.guest-quick-actions');
+ const promo=page.locator('.guest-promo');
+ const carousel=page.getByLabel('Популярное');
+ const cards=carousel.locator(':scope > div');
+ await expect(cards).toHaveCount(6);
+ const [heroBox,gridBox,promoBox]=await Promise.all([hero.evaluate(node=>node.getBoundingClientRect().toJSON()),grid.evaluate(node=>node.getBoundingClientRect().toJSON()),promo.evaluate(node=>node.getBoundingClientRect().toJSON())]);
+ expect(heroBox.height).toBeCloseTo(210,0);
+ expect(gridBox.height).toBeCloseTo(188,0);
+ expect(promoBox.height).toBeCloseTo(76,0);
+ const card=cards.first();
+ const metrics=await card.evaluate(node=>{const box=node.getBoundingClientRect();const image=node.querySelector('img')!.getBoundingClientRect();const description=node.querySelector('p');const buttons=[...node.querySelectorAll('button')];const favourite=buttons[0].getBoundingClientRect();const action=buttons.at(-1)!.getBoundingClientRect();return {width:box.width,height:box.height,imageHeight:image.height,descriptionPresent:Boolean(description),actionText:buttons.at(-1)!.textContent?.trim(),favourite:{width:favourite.width,height:favourite.height},action:{width:action.width,height:action.height}}});
+ expect(metrics.width).toBeCloseTo(130.3,0);
+ expect(metrics.imageHeight).toBeGreaterThanOrEqual(69.5);
+ expect(metrics.imageHeight).toBeLessThanOrEqual(70.5);
+ expect(metrics.height).toBeCloseTo(194,0);
+ expect(metrics.descriptionPresent).toBe(false);
+ expect(metrics.actionText).toBe('Выбрать');
+ expect(metrics.favourite.width).toBeGreaterThanOrEqual(43.5);
+ expect(metrics.favourite.height).toBeGreaterThanOrEqual(43.5);
+ expect(metrics.action.height).toBeGreaterThanOrEqual(47.5);
+ const carouselMetrics=await carousel.evaluate(node=>({clientWidth:node.clientWidth,scrollWidth:node.scrollWidth,gap:Number.parseFloat(getComputedStyle(node).columnGap)}));
+ expect(carouselMetrics.clientWidth/(metrics.width+carouselMetrics.gap)).toBeGreaterThanOrEqual(2.6);
+ expect(carouselMetrics.clientWidth/(metrics.width+carouselMetrics.gap)).toBeLessThanOrEqual(2.7);
+ expect(carouselMetrics.scrollWidth).toBeGreaterThan(carouselMetrics.clientWidth);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});

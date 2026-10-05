@@ -1,0 +1,49 @@
+{
+  "assertions": {
+    "burrataOptionalModifier": true,
+    "firstPlus": 1,
+    "simplePlusOpenedDetail": false,
+    "secondPlus": 2,
+    "minus": 1,
+    "details": true,
+    "detailQuantitySync": true,
+    "favoriteIsolation": true,
+    "optionalModifierQuickAdd": true,
+    "requiredModifierSafety": true,
+    "noSessionDoesNotMisrouteToDetail": true
+  },
+  "metrics": {
+    "card": {
+      "width": 366,
+      "height": 145
+    },
+    "details": {
+      "width": 102,
+      "height": 44
+    },
+    "controls": [
+      {
+        "label": "В избранное: Буррата с томатами",
+        "width": 44,
+        "height": 44
+      },
+      {
+        "label": "Подробнее: Буррата с томатами",
+        "width": 102,
+        "height": 44
+      },
+      {
+        "label": "Уменьшить количество: Буррата с томатами",
+        "width": 44,
+        "height": 44
+      },
+      {
+        "label": "Увеличить количество: Буррата с томатами",
+        "width": 44,
+        "height": 44
+      }
+    ],
+    "horizontalOverflow": 0
+  },
+  "errors": []
+}

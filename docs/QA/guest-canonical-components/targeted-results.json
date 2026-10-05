@@ -1,0 +1,60 @@
+[
+  {
+    "flow": "guest-menu",
+    "width": 366,
+    "height": 142,
+    "image": "/images/burrata.png",
+    "title": "Буррата с томатами",
+    "metadata": "220 г · 890,00 ₽",
+    "details": "Подробнее →",
+    "favourite": true,
+    "quantity": "2",
+    "overflow": 0,
+    "detailsCanonical": true,
+    "favoriteShared": true
+  },
+  {
+    "flow": "nearby-venue-menu",
+    "width": 340,
+    "height": 142,
+    "image": "/images/burrata.png",
+    "title": "Буррата с томатами",
+    "metadata": "220 г · 890,00 ₽",
+    "details": "Подробнее →",
+    "favourite": true,
+    "quantity": "2",
+    "overflow": 0,
+    "before": {
+      "sessions": 0,
+      "guests": 0
+    },
+    "after": {
+      "sessions": 0,
+      "guests": 0
+    },
+    "sessionCreated": false
+  },
+  {
+    "flow": "delivery-menu",
+    "width": 340,
+    "height": 142,
+    "image": "/images/burrata.png",
+    "title": "Буррата с томатами",
+    "metadata": "220 г · 890,00 ₽",
+    "details": "Подробнее →",
+    "favourite": true,
+    "quantity": "2",
+    "overflow": 0,
+    "before": {
+      "sessions": 0,
+      "guests": 0
+    },
+    "after": {
+      "sessions": 0,
+      "guests": 0
+    },
+    "sessionCreated": false,
+    "detailsCanonical": true,
+    "requiredModifierSafety": true
+  }
+]

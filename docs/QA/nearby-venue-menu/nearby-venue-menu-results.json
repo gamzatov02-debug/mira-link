@@ -1,0 +1,44 @@
+{
+  "assertions": {
+    "canonicalCards": true,
+    "oldActionRemoved": true,
+    "productImages": true,
+    "quickAdd": true,
+    "inlineQuantity": true,
+    "details": true,
+    "detailQuantityContext": true,
+    "favoriteShared": true,
+    "requiredModifierSafety": true
+  },
+  "metrics": {
+    "cardGeometry": {
+      "card": {
+        "x": 25,
+        "width": 340,
+        "right": 365
+      },
+      "favorite": {
+        "x": 316,
+        "width": 44,
+        "right": 360
+      },
+      "computed": {
+        "position": "absolute",
+        "right": "4px",
+        "width": "44px"
+      }
+    },
+    "documentOverflow": 0,
+    "sessions": 0,
+    "tableId": null
+  },
+  "images": {
+    "nearby": [
+      "/images/burrata.png",
+      "/images/menu/p2.png",
+      "/images/menu/p3.png"
+    ],
+    "main": "/images/burrata.png"
+  },
+  "errors": []
+}

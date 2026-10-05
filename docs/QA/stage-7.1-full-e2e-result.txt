@@ -1,0 +1,7 @@
+Command: npm run test:e2e -- --reporter=line
+Result: 38 passed (2.8m)
+Failures: 0
+Skipped: 0
+Exit code: 0
+
+The complete existing Chromium suite ran with one worker and reached test 38/38. Existing non-failing hydration warnings were emitted for floating Nearby distance rendering and input caret styling.

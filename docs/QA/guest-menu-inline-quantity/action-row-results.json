@@ -1,0 +1,131 @@
+{
+  "assertions": {
+    "burrataOptionalModifier": true,
+    "firstPlus": 1,
+    "simplePlusOpenedDetail": false,
+    "secondPlus": 2,
+    "minus": 1,
+    "details": true,
+    "detailQuantitySync": true,
+    "favoriteIsolation": true,
+    "optionalModifierQuickAdd": true,
+    "requiredModifierSafety": true,
+    "noSessionDoesNotMisrouteToDetail": true
+  },
+  "metrics": {
+    "card": {
+      "width": 366,
+      "height": 142
+    },
+    "details": {
+      "width": 88.03125,
+      "height": 44
+    },
+    "controls": [
+      {
+        "label": "В избранное: Буррата с томатами",
+        "width": 44,
+        "height": 44
+      },
+      {
+        "label": "Подробнее: Буррата с томатами",
+        "width": 88.03125,
+        "height": 44
+      },
+      {
+        "label": "Уменьшить количество: Буррата с томатами",
+        "width": 44,
+        "height": 44
+      },
+      {
+        "label": "Увеличить количество: Буррата с томатами",
+        "width": 44,
+        "height": 44
+      }
+    ],
+    "horizontalOverflow": 0,
+    "stepper": {
+      "width": 114,
+      "height": 44
+    },
+    "responsive": {
+      "360": {
+        "overflow": 0,
+        "rows": [
+          {
+            "card": {
+              "width": 336,
+              "height": 142
+            },
+            "sameRow": true
+          },
+          {
+            "card": {
+              "width": 336,
+              "height": 142
+            },
+            "sameRow": true
+          }
+        ]
+      },
+      "390": {
+        "overflow": 0,
+        "rows": [
+          {
+            "card": {
+              "width": 366,
+              "height": 142
+            },
+            "sameRow": true
+          },
+          {
+            "card": {
+              "width": 366,
+              "height": 142
+            },
+            "sameRow": true
+          }
+        ]
+      },
+      "430": {
+        "overflow": 0,
+        "rows": [
+          {
+            "card": {
+              "width": 406,
+              "height": 142
+            },
+            "sameRow": true
+          },
+          {
+            "card": {
+              "width": 406,
+              "height": 142
+            },
+            "sameRow": true
+          }
+        ]
+      },
+      "480": {
+        "overflow": 0,
+        "rows": [
+          {
+            "card": {
+              "width": 456,
+              "height": 142
+            },
+            "sameRow": true
+          },
+          {
+            "card": {
+              "width": 456,
+              "height": 142
+            },
+            "sameRow": true
+          }
+        ]
+      }
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,374 @@
+[
+  {
+    "viewport": 360,
+    "pageOverflow": false,
+    "content": {
+      "width": 360
+    },
+    "hero": {
+      "width": 336,
+      "height": 210,
+      "aspect": 1.6,
+      "imageHeight": 208,
+      "radius": "20px",
+      "headerGap": 0,
+      "toGrid": 12,
+      "top": 177,
+      "bottom": 387
+    },
+    "grid": {
+      "width": 336,
+      "height": 188,
+      "cardWidth": 78,
+      "cardHeight": 90,
+      "hGap": 8,
+      "vGap": 8,
+      "bottom": 587
+    },
+    "promo": {
+      "width": 336,
+      "height": 76,
+      "bottom": 675
+    },
+    "popular": {
+      "headingHeight": 48,
+      "headingY": 691,
+      "cardsTop": 747,
+      "cardWidth": 122,
+      "cardHeight": 194,
+      "imageWidth": 120,
+      "imageHeight": 70,
+      "imageAspect": 1.7142857142857142,
+      "gap": 7,
+      "carouselWidth": 336,
+      "visibleCards": 2.604651162790698,
+      "nextVisibleFraction": 0.639344262295082,
+      "titleLines": 2,
+      "descriptionLines": 0,
+      "metadataLines": 1,
+      "metadataWhiteSpace": "nowrap",
+      "favourite": {
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "width": 104,
+        "height": 48
+      }
+    },
+    "nav": {
+      "top": 832,
+      "height": 68
+    }
+  },
+  {
+    "viewport": 375,
+    "pageOverflow": false,
+    "content": {
+      "width": 375
+    },
+    "hero": {
+      "width": 351,
+      "height": 210,
+      "aspect": 1.6714285714285715,
+      "imageHeight": 208,
+      "radius": "20px",
+      "headerGap": 0,
+      "toGrid": 12,
+      "top": 177,
+      "bottom": 387
+    },
+    "grid": {
+      "width": 351,
+      "height": 188,
+      "cardWidth": 81.75,
+      "cardHeight": 90,
+      "hGap": 8,
+      "vGap": 8,
+      "bottom": 587
+    },
+    "promo": {
+      "width": 351,
+      "height": 76,
+      "bottom": 675
+    },
+    "popular": {
+      "headingHeight": 48,
+      "headingY": 691,
+      "cardsTop": 747,
+      "cardWidth": 124.90625,
+      "cardHeight": 194,
+      "imageWidth": 122.90625,
+      "imageHeight": 70,
+      "imageAspect": 1.7558035714285714,
+      "gap": 7,
+      "carouselWidth": 351,
+      "visibleCards": 2.6609808102345416,
+      "nextVisibleFraction": 0.6980235176382287,
+      "titleLines": 2,
+      "descriptionLines": 0,
+      "metadataLines": 1,
+      "metadataWhiteSpace": "nowrap",
+      "favourite": {
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "width": 106.90625,
+        "height": 48
+      }
+    },
+    "nav": {
+      "top": 832,
+      "height": 68
+    }
+  },
+  {
+    "viewport": 390,
+    "pageOverflow": false,
+    "content": {
+      "width": 390
+    },
+    "hero": {
+      "width": 366,
+      "height": 210,
+      "aspect": 1.7428571428571429,
+      "imageHeight": 208,
+      "radius": "20px",
+      "headerGap": 0,
+      "toGrid": 12,
+      "top": 177,
+      "bottom": 387
+    },
+    "grid": {
+      "width": 366,
+      "height": 188,
+      "cardWidth": 85.5,
+      "cardHeight": 90,
+      "hGap": 8,
+      "vGap": 8,
+      "bottom": 587
+    },
+    "promo": {
+      "width": 366,
+      "height": 76,
+      "bottom": 675
+    },
+    "popular": {
+      "headingHeight": 48,
+      "headingY": 691,
+      "cardsTop": 747,
+      "cardWidth": 130.3125,
+      "cardHeight": 194,
+      "imageWidth": 128.3125,
+      "imageHeight": 70,
+      "imageAspect": 1.8330357142857143,
+      "gap": 7,
+      "carouselWidth": 366,
+      "visibleCards": 2.6654528903049615,
+      "nextVisibleFraction": 0.701199040767386,
+      "titleLines": 2,
+      "descriptionLines": 0,
+      "metadataLines": 1,
+      "metadataWhiteSpace": "nowrap",
+      "favourite": {
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "width": 112.3125,
+        "height": 48
+      }
+    },
+    "nav": {
+      "top": 832,
+      "height": 68
+    }
+  },
+  {
+    "viewport": 430,
+    "pageOverflow": false,
+    "content": {
+      "width": 430
+    },
+    "hero": {
+      "width": 398,
+      "height": 210,
+      "aspect": 1.8952380952380952,
+      "imageHeight": 208,
+      "radius": "20px",
+      "headerGap": 0,
+      "toGrid": 12,
+      "top": 177,
+      "bottom": 387
+    },
+    "grid": {
+      "width": 398,
+      "height": 188,
+      "cardWidth": 93.5,
+      "cardHeight": 90,
+      "hGap": 8,
+      "vGap": 8,
+      "bottom": 587
+    },
+    "promo": {
+      "width": 398,
+      "height": 76,
+      "bottom": 675
+    },
+    "popular": {
+      "headingHeight": 48,
+      "headingY": 691,
+      "cardsTop": 747,
+      "cardWidth": 132,
+      "cardHeight": 194,
+      "imageWidth": 130,
+      "imageHeight": 70,
+      "imageAspect": 1.8571428571428572,
+      "gap": 7,
+      "carouselWidth": 398,
+      "visibleCards": 2.8633093525179856,
+      "nextVisibleFraction": 0.9090909090909091,
+      "titleLines": 2,
+      "descriptionLines": 0,
+      "metadataLines": 1,
+      "metadataWhiteSpace": "nowrap",
+      "favourite": {
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "width": 114,
+        "height": 48
+      }
+    },
+    "nav": {
+      "top": 832,
+      "height": 68
+    }
+  },
+  {
+    "viewport": 480,
+    "pageOverflow": false,
+    "content": {
+      "width": 480
+    },
+    "hero": {
+      "width": 448,
+      "height": 210,
+      "aspect": 2.1333333333333333,
+      "imageHeight": 208,
+      "radius": "20px",
+      "headerGap": 0,
+      "toGrid": 12,
+      "top": 177,
+      "bottom": 387
+    },
+    "grid": {
+      "width": 448,
+      "height": 188,
+      "cardWidth": 106,
+      "cardHeight": 90,
+      "hGap": 8,
+      "vGap": 8,
+      "bottom": 587
+    },
+    "promo": {
+      "width": 448,
+      "height": 76,
+      "bottom": 675
+    },
+    "popular": {
+      "headingHeight": 48,
+      "headingY": 691,
+      "cardsTop": 747,
+      "cardWidth": 132,
+      "cardHeight": 194,
+      "imageWidth": 130,
+      "imageHeight": 70,
+      "imageAspect": 1.8571428571428572,
+      "gap": 7,
+      "carouselWidth": 448,
+      "visibleCards": 3.223021582733813,
+      "nextVisibleFraction": 0.23484848484848486,
+      "titleLines": 2,
+      "descriptionLines": 0,
+      "metadataLines": 1,
+      "metadataWhiteSpace": "nowrap",
+      "favourite": {
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "width": 114,
+        "height": 48
+      }
+    },
+    "nav": {
+      "top": 832,
+      "height": 68
+    }
+  },
+  {
+    "viewport": 1440,
+    "pageOverflow": false,
+    "content": {
+      "width": 478
+    },
+    "hero": {
+      "width": 446,
+      "height": 210,
+      "aspect": 2.123809523809524,
+      "imageHeight": 208,
+      "radius": "20px",
+      "headerGap": 0,
+      "toGrid": 12,
+      "top": 205,
+      "bottom": 415
+    },
+    "grid": {
+      "width": 446,
+      "height": 188,
+      "cardWidth": 105.5,
+      "cardHeight": 90,
+      "hGap": 8,
+      "vGap": 8,
+      "bottom": 615
+    },
+    "promo": {
+      "width": 446,
+      "height": 76,
+      "bottom": 703
+    },
+    "popular": {
+      "headingHeight": 48,
+      "headingY": 719,
+      "cardsTop": 775,
+      "cardWidth": 132,
+      "cardHeight": 194,
+      "imageWidth": 130,
+      "imageHeight": 70,
+      "imageAspect": 1.8571428571428572,
+      "gap": 7,
+      "carouselWidth": 446,
+      "visibleCards": 3.20863309352518,
+      "nextVisibleFraction": 0.2196969696969697,
+      "titleLines": 2,
+      "descriptionLines": 0,
+      "metadataLines": 1,
+      "metadataWhiteSpace": "nowrap",
+      "favourite": {
+        "width": 44,
+        "height": 44
+      },
+      "cta": {
+        "width": 114,
+        "height": 48
+      }
+    },
+    "nav": {
+      "top": 832,
+      "height": 68
+    }
+  }
+]

@@ -1,0 +1,386 @@
+{
+  "home": {
+    "logo": {
+      "x": 12,
+      "y": 71,
+      "width": 140,
+      "height": 44,
+      "right": 152,
+      "bottom": 115
+    },
+    "monogram": {
+      "x": 12,
+      "y": 73.359375,
+      "width": 34,
+      "height": 39.28125,
+      "right": 46,
+      "bottom": 112.640625
+    },
+    "label": {
+      "x": 54,
+      "y": 83,
+      "width": 99.3125,
+      "height": 20,
+      "right": 153.3125,
+      "bottom": 103
+    },
+    "labelFont": 18,
+    "gap": 8,
+    "controls": {
+      "x": 170,
+      "y": 71,
+      "width": 208,
+      "height": 44,
+      "right": 378,
+      "bottom": 115
+    },
+    "qr": {
+      "x": 166.984375,
+      "y": 755,
+      "width": 56,
+      "height": 56,
+      "right": 222.984375,
+      "bottom": 811
+    },
+    "qrHit": {
+      "x": 157.59375,
+      "y": 777,
+      "width": 74.796875,
+      "height": 68,
+      "right": 232.390625,
+      "bottom": 845
+    },
+    "nav": {
+      "x": 0,
+      "y": 776,
+      "width": 390,
+      "height": 68,
+      "right": 390,
+      "bottom": 844
+    },
+    "qrCenter": 194.984375,
+    "overflow": 0
+  },
+  "actions": [
+    {
+      "label": "Меню — быстрое действие",
+      "x": 12,
+      "y": 323,
+      "width": 87,
+      "height": 82
+    },
+    {
+      "label": "Заказ",
+      "x": 105,
+      "y": 323,
+      "width": 87,
+      "height": 82
+    },
+    {
+      "label": "Счёт",
+      "x": 198,
+      "y": 323,
+      "width": 87,
+      "height": 82
+    },
+    {
+      "label": "Официант",
+      "x": 291,
+      "y": 323,
+      "width": 87,
+      "height": 82
+    },
+    {
+      "label": "Акции",
+      "x": 12,
+      "y": 411,
+      "width": 87,
+      "height": 82
+    },
+    {
+      "label": "Пауэрбанк",
+      "x": 105,
+      "y": 411,
+      "width": 87,
+      "height": 82
+    },
+    {
+      "label": "Такси",
+      "x": 198,
+      "y": 411,
+      "width": 87,
+      "height": 82
+    }
+  ],
+  "actionsRoute": true,
+  "nearby": {
+    "logo": {
+      "x": 12,
+      "y": 71,
+      "width": 140,
+      "height": 44,
+      "right": 152,
+      "bottom": 115
+    },
+    "monogram": {
+      "x": 12,
+      "y": 73.359375,
+      "width": 34,
+      "height": 39.28125,
+      "right": 46,
+      "bottom": 112.640625
+    },
+    "label": {
+      "x": 54,
+      "y": 83,
+      "width": 99.3125,
+      "height": 20,
+      "right": 153.3125,
+      "bottom": 103
+    },
+    "labelFont": 18,
+    "gap": 8,
+    "controls": {
+      "x": 170,
+      "y": 71,
+      "width": 208,
+      "height": 44,
+      "right": 378,
+      "bottom": 115
+    },
+    "qr": {
+      "x": 166.984375,
+      "y": 755,
+      "width": 56,
+      "height": 56,
+      "right": 222.984375,
+      "bottom": 811
+    },
+    "qrHit": {
+      "x": 157.59375,
+      "y": 777,
+      "width": 74.796875,
+      "height": 68,
+      "right": 232.390625,
+      "bottom": 845
+    },
+    "nav": {
+      "x": 0,
+      "y": 776,
+      "width": 390,
+      "height": 68,
+      "right": 390,
+      "bottom": 844
+    },
+    "qrCenter": 194.984375,
+    "overflow": 0
+  },
+  "qrActive": {
+    "logo": {
+      "x": 12,
+      "y": 71,
+      "width": 140,
+      "height": 44,
+      "right": 152,
+      "bottom": 115
+    },
+    "monogram": {
+      "x": 12,
+      "y": 73.359375,
+      "width": 34,
+      "height": 39.28125,
+      "right": 46,
+      "bottom": 112.640625
+    },
+    "label": {
+      "x": 54,
+      "y": 83,
+      "width": 99.3125,
+      "height": 20,
+      "right": 153.3125,
+      "bottom": 103
+    },
+    "labelFont": 18,
+    "gap": 8,
+    "controls": {
+      "x": 170,
+      "y": 71,
+      "width": 208,
+      "height": 44,
+      "right": 378,
+      "bottom": 115
+    },
+    "qr": {
+      "x": 166.984375,
+      "y": 755,
+      "width": 56,
+      "height": 56,
+      "right": 222.984375,
+      "bottom": 811
+    },
+    "qrHit": {
+      "x": 157.59375,
+      "y": 777,
+      "width": 74.796875,
+      "height": 68,
+      "right": 232.390625,
+      "bottom": 845
+    },
+    "nav": {
+      "x": 0,
+      "y": 776,
+      "width": 390,
+      "height": 68,
+      "right": 390,
+      "bottom": 844
+    },
+    "qrCenter": 194.984375,
+    "overflow": 0
+  },
+  "qrRoute": true,
+  "menu": {
+    "logo": {
+      "x": 12,
+      "y": 71,
+      "width": 140,
+      "height": 44,
+      "right": 152,
+      "bottom": 115
+    },
+    "monogram": {
+      "x": 12,
+      "y": 73.359375,
+      "width": 34,
+      "height": 39.28125,
+      "right": 46,
+      "bottom": 112.640625
+    },
+    "label": {
+      "x": 54,
+      "y": 83,
+      "width": 99.3125,
+      "height": 20,
+      "right": 153.3125,
+      "bottom": 103
+    },
+    "labelFont": 18,
+    "gap": 8,
+    "controls": {
+      "x": 170,
+      "y": 71,
+      "width": 208,
+      "height": 44,
+      "right": 378,
+      "bottom": 115
+    },
+    "qr": {
+      "x": 166.984375,
+      "y": 755,
+      "width": 56,
+      "height": 56,
+      "right": 222.984375,
+      "bottom": 811
+    },
+    "qrHit": {
+      "x": 157.59375,
+      "y": 777,
+      "width": 74.796875,
+      "height": 68,
+      "right": 232.390625,
+      "bottom": 845
+    },
+    "nav": {
+      "x": 0,
+      "y": 776,
+      "width": 390,
+      "height": 68,
+      "right": 390,
+      "bottom": 844
+    },
+    "qrCenter": 194.984375,
+    "overflow": 0
+  },
+  "home360": {
+    "logo": {
+      "x": 12,
+      "y": 71,
+      "width": 140,
+      "height": 44,
+      "right": 152,
+      "bottom": 115
+    },
+    "monogram": {
+      "x": 12,
+      "y": 73.359375,
+      "width": 34,
+      "height": 39.28125,
+      "right": 46,
+      "bottom": 112.640625
+    },
+    "label": {
+      "x": 54,
+      "y": 83,
+      "width": 99.3125,
+      "height": 20,
+      "right": 153.3125,
+      "bottom": 103
+    },
+    "labelFont": 18,
+    "gap": 8,
+    "controls": {
+      "x": 160,
+      "y": 71,
+      "width": 188,
+      "height": 44,
+      "right": 348,
+      "bottom": 115
+    },
+    "qr": {
+      "x": 151.984375,
+      "y": 755,
+      "width": 56,
+      "height": 56,
+      "right": 207.984375,
+      "bottom": 811
+    },
+    "qrHit": {
+      "x": 145.59375,
+      "y": 777,
+      "width": 68.796875,
+      "height": 68,
+      "right": 214.390625,
+      "bottom": 845
+    },
+    "nav": {
+      "x": 0,
+      "y": 776,
+      "width": 360,
+      "height": 68,
+      "right": 360,
+      "bottom": 844
+    },
+    "qrCenter": 179.984375,
+    "overflow": 0
+  },
+  "cartSafety": {
+    "qr": {
+      "top": 755,
+      "bottom": 811,
+      "left": 166.984375,
+      "right": 222.984375
+    },
+    "cart": {
+      "top": 684,
+      "bottom": 750,
+      "left": 12,
+      "right": 378
+    },
+    "overlap": false
+  },
+  "collision360": false,
+  "splitTile": false,
+  "tipsTile": false,
+  "promotionsTile": true,
+  "powerbankTile": true,
+  "taxiTile": true
+}

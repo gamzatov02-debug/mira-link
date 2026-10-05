@@ -1,0 +1,71 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+**/trace.zip
+**/*trace.zip
+**/.last-run.json
+
+# next.js
+/.next/
+/.vinext/
+/out/
+
+# misc
+.DS_Store
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.tmp
+*.temp
+/.cache/
+/.tmp/
+/tmp/
+/.turbo/
+
+# debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+.dev.vars*
+
+# vercel
+.vercel
+
+# hosting and tunnel credentials/state
+/.netlify/
+/.cloudflared/
+
+# typescript
+next-env.d.ts
+/dist/
+/.wrangler/
+# Checkout-local execution profile and tool state; never publish them.
+/.sites-runtime/
+/.agents/
+/.codex/
+/outputs/
+/work/
+
+.test-runtime/
+test-results/
+playwright-report/
+*.tsbuildinfo

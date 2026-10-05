@@ -1,0 +1,59 @@
+{
+  "assertions": {
+    "guestMenuCanonical": true,
+    "quickAdd": true,
+    "inlineQuantity": true,
+    "details": true,
+    "requiredModifierSafety": true,
+    "ordersToMenuCanonical": true
+  },
+  "metrics": {
+    "menu": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "cards": 16,
+      "directChildrenCanonical": true,
+      "columns": [
+        "366px"
+      ],
+      "card": {
+        "width": 366,
+        "height": 142
+      },
+      "image": {
+        "width": 128,
+        "height": 145
+      },
+      "mobileActions": "flex",
+      "desktopAction": "none",
+      "legacyRuntime": 0,
+      "overflow": 0
+    },
+    "ordersToMenu": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "cards": 16,
+      "directChildrenCanonical": true,
+      "columns": [
+        "366px"
+      ],
+      "card": {
+        "width": 366,
+        "height": 142
+      },
+      "image": {
+        "width": 128,
+        "height": 145
+      },
+      "mobileActions": "flex",
+      "desktopAction": "none",
+      "legacyRuntime": 0,
+      "overflow": 0
+    }
+  },
+  "errors": []
+}

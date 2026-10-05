@@ -1,0 +1,625 @@
+{
+  "config": {
+    "argv": [
+      "/usr/local/bin/node",
+      "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/node_modules/.bin/playwright",
+      "test",
+      "--grep",
+      "Guest →|active session|cash remains|failed payment|force close|booking shared|three guests|POS failure|marketing off|waiter order joins|waiter opens|venue menus|anonymous venue|authenticated user",
+      "--max-failures=0",
+      "--reporter=line,json"
+    ],
+    "configFile": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/playwright.config.ts",
+    "rootDir": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --port 5173",
+      "url": "http://localhost:5173/demo",
+      "reuseExistingServer": true,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "cycle.spec.ts",
+      "file": "cycle.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Guest → Waiter → Admin, callbacks, close and additional tips",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16314,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:18:00.200Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-0c4f8093414ca7132b07",
+          "file": "cycle.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "active session protection and cross-tab stop list",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6644,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:18:17.924Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-b9c3db3ed42d0f47e3db",
+          "file": "cycle.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "cash remains unpaid until POS confirmation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3407,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:18:24.580Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-aeaa409e32e43ae291ae",
+          "file": "cycle.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "failed payment and reorder after payment",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4832,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:18:28.000Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-8022737cbdd922a5c036",
+          "file": "cycle.spec.ts",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "force close preserves debt and reset is synchronized",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3279,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:18:32.846Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-046bb963e5f9bd384edb",
+          "file": "cycle.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "booking shared with admin, mobile routes have no overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7011,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:18:36.142Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-8e2da97d507359b8bed7",
+          "file": "cycle.spec.ts",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "three guests, partial cashback and equal split",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 16857,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/accrual/)\nExpected: visible\nError: strict mode violation: getByText(/accrual/) resolved to 3 elements:\n    1) <span>accrual</span> aka getByText('accrual').first()\n    2) <span>accrual</span> aka getByText('accrual').nth(1)\n    3) <span>accrual</span> aka getByText('accrual').nth(2)\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText(/accrual/) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/accrual/)\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/accrual/)\nExpected: visible\nError: strict mode violation: getByText(/accrual/) resolved to 3 elements:\n    1) <span>accrual</span> aka getByText('accrual').first()\n    2) <span>accrual</span> aka getByText('accrual').nth(1)\n    3) <span>accrual</span> aka getByText('accrual').nth(2)\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText(/accrual/) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/accrual/)\u001b[22m\n\n    at /Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/cycle.spec.ts:12:936",
+                    "location": {
+                      "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/cycle.spec.ts",
+                      "column": 936,
+                      "line": 12
+                    },
+                    "snippet": "  10 | test('force close preserves debt and reset is synchronized',async({page,context})=>{await enter(page);await order(page);const admin=await context.newPage();await admin.goto('/demo/admin');await admin.getByRole('button',{name:'Зал и столы',exact:true}).click();await admin.getByRole('button',{name:'Принудительно закрыть',exact:true}).click();await admin.getByRole('button',{name:'Закрыть с сохранением долга',exact:true}).click();await expect(admin.getByText('Свободен',{exact:true})).toHaveCount(12);await page.getByRole('button',{name:'Счёт',exact:true}).click();await expect(page.getByText('Закрыт с задолженностью',{exact:true})).toBeVisible();await admin.getByRole('button',{name:'Сбросить демо',exact:true}).click();await admin.getByRole('button',{name:'Подтвердить сброс',exact:true}).click();await expect(page.getByRole('button',{name:'Сканировать QR стола №12',exact:true})).toBeVisible()});\n  11 | test('booking shared with admin, mobile routes have no overflow',async({page,context})=>{await page.setViewportSize({width:390,height:844});await enter(page);await page.getByRole('button',{name:'Ещё',exact:true}).click();await page.getByRole('button',{name:'Бронь стола',exact:true}).click();await page.getByLabel('Дата',{exact:true}).fill('2026-10-01');await page.getByLabel('Время',{exact:true}).fill('19:00');await page.getByRole('button',{name:'Забронировать',exact:true}).click();const admin=await context.newPage();await admin.goto('/demo/admin');await admin.getByRole('button',{name:'Бронирования',exact:true}).click();await expect(admin.getByText('2026-10-01 · 19:00',{exact:true})).toBeVisible();for(const route of ['/','/demo','/demo/guest/home','/demo/waiter','/demo/admin','/demo/full-cycle']){await page.goto(route);await expect(page.locator('body')).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),route).toBe(true)}await page.screenshot({path:'.test-runtime/mobile.png',fullPage:true})});\n> 12 | test('three guests, partial cashback and equal split',async({page,context})=>{await enter(page,true);await order(page);const second=await context.newPage();await enter(second);await second.getByRole('button',{name:'Я с этой компанией',exact:true}).click();await order(second);const third=await context.newPage();await enter(third);await third.getByRole('button',{name:'Я с этой компанией',exact:true}).click();await order(third);for(const guest of [page,second,third]){await guest.getByRole('button',{name:'Счёт',exact:true}).click();await expect(guest.getByRole('heading',{name:'Разделение счёта',exact:true})).toBeVisible();await guest.getByRole('button',{name:'Поровну',exact:true}).click();await online(guest)}await expect(page.getByText('Оплачен',{exact:true})).toBeVisible();await page.getByRole('button',{name:'Главная',exact:true}).first().click();await page.goto('/demo/guest/bonuses');await expect(page.getByText(/accrual/)).toBeVisible()});\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^\n  13 | test('POS failure and retry; anonymous limitations',async({page,context})=>{await enter(page);const admin=await context.newPage();await admin.goto('/demo/admin');await admin.getByRole('button',{name:'Интеграции',exact:true}).click();await admin.getByRole('switch',{name:'Ошибка передачи новых заказов',exact:true}).click();await order(page);const waiter=await context.newPage();await waiter.goto('/demo/waiter');await waiter.getByRole('button',{name:'Подтвердить iiko',exact:true}).click();await expect(page.getByText('Ошибка передачи заказа',{exact:true})).toBeVisible();await admin.getByRole('switch',{name:'Ошибка передачи новых заказов',exact:true}).click();await waiter.getByRole('button',{name:'Повторить передачу',exact:true}).click();await expect(page.getByText('Принят кухней',{exact:true})).toBeVisible();await bill(page);await expect(page.getByText('Бонусы доступны зарегистрированному пользователю.',{exact:true})).toBeVisible();await page.getByRole('button',{name:'Ещё',exact:true}).click();await page.getByRole('button',{name:'Отзывы',exact:true}).click();await expect(page.getByRole('dialog',{name:'Войдите в аккаунт',exact:true})).toBeVisible();await expect(page.getByLabel('Отзыв',{exact:true})).toHaveCount(0)});\n  14 | test('marketing off, service on and one guest pays all',async({page,context})=>{await enter(page,true);await page.getByRole('button',{name:'Ещё',exact:true}).click();await page.getByRole('button',{name:'Профиль',exact:true}).last().click();await page.getByRole('button',{name:'Уведомления',exact:true}).last().click();await page.getByRole('switch',{name:'Маркетинговые уведомления',exact:true}).click();const admin=await context.newPage();await admin.goto('/demo/admin');await admin.getByRole('button',{name:'Акции',exact:true}).click();await admin.getByLabel('Название акции',{exact:true}).fill('Особый вечер');await admin.getByRole('button',{name:'Опубликовать',exact:true}).click();await expect(page.locator('.notification').filter({hasText:'Особый вечер'})).toHaveCount(0);await order(page);await expect(page.getByText('Заказ отправлен на кухню',{exact:true})).toBeVisible();const second=await context.newPage();await enter(second);await second.getByRole('button',{name:'Я с этой компанией',exact:true}).click();await order(second);await page.getByRole('button',{name:'Счёт',exact:true}).click();await expect(page.getByRole('heading',{name:'Разделение счёта',exact:true})).toBeVisible();await page.getByRole('button',{name:'Оплатить весь остаток',exact:true}).click();await online(page);await second.getByRole('button',{name:'Счёт',exact:true}).click();await expect(second.getByText('Оплачен',{exact:true})).toBeVisible();await expect(second.getByRole('radio',{name:'Онлайн',exact:true})).toHaveCount(0)});\n  15 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/cycle.spec.ts",
+                        "column": 936,
+                        "line": 12
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/accrual/)\nExpected: visible\nError: strict mode violation: getByText(/accrual/) resolved to 3 elements:\n    1) <span>accrual</span> aka getByText('accrual').first()\n    2) <span>accrual</span> aka getByText('accrual').nth(1)\n    3) <span>accrual</span> aka getByText('accrual').nth(2)\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText(/accrual/) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/accrual/)\u001b[22m\n\n\n  10 | test('force close preserves debt and reset is synchronized',async({page,context})=>{await enter(page);await order(page);const admin=await context.newPage();await admin.goto('/demo/admin');await admin.getByRole('button',{name:'Зал и столы',exact:true}).click();await admin.getByRole('button',{name:'Принудительно закрыть',exact:true}).click();await admin.getByRole('button',{name:'Закрыть с сохранением долга',exact:true}).click();await expect(admin.getByText('Свободен',{exact:true})).toHaveCount(12);await page.getByRole('button',{name:'Счёт',exact:true}).click();await expect(page.getByText('Закрыт с задолженностью',{exact:true})).toBeVisible();await admin.getByRole('button',{name:'Сбросить демо',exact:true}).click();await admin.getByRole('button',{name:'Подтвердить сброс',exact:true}).click();await expect(page.getByRole('button',{name:'Сканировать QR стола №12',exact:true})).toBeVisible()});\n  11 | test('booking shared with admin, mobile routes have no overflow',async({page,context})=>{await page.setViewportSize({width:390,height:844});await enter(page);await page.getByRole('button',{name:'Ещё',exact:true}).click();await page.getByRole('button',{name:'Бронь стола',exact:true}).click();await page.getByLabel('Дата',{exact:true}).fill('2026-10-01');await page.getByLabel('Время',{exact:true}).fill('19:00');await page.getByRole('button',{name:'Забронировать',exact:true}).click();const admin=await context.newPage();await admin.goto('/demo/admin');await admin.getByRole('button',{name:'Бронирования',exact:true}).click();await expect(admin.getByText('2026-10-01 · 19:00',{exact:true})).toBeVisible();for(const route of ['/','/demo','/demo/guest/home','/demo/waiter','/demo/admin','/demo/full-cycle']){await page.goto(route);await expect(page.locator('body')).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),route).toBe(true)}await page.screenshot({path:'.test-runtime/mobile.png',fullPage:true})});\n> 12 | test('three guests, partial cashback and equal split',async({page,context})=>{await enter(page,true);await order(page);const second=await context.newPage();await enter(second);await second.getByRole('button',{name:'Я с этой компанией',exact:true}).click();await order(second);const third=await context.newPage();await enter(third);await third.getByRole('button',{name:'Я с этой компанией',exact:true}).click();await order(third);for(const guest of [page,second,third]){await guest.getByRole('button',{name:'Счёт',exact:true}).click();await expect(guest.getByRole('heading',{name:'Разделение счёта',exact:true})).toBeVisible();await guest.getByRole('button',{name:'Поровну',exact:true}).click();await online(guest)}await expect(page.getByText('Оплачен',{exact:true})).toBeVisible();await page.getByRole('button',{name:'Главная',exact:true}).first().click();await page.goto('/demo/guest/bonuses');await expect(page.getByText(/accrual/)).toBeVisible()});\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^\n  13 | test('POS failure and retry; anonymous limitations',async({page,context})=>{await enter(page);const admin=await context.newPage();await admin.goto('/demo/admin');await admin.getByRole('button',{name:'Интеграции',exact:true}).click();await admin.getByRole('switch',{name:'Ошибка передачи новых заказов',exact:true}).click();await order(page);const waiter=await context.newPage();await waiter.goto('/demo/waiter');await waiter.getByRole('button',{name:'Подтвердить iiko',exact:true}).click();await expect(page.getByText('Ошибка передачи заказа',{exact:true})).toBeVisible();await admin.getByRole('switch',{name:'Ошибка передачи новых заказов',exact:true}).click();await waiter.getByRole('button',{name:'Повторить передачу',exact:true}).click();await expect(page.getByText('Принят кухней',{exact:true})).toBeVisible();await bill(page);await expect(page.getByText('Бонусы доступны зарегистрированному пользователю.',{exact:true})).toBeVisible();await page.getByRole('button',{name:'Ещё',exact:true}).click();await page.getByRole('button',{name:'Отзывы',exact:true}).click();await expect(page.getByRole('dialog',{name:'Войдите в аккаунт',exact:true})).toBeVisible();await expect(page.getByLabel('Отзыв',{exact:true})).toHaveCount(0)});\n  14 | test('marketing off, service on and one guest pays all',async({page,context})=>{await enter(page,true);await page.getByRole('button',{name:'Ещё',exact:true}).click();await page.getByRole('button',{name:'Профиль',exact:true}).last().click();await page.getByRole('button',{name:'Уведомления',exact:true}).last().click();await page.getByRole('switch',{name:'Маркетинговые уведомления',exact:true}).click();const admin=await context.newPage();await admin.goto('/demo/admin');await admin.getByRole('button',{name:'Акции',exact:true}).click();await admin.getByLabel('Название акции',{exact:true}).fill('Особый вечер');await admin.getByRole('button',{name:'Опубликовать',exact:true}).click();await expect(page.locator('.notification').filter({hasText:'Особый вечер'})).toHaveCount(0);await order(page);await expect(page.getByText('Заказ отправлен на кухню',{exact:true})).toBeVisible();const second=await context.newPage();await enter(second);await second.getByRole('button',{name:'Я с этой компанией',exact:true}).click();await order(second);await page.getByRole('button',{name:'Счёт',exact:true}).click();await expect(page.getByRole('heading',{name:'Разделение счёта',exact:true})).toBeVisible();await page.getByRole('button',{name:'Оплатить весь остаток',exact:true}).click();await online(page);await second.getByRole('button',{name:'Счёт',exact:true}).click();await expect(second.getByText('Оплачен',{exact:true})).toBeVisible();await expect(second.getByRole('radio',{name:'Онлайн',exact:true})).toHaveCount(0)});\n  15 |\n    at /Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/cycle.spec.ts:12:936"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:18:43.167Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results/cycle-three-guests-partial-cashback-and-equal-split/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/test-results/cycle-three-guests-partial-cashback-and-equal-split/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/arturgamzatov/Documents/ChatGPT/MIRA LINK/mira-link/tests/e2e/cycle.spec.ts",
+                    "column": 936,
+                    "line": 12
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-3a74305e3b76ed762dd1",
+          "file": "cycle.spec.ts",
+          "line": 12,
+          "column": 1
+        },
+        {
+          "title": "POS failure and retry; anonymous limitations",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7063,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:19:02.126Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-a512787aa4efa00a0fdf",
+          "file": "cycle.spec.ts",
+          "line": 13,
+          "column": 1
+        },
+        {
+          "title": "marketing off, service on and one guest pays all",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8476,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:19:10.401Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "833cf30c0770caecb3f8-78aaebb522b7b5bd6c48",
+          "file": "cycle.spec.ts",
+          "line": 14,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "guest-service.spec.ts",
+      "file": "guest-service.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "waiter order joins the current session and leaves the guest cart intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8037,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:19:18.906Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8cd72280e8b97a17d87f-f9c2acf8e35455c30651",
+          "file": "guest-service.spec.ts",
+          "line": 12,
+          "column": 1
+        },
+        {
+          "title": "waiter opens a free table without guest registration",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2278,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:19:26.959Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8cd72280e8b97a17d87f-0ebaf698e8908e3eb694",
+          "file": "guest-service.spec.ts",
+          "line": 21,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "guest-theme.spec.ts",
+      "file": "guest-theme.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "authenticated user manages dish favorites without a restaurant session; anonymous action opens GST-037",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2279,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:19:29.273Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "badfe08d5146dfc77688-fcc92c7d71643effa076",
+          "file": "guest-theme.spec.ts",
+          "line": 17,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "nearby.spec.ts",
+      "file": "nearby.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "venue menus and delivery carts remain separate from the active table",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2718,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:19:31.570Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f5cfbb43c738b781d419-8a6346565f33ee5d5122",
+          "file": "nearby.spec.ts",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "anonymous venue menu does not create a table session",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2318,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T20:19:34.298Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f5cfbb43c738b781d419-4db6bf392645d0c14694",
+          "file": "nearby.spec.ts",
+          "line": 34,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-30T20:17:55.225Z",
+    "duration": 101576.139,
+    "expected": 13,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

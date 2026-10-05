@@ -1,0 +1,101 @@
+[
+  {
+    "viewportWidth": 360,
+    "dialogWidth": 360,
+    "leftEdge": 0,
+    "rightEdge": 0,
+    "contentWidth": 328,
+    "imageWidth": 328,
+    "imageHeight": 190,
+    "imageObjectFit": "cover",
+    "documentOverflow": 0
+  },
+  {
+    "viewportWidth": 375,
+    "dialogWidth": 375,
+    "leftEdge": 0,
+    "rightEdge": 0,
+    "contentWidth": 343,
+    "imageWidth": 343,
+    "imageHeight": 190,
+    "imageObjectFit": "cover",
+    "documentOverflow": 0
+  },
+  {
+    "viewportWidth": 390,
+    "dialogWidth": 390,
+    "leftEdge": 0,
+    "rightEdge": 0,
+    "contentWidth": 358,
+    "imageWidth": 358,
+    "imageHeight": 190,
+    "imageObjectFit": "cover",
+    "documentOverflow": 0
+  },
+  {
+    "viewportWidth": 430,
+    "dialogWidth": 430,
+    "leftEdge": 0,
+    "rightEdge": 0,
+    "contentWidth": 398,
+    "imageWidth": 398,
+    "imageHeight": 190,
+    "imageObjectFit": "cover",
+    "documentOverflow": 0
+  },
+  {
+    "viewportWidth": 480,
+    "dialogWidth": 480,
+    "leftEdge": 0,
+    "rightEdge": 0,
+    "contentWidth": 448,
+    "imageWidth": 448,
+    "imageHeight": 190,
+    "imageObjectFit": "cover",
+    "documentOverflow": 0
+  },
+  {
+    "viewportWidth": 768,
+    "dialogWidth": 480,
+    "leftEdge": 144,
+    "rightEdge": 144,
+    "contentWidth": 430,
+    "imageWidth": 430,
+    "imageHeight": 190,
+    "imageObjectFit": "cover",
+    "documentOverflow": 0
+  },
+  {
+    "viewportWidth": 1024,
+    "dialogWidth": 480,
+    "leftEdge": 272,
+    "rightEdge": 272,
+    "contentWidth": 430,
+    "imageWidth": 430,
+    "imageHeight": 190,
+    "imageObjectFit": "cover",
+    "documentOverflow": 0
+  },
+  {
+    "viewportWidth": 1280,
+    "dialogWidth": 480,
+    "leftEdge": 400,
+    "rightEdge": 400,
+    "contentWidth": 430,
+    "imageWidth": 430,
+    "imageHeight": 190,
+    "imageObjectFit": "cover",
+    "documentOverflow": 0
+  },
+  {
+    "viewportWidth": 1440,
+    "dialogWidth": 480,
+    "leftEdge": 480,
+    "rightEdge": 480,
+    "contentWidth": 430,
+    "imageWidth": 430,
+    "imageHeight": 190,
+    "imageObjectFit": "cover",
+    "documentOverflow": 0
+  }
+]

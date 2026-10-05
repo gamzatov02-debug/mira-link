@@ -1,0 +1,43 @@
+{
+  "fallback": {
+    "wifiVisible": true,
+    "frameReads": 1,
+    "cameraStops": 1,
+    "calls": [
+      {
+        "video": {
+          "facingMode": {
+            "ideal": "environment"
+          }
+        },
+        "audio": false
+      }
+    ]
+  },
+  "live": {
+    "autoplay": true,
+    "muted": true,
+    "playsInline": true,
+    "videoWidth": 640,
+    "videoHeight": 640,
+    "placeholder": false,
+    "calls": [
+      {
+        "video": {
+          "facingMode": {
+            "ideal": "environment"
+          }
+        },
+        "audio": false
+      },
+      {
+        "video": true,
+        "audio": false
+      }
+    ]
+  },
+  "cleanup": {
+    "stops": 1,
+    "scannerPresent": false
+  }
+}
