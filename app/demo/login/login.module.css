@@ -1,0 +1,128 @@
+.page {
+  --login-gold: #d8b56c;
+  --login-green: #03261a;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  overflow-x: hidden;
+  padding: max(24px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
+  color: #f5f1e8;
+  background:
+    radial-gradient(circle at 15% 8%, rgba(216, 181, 108, 0.07), transparent 34%),
+    linear-gradient(180deg, #043022 0%, var(--login-green) 100%);
+}
+
+.card {
+  width: min(100%, 440px);
+  padding: clamp(28px, 7vw, 42px);
+  border: 1px solid rgba(216, 181, 108, 0.28);
+  border-radius: 24px;
+  background: rgba(2, 31, 21, 0.92);
+  box-shadow: 0 24px 64px rgba(0, 12, 8, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.brand {
+  margin-bottom: 32px;
+  color: var(--login-gold);
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--login-gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.card h1 {
+  margin: 0;
+  color: #fffdf7;
+  font-family: var(--font-display, "Manrope", sans-serif);
+  font-size: clamp(28px, 8vw, 38px);
+  line-height: 1.08;
+}
+
+.intro,
+.note {
+  color: rgba(232, 237, 231, 0.7);
+  line-height: 1.55;
+}
+
+.intro {
+  margin: 14px 0 28px;
+  font-size: 15px;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  color: rgba(255, 253, 247, 0.82);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.field input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 15px;
+  border: 1px solid rgba(216, 181, 108, 0.24);
+  border-radius: 14px;
+  outline: none;
+  color: #fffdf7;
+  background: rgba(0, 17, 11, 0.42);
+  font: inherit;
+}
+
+.field input:focus-visible {
+  border-color: var(--login-gold);
+  box-shadow: 0 0 0 3px rgba(216, 181, 108, 0.16);
+}
+
+.submit {
+  min-height: 50px;
+  margin-top: 4px;
+  border: 1px solid rgba(255, 242, 199, 0.4);
+  border-radius: 999px;
+  color: #082218;
+  background: linear-gradient(180deg, #f5d990 0%, #d8b56c 58%, #b98b3e 100%);
+  box-shadow: 0 10px 24px rgba(0, 10, 7, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.submit:focus-visible {
+  outline: 2px solid #fffdf7;
+  outline-offset: 3px;
+}
+
+.error {
+  margin: 0;
+  padding: 11px 13px;
+  border: 1px solid rgba(216, 181, 108, 0.24);
+  border-radius: 12px;
+  color: #f5e7c8;
+  background: rgba(216, 181, 108, 0.08);
+  font-size: 14px;
+}
+
+.note {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 12px;
+}
+
+@media (max-width: 420px) {
+  .page { padding-inline: 16px; }
+  .card { padding: 28px 22px; border-radius: 20px; }
+}
