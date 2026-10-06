@@ -9,6 +9,8 @@ const publicDemoPaths = new Set([
 ]);
 
 export async function proxy(request: NextRequest) {
+  if (process.env.NODE_ENV === "development") return NextResponse.next();
+
   const path = request.nextUrl.pathname;
   if (publicDemoPaths.has(path)) {
     if (path === "/demo/login") {
