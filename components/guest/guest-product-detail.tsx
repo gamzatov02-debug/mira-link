@@ -4,10 +4,12 @@ import type { ReactNode } from "react"
 
 import { BottomSheet } from "@/components/design-system"
 import type { MiraMode } from "@/components/design-system/tokens"
+import { useGuestTheme } from "@/components/guest-theme"
 import { MiraButton as Button, MiraInput as Input } from "@/components/mira"
 import { ProductImage, ProductInfo } from "@/components/mira-domain-ui"
 import type { Modifier, Product } from "@/lib/domain/model"
 import { formatMoney } from "@/lib/domain/selectors"
+import { themeStyle } from "@/lib/guest-theme"
 
 export type GuestProductDetailProps = {
   product: Product | null
@@ -51,6 +53,7 @@ export function GuestProductDetail({
   onCommentChange,
   onSubmit,
 }: GuestProductDetailProps) {
+  const theme = useGuestTheme()
   const total = product
     ? (product.price + product.modifiers
         .filter((modifier) => modifierIds.includes(modifier.id))
@@ -65,6 +68,9 @@ export function GuestProductDetail({
       open={open}
       onOpenChange={onOpenChange}
       description={description}
+      className={theme ? "guest-theme" : undefined}
+      style={theme ? themeStyle(theme) : undefined}
+      overlayStyle={theme ? { background: theme.colors.overlay } : undefined}
     >
       {product && (
         <>

@@ -1,0 +1,37 @@
+/* Component adapters for Guest brand surfaces that predate the semantic theme layer. */
+.guest-theme{
+  --mira-gradient-gold-primary:linear-gradient(180deg,var(--guest-accent-gradient-start) 0%,var(--guest-accent) 45%,var(--guest-accent-gradient-end) 100%);
+}
+
+.guest-theme .brand-welcome{
+  --splash-bg:var(--guest-splash-bg);
+  --splash-gold:var(--guest-splash-gold);
+  --splash-gold-muted:var(--guest-splash-gold-muted);
+  --splash-text-primary:var(--guest-splash-text-primary);
+  --splash-text-secondary:var(--guest-splash-text-secondary);
+  --splash-pattern-stroke:var(--guest-splash-pattern);
+}
+
+.guest-theme .welcome-start .button{
+  background:linear-gradient(135deg,var(--guest-splash-gradient-start),var(--guest-accent) 38%,var(--guest-accent-soft) 68%,var(--guest-splash-gradient-end));
+}
+
+.guest-theme .chip.selected:not(.menu-categories .chip){
+  color:var(--guest-active-text);
+  background:var(--guest-active-bg);
+  border-color:var(--guest-active-bg);
+}
+
+.guest-theme .bottom-nav button[aria-current=page],
+.guest-theme .menu-categories .chip.selected{
+  color:var(--guest-active-bg);
+}
+
+.guest-theme .bottom-nav button[aria-current=page]:before,
+.guest-theme .menu-categories .chip.selected{
+  border-color:var(--guest-active-bg);
+}
+
+.guest-theme .bottom-nav button[aria-current=page]:before{
+  background:var(--guest-active-bg);
+}

@@ -5,6 +5,8 @@ import {Camera,CameraOff,LockKeyhole} from 'lucide-react';
 import jsQR from 'jsqr';
 import {BottomSheet,Button} from '@/components/design-system';
 import {guestProductionMode} from '@/components/guest/adapters/status';
+import {useGuestTheme} from '@/components/guest-theme';
+import {themeStyle} from '@/lib/guest-theme';
 
 export type ScannerState='INITIAL'|'REQUESTING'|'ACTIVE'|'DENIED'|'UNAVAILABLE'|'SUCCESS'|'INVALID';
 export type QrHandlingResult={status:'success'|'invalid';message?:string;close?:boolean};
@@ -14,6 +16,7 @@ type Detector={detect:(source:HTMLVideoElement)=>Promise<DetectorResult[]>};
 type DetectorConstructor={new(options:{formats:string[]}):Detector;getSupportedFormats?:()=>Promise<string[]>};
 
 export function GuestQrScanner({open,onOpenChange,onPayload,title='Сканировать QR'}:{open:boolean;onOpenChange:(open:boolean)=>void;onPayload:(payload:string)=>QrHandlingResult|Promise<QrHandlingResult>;title?:string}){
+ const theme=useGuestTheme();
  const videoRef=useRef<HTMLVideoElement>(null);
  const streamRef=useRef<MediaStream|null>(null);
  const timerRef=useRef<number|null>(null);
@@ -128,7 +131,7 @@ export function GuestQrScanner({open,onOpenChange,onPayload,title='Сканир�
  },[open,startCamera,stopCamera]);
 
  const close=()=>{stopCamera();onOpenChange(false)};
- return <BottomSheet mode={guestProductionMode} open={open} onOpenChange={value=>value?onOpenChange(true):close()} title={title} className="guest-camera-sheet">
+ return <BottomSheet mode={guestProductionMode} open={open} onOpenChange={value=>value?onOpenChange(true):close()} title={title} className={`guest-camera-sheet${theme?' guest-theme':''}`} style={theme?themeStyle(theme):undefined} overlayStyle={theme?{background:theme.colors.overlay}:undefined}>
   <div className="guest-camera-scanner" data-state={state} data-decoder={decoder}>
    <div className="guest-camera-preview">
     <video ref={videoRef} autoPlay muted playsInline aria-label="Изображение с камеры"/>

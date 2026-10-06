@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./mira-theme.css";
 import "./guest-design-system.css";
+import "./guest-theme-semantic.css";
 
 export const viewport: Viewport = {width:'device-width',initialScale:1,viewportFit:'cover',themeColor:'#041E15'};
 
