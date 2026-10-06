@@ -1,8 +1,8 @@
 import type {State,OrderItem,Bill,CommonOrder} from './model';
 export const formatMoney=(v:number)=>new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:2}).format(v/100);
 export const calculateTipCommission=(s:State,tips:number)=>Math.round(tips*s.config.tipCommissionRate);
-export const calculatePaymentQuote=(s:State,{orderAmount,tips,bonuses,guestPaysTipCommission}:{orderAmount:number;tips:number;bonuses:number;guestPaysTipCommission:boolean})=>{
- const tipCommission=calculateTipCommission(s,tips);
+export const calculatePaymentQuote=(s:State,{orderAmount,tips,bonuses,guestPaysTipCommission,tipCommissionApplies}:{orderAmount:number;tips:number;bonuses:number;guestPaysTipCommission:boolean;tipCommissionApplies:boolean})=>{
+ const tipCommission=tipCommissionApplies?calculateTipCommission(s,tips):0;
  return {orderAmount,tips,tipCommission,bonuses,guestPayable:orderAmount-bonuses+tips+(guestPaysTipCommission?tipCommission:0),waiterNetTip:tips-(guestPaysTipCommission?0:tipCommission)};
 };
 export const itemTotal=(i:OrderItem)=>(i.unitPriceSnapshot+i.modifierPriceSnapshot)*i.quantity;
