@@ -79,7 +79,7 @@ export function GuestBillScreen(props:GuestBillScreenProps){
 
   {!closed&&<Card mode={mode} className={styles.sectionCard}>
    <h2 className={styles.visuallyHidden}>Разделение счёта</h2>
-   <button type="button" className={styles.compactRow} aria-expanded={split.expanded} disabled={busy||!!payment.pending} onClick={()=>props.onSplitChange(!split.expanded)}><span><strong>Разделить счёт</strong><small>По блюдам, поровну или своей суммой</small></span><span className={styles.rowTrailing}>{!split.expanded&&split.partAmount&&<strong>{split.partAmount}</strong>}<ChevronRight aria-hidden="true"/></span></button>
+   <button type="button" className={styles.compactRow} aria-expanded={split.expanded} disabled={busy||!!payment.pending} onClick={()=>props.onSplitChange(!split.expanded)}><span><strong>Разделить счёт</strong><small>По блюдам, поровну или своей суммой</small></span><span className={styles.rowTrailing}><ChevronRight aria-hidden="true"/></span></button>
    {split.expanded&&<div className={styles.disclosure} role="region" aria-label="Варианты разделения счёта">
     <h3>Как разделить?</h3>
     <div className={styles.splitModes}>

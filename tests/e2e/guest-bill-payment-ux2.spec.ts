@@ -5,7 +5,7 @@ import {execute} from '../../lib/domain/engine';
 import type {State} from '../../lib/domain/model';
 import {getGuestThemePreset} from '../../lib/guest-theme';
 
-const output='docs/QA/guest-bill-payment-ux2-1';
+const output='docs/QA/guest-bill-payment-ux2-2';
 mkdirSync(output,{recursive:true});
 
 function scenario({tipRate=0,paid=0,quantity=1}:{tipRate?:number;paid?:number;quantity?:number}={}){
@@ -37,14 +37,20 @@ test('My Bill payable cases A-J and mobile orchestration',async({page})=>{
  await expect(paymentButton(page)).toHaveText(/Оплатить 890,00\s*₽/);
  await expect(page.getByText('Комиссия за чаевые',{exact:true})).toHaveCount(0);
  await expect(page.getByRole('button',{name:/^Разделить счёт/})).toHaveAttribute('aria-expanded','false');
+ await expect(page.getByRole('button',{name:/^Разделить счёт/})).not.toContainText('890');
  await expect(page.getByRole('button',{name:/^Бонусы MIRA/})).toHaveAttribute('aria-expanded','false');
+ const collapsedRows=await Promise.all([page.getByRole('button',{name:/^Разделить счёт/}),page.getByRole('button',{name:/^Бонусы MIRA/})].map(locator=>locator.evaluate(element=>element.getBoundingClientRect().height)));
+ expect(Math.abs(collapsedRows[0]-collapsedRows[1])).toBeLessThanOrEqual(1);
  await expect(page.getByRole('heading',{name:'Чаевые официанту',exact:true})).toBeVisible();
  await expect(page.getByRole('button',{name:'Сканировать QR',exact:true})).toHaveCount(0);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBeLessThanOrEqual(0);
  await expect(paymentButton(page)).toHaveCSS('min-height','48px');
  await expect(paymentButton(page)).toHaveCSS('color','rgb(17, 27, 22)');
+ await expect(paymentButton(page).locator('span')).toHaveCSS('color','rgb(17, 27, 22)');
+ expect(await page.locator('[aria-label="Итог и оплата"]').evaluate(element=>element.getBoundingClientRect().height)).toBeLessThanOrEqual(60);
+ expect(await page.getByRole('spinbutton',{name:'Другая сумма чаевых, ₽',exact:true}).evaluate(element=>element.getBoundingClientRect().height)).toBe(44);
  expect(await page.getByRole('radio',{name:'Онлайн',exact:true}).evaluate(element=>element.closest('label')?.getBoundingClientRect().height)).toBeLessThanOrEqual(56);
- await page.screenshot({path:`${output}/01-initial-checkout-390.png`});
+ await page.screenshot({path:`${output}/01-top-current-bill-390.png`});
  await page.getByRole('button',{name:'Назад к посещению',exact:true}).click();
  await expect(page.getByRole('navigation',{name:'Основная навигация гостя'})).toBeVisible();
  await load(page,current.state,current.guestId);
@@ -52,28 +58,29 @@ test('My Bill payable cases A-J and mobile orchestration',async({page})=>{
  await page.getByRole('button',{name:/^Разделить счёт/}).click();
  await expect(page.getByRole('button',{name:/^Разделить счёт/})).toHaveAttribute('aria-expanded','true');
  await page.getByRole('heading',{name:'Как разделить?',exact:true}).scrollIntoViewIfNeeded();
- await page.screenshot({path:`${output}/02-split-expanded-390.png`});
  await page.getByRole('button',{name:/^Разделить счёт/}).click();
 
  await page.getByRole('button',{name:/^Бонусы MIRA/}).click();
  await expect(page.getByRole('spinbutton',{name:'Использовать бонусы, ₽',exact:true})).toBeVisible();
- await page.getByRole('button',{name:/^Бонусы MIRA/}).scrollIntoViewIfNeeded();
- await page.screenshot({path:`${output}/03-bonuses-expanded-390.png`});
 
  await page.getByRole('button',{name:'10%',exact:true}).click();
  await expect(paymentButton(page)).toHaveText(/Оплатить 979,00\s*₽/);
  await expect(page.getByText('Оплатить комиссию сервиса за чаевые',{exact:true})).toHaveCount(0);
  await page.getByRole('heading',{name:'Чаевые официанту',exact:true}).scrollIntoViewIfNeeded();
- await page.screenshot({path:`${output}/04-tips-selected-390.png`});
 
  current=scenario({tipRate:.1});
  await load(page,current.state,current.guestId);
  await page.getByRole('spinbutton',{name:'Другая сумма чаевых, ₽',exact:true}).fill('100');
  await expect(page.getByText('Оплатить комиссию сервиса за чаевые',{exact:true})).toBeVisible();
  await expect(paymentButton(page)).toHaveText(/Оплатить 1\s000,00\s*₽/);
- await page.getByRole('heading',{name:'Чаевые официанту',exact:true}).scrollIntoViewIfNeeded();
- await page.getByRole('heading',{name:'Способ оплаты',exact:true}).scrollIntoViewIfNeeded();
- await page.screenshot({path:`${output}/05-online-payment-390.png`});
+ await page.getByRole('heading',{name:'Способ оплаты',exact:true}).evaluate(element=>element.scrollIntoView({block:'center'}));
+ await page.waitForTimeout(250);
+ await page.screenshot({path:`${output}/02-tips-payment-methods-390.png`});
+ await page.getByRole('heading',{name:'К оплате сейчас',exact:true}).scrollIntoViewIfNeeded();
+ const breakdownAmount=page.getByText('Итого к оплате',{exact:true}).locator('..').locator('strong');
+ const [breakdownSize,stickySize]=await Promise.all([breakdownAmount,paymentButton(page).locator('..').locator('strong')].map(locator=>locator.evaluate(element=>Number.parseFloat(getComputedStyle(element).fontSize))));
+ expect(breakdownSize).toBeLessThan(stickySize);
+ await page.screenshot({path:`${output}/03-bottom-breakdown-sticky-390.png`});
  await page.getByText('Оплатить комиссию сервиса за чаевые',{exact:true}).click();
  await expect(paymentButton(page)).toHaveText(/Оплатить 990,00\s*₽/);
  await expect(page.getByText(/Комиссия 10,00\s*₽ будет удержана из чаевых/)).toBeVisible();
@@ -83,23 +90,29 @@ test('My Bill payable cases A-J and mobile orchestration',async({page})=>{
  await expect(page.getByText('Оплатить комиссию сервиса за чаевые',{exact:true})).toHaveCount(0);
  await expect(page.getByText('Чаевые передайте официанту наличными.',{exact:true})).toBeVisible();
  await page.getByRole('heading',{name:'Способ оплаты',exact:true}).scrollIntoViewIfNeeded();
- await page.screenshot({path:`${output}/06-cash-payment-390.png`});
  await page.getByRole('radio',{name:'Онлайн',exact:true}).click();
  await expect(page.getByText('Оплатить комиссию сервиса за чаевые',{exact:true})).toBeVisible();
  await expect(paymentButton(page)).toHaveText(/Оплатить 990,00\s*₽/);
 
  current=scenario();
- await load(page,current.state,current.guestId);
+ await load(page,current.state,current.guestId,'light');
  await page.getByRole('button',{name:/^Бонусы MIRA/}).click();
  await page.getByRole('spinbutton',{name:'Использовать бонусы, ₽',exact:true}).fill('445');
  await page.getByRole('spinbutton',{name:'Другая сумма чаевых, ₽',exact:true}).fill('100');
  await expect(paymentButton(page)).toHaveText(/Оплатить 545,00\s*₽/);
+ await page.getByRole('button',{name:/^Бонусы MIRA/}).scrollIntoViewIfNeeded();
+ await page.screenshot({path:`${output}/05-bonuses-active-light-390.png`});
 
  current=scenario();
  await load(page,current.state,current.guestId);
  await page.getByRole('button',{name:/^Разделить счёт/}).click();
  await page.getByRole('spinbutton',{name:'Своя сумма, ₽',exact:true}).fill('100');
  await page.getByRole('button',{name:'Выбрать',exact:true}).click();
+ await expect(page.getByText('Ваша часть счёта',{exact:true})).toBeVisible();
+ await expect(page.getByText('Ваша часть счёта',{exact:true}).locator('..').getByText('100,00 ₽',{exact:true})).toBeVisible();
+ await page.getByText('Ваша часть счёта',{exact:true}).evaluate(element=>element.scrollIntoView({block:'center'}));
+ await page.waitForTimeout(250);
+ await page.screenshot({path:`${output}/04-split-active-390.png`});
  await page.getByRole('spinbutton',{name:'Другая сумма чаевых, ₽',exact:true}).fill('10');
  await expect(paymentButton(page)).toHaveText(/Оплатить 110,00\s*₽/);
 
@@ -114,9 +127,12 @@ test('My Bill payable cases A-J and mobile orchestration',async({page})=>{
  await load(page,current.state,current.guestId,'dark');
  await expect(page.locator('.guest-theme')).toHaveAttribute('data-theme','dark');
  await expect(paymentButton(page)).toHaveCSS('color','rgb(25, 19, 11)');
+ await expect(paymentButton(page).locator('span')).toHaveCSS('color','rgb(25, 19, 11)');
+ await page.screenshot({path:`${output}/06-dark-theme-390.png`});
  await load(page,current.state,current.guestId,'light');
  await expect(page.locator('.guest-theme')).toHaveAttribute('data-theme','light');
  await expect(paymentButton(page)).toHaveCSS('color','rgb(25, 19, 11)');
+ await expect(paymentButton(page).locator('span')).toHaveCSS('color','rgb(25, 19, 11)');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBeLessThanOrEqual(0);
 
  current=scenario();
