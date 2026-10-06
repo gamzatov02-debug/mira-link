@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import {Banknote,CreditCard,ReceiptText,QrCode,UserRound} from 'lucide-react';
+import {ArrowLeft,Banknote,ChevronRight,CreditCard,ReceiptText,QrCode,UserRound} from 'lucide-react';
 import {Alert,Button,Card,Checkbox,Chip,Field,Radio,StatusBadge,TextInput} from '@/components/design-system';
 import type {MiraMode} from '@/components/design-system/tokens';
 import styles from './guest-bill-screen.module.css';
@@ -28,6 +28,7 @@ export type GuestBillScreenProps={
  bonus?:{value:string;applied?:string;available:string;balance:string;limit:string};
  tips:{amount:string;preset:number|null;custom:string;waiterName?:string;waiterPhoto?:string;showCommissionControl:boolean;guestPaysCommission:boolean;commission:string;commissionNote?:string;cashNote?:string};
  payment:{method:'online'|'cash';payable:string;restaurantAmount:string;splitAmount?:string;bonusAmount?:string;tipAmount?:string;commissionAmount?:string;pending?:{method:'online'|'cash';total:string;tone:Tone;label:string};records:PaymentRecord[]};
+ onBack:()=>void;
  onSplitChange:(expanded:boolean)=>void;
  onToggleItem:(id:string,checked:boolean)=>void;
  onSplitMode:(mode:'all'|'own'|'items'|'equal')=>void;
@@ -47,11 +48,14 @@ const tipPresets=[0,10,15,20,25];
 export function GuestBillScreen(props:GuestBillScreenProps){
  const {mode,venueName,tableId,status,items,billTotal,paidAmount,remainingAmount,closed,busy,error,split,bonus,tips,payment}=props;
  const [showAll,setShowAll]=useState(false);
+ const [bonusOpen,setBonusOpen]=useState(Boolean(bonus?.applied));
  const visibleItems=showAll?items:items.slice(0,4);
+ const bonusExpanded=bonusOpen||Boolean(bonus?.applied);
  const canPay=!closed&&!!split.partAmount&&!payment.pending;
  const payLabel=payment.method==='cash'?`Передать ${payment.payable} наличными`:`Оплатить ${payment.payable}`;
  return <section className={styles.screen} aria-labelledby="guest-bill-title">
   <header className={styles.header}>
+   <button type="button" className={styles.back} aria-label="Назад к посещению" onClick={props.onBack}><ArrowLeft aria-hidden="true"/></button>
    <div><span className={styles.eyebrow}>ТЕКУЩЕЕ ПОСЕЩЕНИЕ</span><h1 id="guest-bill-title">Мой счёт</h1></div>
    <StatusBadge mode={mode} status={status.tone}>{status.label}</StatusBadge>
    <p><strong>{venueName}</strong>{tableId&&<span>Стол {tableId}</span>}</p>
@@ -75,7 +79,7 @@ export function GuestBillScreen(props:GuestBillScreenProps){
 
   {!closed&&<Card mode={mode} className={styles.sectionCard}>
    <h2 className={styles.visuallyHidden}>Разделение счёта</h2>
-   <Checkbox mode={mode} className={styles.splitToggle} checked={split.expanded} disabled={busy||!!payment.pending} label={<span><strong>Разделить счёт</strong><small>По блюдам, поровну или своей суммой</small></span>} onCheckedChange={checked=>props.onSplitChange(checked===true)}/>
+   <button type="button" className={styles.compactRow} aria-expanded={split.expanded} disabled={busy||!!payment.pending} onClick={()=>props.onSplitChange(!split.expanded)}><span><strong>Разделить счёт</strong><small>По блюдам, поровну или своей суммой</small></span><span className={styles.rowTrailing}>{!split.expanded&&split.partAmount&&<strong>{split.partAmount}</strong>}<ChevronRight aria-hidden="true"/></span></button>
    {split.expanded&&<div className={styles.disclosure} role="region" aria-label="Варианты разделения счёта">
     <h3>Как разделить?</h3>
     <div className={styles.splitModes}>
@@ -87,14 +91,14 @@ export function GuestBillScreen(props:GuestBillScreenProps){
     <div className={styles.splitItems}><h3>Позиции счёта</h3>{split.items.map(item=><Checkbox key={item.id} mode={mode} label={<span>{item.label}<small>Остаток {item.remaining}</small></span>} checked={item.selected} disabled={item.disabled||busy} onCheckedChange={checked=>props.onToggleItem(item.id,checked===true)}/>)}</div>
     <div className={styles.customSplit}><Field mode={mode} label="Своя сумма, ₽"><TextInput mode={mode} type="number" inputMode="decimal" min="0" value={split.customAmount} disabled={busy} onChange={event=>props.onCustomAmount(event.target.value)}/></Field><Button mode={mode} size="m" disabled={busy||!split.customAmount} onClick={props.onCustomSubmit}>Выбрать</Button></div>
    </div>}
-   {split.partAmount&&<div className={styles.partAmount}><span>{split.expanded?'Ваша часть счёта':'К оплате по счёту'}</span><strong>{split.partAmount}</strong></div>}
+   {split.expanded&&split.partAmount&&<div className={styles.partAmount}><span>Ваша часть счёта</span><strong>{split.partAmount}</strong></div>}
    {error&&<Alert mode={mode} status="error" title="Не удалось выбрать часть счёта">{error}</Alert>}
   </Card>}
 
   {split.partAmount&&!payment.pending&&<>
    <Card mode={mode} className={styles.sectionCard}>
-    <div className={styles.headingRow}><div><h2>Бонусы MIRA</h2><p>{bonus?`Доступно: ${bonus.available}`:'Доступны после входа в профиль'}</p></div>{bonus?.applied&&<strong>−{bonus.applied}</strong>}</div>
-    {bonus&&<Field mode={mode} label="Использовать бонусы, ₽" help={`Баланс ${bonus.balance} · лимит ${bonus.limit} от суммы заказа`}><TextInput mode={mode} type="number" inputMode="decimal" min="0" max={Number(bonus.available.replace(/[^0-9,]/g,'').replace(',','.'))||undefined} value={bonus.value} disabled={busy} onChange={event=>props.onBonus?.(event.target.value)}/></Field>}
+    {bonus?<button type="button" className={styles.compactRow} aria-expanded={bonusExpanded} disabled={busy} onClick={()=>setBonusOpen(value=>!value)}><span><strong>Бонусы MIRA</strong><small>Доступно {bonus.available}</small></span><span className={styles.rowTrailing}>{bonus.applied&&<strong>−{bonus.applied}</strong>}<ChevronRight aria-hidden="true"/></span></button>:<div className={styles.compactRowStatic}><span><strong>Бонусы MIRA</strong><small>Доступны после входа в профиль</small></span></div>}
+    {bonus&&bonusExpanded&&<div className={styles.bonusDisclosure}><Field mode={mode} label="Использовать бонусы, ₽" help={`Баланс ${bonus.balance} · лимит ${bonus.limit} от суммы заказа`}><TextInput mode={mode} type="number" inputMode="decimal" min="0" max={Number(bonus.available.replace(/[^0-9,]/g,'').replace(',','.'))||undefined} value={bonus.value} disabled={busy} onChange={event=>props.onBonus?.(event.target.value)}/></Field></div>}
    </Card>
 
    <Card mode={mode} className={styles.sectionCard}>
