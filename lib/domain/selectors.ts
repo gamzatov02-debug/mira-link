@@ -1,5 +1,10 @@
 import type {State,OrderItem,Bill,CommonOrder} from './model';
 export const formatMoney=(v:number)=>new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:2}).format(v/100);
+export const calculateTipCommission=(s:State,tips:number)=>Math.round(tips*s.config.tipCommissionRate);
+export const calculatePaymentQuote=(s:State,{orderAmount,tips,bonuses,guestPaysTipCommission}:{orderAmount:number;tips:number;bonuses:number;guestPaysTipCommission:boolean})=>{
+ const tipCommission=calculateTipCommission(s,tips);
+ return {orderAmount,tips,tipCommission,bonuses,guestPayable:orderAmount-bonuses+tips+(guestPaysTipCommission?tipCommission:0),waiterNetTip:tips-(guestPaysTipCommission?0:tipCommission)};
+};
 export const itemTotal=(i:OrderItem)=>(i.unitPriceSnapshot+i.modifierPriceSnapshot)*i.quantity;
 export const calculateCommonOrder=(s:State,id:string):CommonOrder=>{const items=s.orders.filter(o=>o.sessionId===id&&o.executionStatus!=='cancelled').flatMap(o=>o.items);return {sessionId:id,items,total:items.reduce((a,i)=>a+itemTotal(i),0)}};
 export const calculateBill=(s:State,id:string):Bill=>{const total=calculateCommonOrder(s,id).total;const paid=s.payments.filter(p=>p.sessionId===id&&p.status==='succeeded').reduce((a,p)=>a+p.base,0);const session=s.sessions.find(x=>x.id===id);return {sessionId:id,total,paid,unpaidBalance:Math.max(0,total-paid),financialStatus:session?.forceClosedBalance?'force_closed_with_balance':paid>=total&&total>0?'paid':paid>0?'partially_paid':'unpaid'}};

@@ -60,6 +60,15 @@ export function normalizeState(input:unknown):State{
  source.employeeAuthContexts=array(source.employeeAuthContexts);
  source.shifts=array(source.shifts);
  source.shiftAssignments=array(source.shiftAssignments);
+ source.config={
+  ...source.config,
+  commissionRate:Number.isFinite(source.config?.commissionRate)?source.config.commissionRate:0,
+  tipCommissionRate:Number.isFinite(source.config?.tipCommissionRate)?source.config.tipCommissionRate:(Number.isFinite(source.config?.additionalTipCommissionRate)?source.config.additionalTipCommissionRate:0),
+  additionalTipCommissionRate:Number.isFinite(source.config?.additionalTipCommissionRate)?source.config.additionalTipCommissionRate:0,
+  demoMode:source.config?.demoMode!==false,
+ };
+ source.payments=array(source.payments).map((payment:MutableRecord)=>({...payment,tipCommission:Number.isSafeInteger(payment.tipCommission)?payment.tipCommission:0}));
+ source.financialSplits=array(source.financialSplits).map((split:MutableRecord)=>({...split,tipCommissionShare:Number.isSafeInteger(split.tipCommissionShare)?split.tipCommissionShare:0}));
  source.rentals=array(source.rentals);
  source.deliveries=array(source.deliveries);
  source.favorites=array(source.favorites);
