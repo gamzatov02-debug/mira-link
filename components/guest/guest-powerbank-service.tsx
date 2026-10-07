@@ -63,10 +63,7 @@ export function GuestPowerbankService({venue,activeRentalId,qrTerminalId,busy=fa
  const showReturn=scenario==='return'&&view.activeRental;
 
  return <section className={styles.screen} aria-labelledby="powerbank-title" data-powerbank-scenario={scenario}>
-  <header className={styles.hero}>
-   <div><span>СЕРВИС MIRA LINK</span><h2 id="powerbank-title">Пауэрбанк</h2><p>Заряд всегда рядом</p></div>
-   <img src="/images/powerbank-station-demo.svg" alt="Станция аренды пауэрбанков"/>
-  </header>
+  <header className={styles.pageTitle}><h2 id="powerbank-title">Пауэрбанк</h2></header>
 
   {showRental&&<section className={styles.activeRental} aria-labelledby="active-rental-title">
    <span className={styles.stateLabel}>АКТИВНАЯ АРЕНДА</span>

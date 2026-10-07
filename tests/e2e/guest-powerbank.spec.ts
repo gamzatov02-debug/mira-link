@@ -27,6 +27,8 @@ test('Powerbank 2.1 EnerGO-only launch states and rental flow',async({page})=>{
  await page.getByRole('button',{name:'Сканировать QR стола №12',exact:true}).click();
  await page.getByRole('button',{name:'Пауэрбанк',exact:true}).click();
  await expect(page.getByRole('heading',{name:'Пауэрбанк',exact:true})).toBeVisible();
+ await expect(page.getByText('Заряд всегда рядом',{exact:true})).toHaveCount(0);
+ await expect(page.getByText('СЕРВИС MIRA LINK',{exact:true})).toHaveCount(0);
  await expect(page.getByText('MIRA Restaurant',{exact:true}).last()).toBeVisible();
  await expect(page.getByRole('region',{name:'Текущее заведение'}).getByText('Стол 12',{exact:true})).toBeVisible();
  await expect(page.getByLabel('Предложение EnerGO')).toContainText('6 доступно');
