@@ -19,13 +19,26 @@ function scenario({tipRate=0,paid=0,quantity=1}:{tipRate?:number;paid?:number;qu
  return {state,guestId};
 }
 
+function partialPaymentScenario(){
+ let state=seed();
+ const run=(command:any)=>{const next=execute(state,command);state=next.state;return next.result};
+ const guestId=run({type:'enterTableByToken',token:'mira-table-12',confirm:true,registered:true}).guestId as string;
+ run({type:'updateProduct',source:'pos',id:'p11',price:290000});
+ run({type:'setCart',guestId,items:[{productId:'p11',quantity:1,modifierIds:['medium'],comment:''},{productId:'p1',quantity:1,modifierIds:[],comment:''}]});
+ run({type:'submitOrder',guestId,key:'bill-nav-partial-order'});
+ const partId=run({type:'createSplit',guestId,mode:'custom',amount:290000});
+ const paymentId=run({type:'createPaymentIntent',guestId,partId,method:'online'});
+ run({type:'confirmPayment',id:paymentId,source:'payment'});
+ return {state,guestId};
+}
+
 async function load(page:Page,state:State,guestId:string,theme:'classic'|'dark'|'light'='classic'){
  await page.goto('/demo');
  await page.evaluate(({state,guestId,theme,palette})=>{localStorage.setItem('mira-link-demo-v1',JSON.stringify(state));localStorage.setItem('mira-link-user-v1','u1');localStorage.setItem('mira-demo-guest-theme',JSON.stringify({preset:theme,palette}));sessionStorage.setItem('mira-guest',guestId)}, {state,guestId,theme,palette:getGuestThemePreset(theme)});
  await page.goto('/demo/guest/bill');
  await expect(page.getByRole('heading',{name:'Мой счёт',exact:true})).toBeVisible();
  await expect(page.getByRole('radio',{name:'Онлайн',exact:true})).toBeVisible();
- await expect(page.getByRole('navigation',{name:'Основная навигация гостя'})).toHaveCount(0);
+ await expect(page.getByRole('navigation',{name:'Основная навигация гостя'})).toBeVisible();
 }
 
 const paymentButton=(page:Page)=>page.locator('[aria-label="Итог и оплата"]').getByRole('button');
@@ -42,7 +55,7 @@ test('My Bill payable cases A-J and mobile orchestration',async({page})=>{
  const collapsedRows=await Promise.all([page.getByRole('button',{name:/^Разделить счёт/}),page.getByRole('button',{name:/^Бонусы MIRA/})].map(locator=>locator.evaluate(element=>element.getBoundingClientRect().height)));
  expect(Math.abs(collapsedRows[0]-collapsedRows[1])).toBeLessThanOrEqual(1);
  await expect(page.getByRole('heading',{name:'Чаевые официанту',exact:true})).toBeVisible();
- await expect(page.getByRole('button',{name:'Сканировать QR',exact:true})).toHaveCount(0);
+ await expect(page.getByRole('button',{name:'Сканировать QR',exact:true})).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBeLessThanOrEqual(0);
  await expect(paymentButton(page)).toHaveCSS('min-height','48px');
  await expect(paymentButton(page)).toHaveCSS('color','rgb(17, 27, 22)');
@@ -141,4 +154,71 @@ test('My Bill payable cases A-J and mobile orchestration',async({page})=>{
  await page.getByRole('button',{name:'Симулировать успешную оплату',exact:true}).click();
  await expect(page.getByText('Оплата прошла',{exact:true})).toBeVisible();
  await expect(page.getByRole('navigation',{name:'Основная навигация гостя'})).toBeVisible();
+});
+
+test('Bill keeps canonical navigation below a stationary payment bar',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ const current=partialPaymentScenario();
+ await load(page,current.state,current.guestId);
+
+ const nav=page.getByRole('navigation',{name:'Основная навигация гостя'});
+ const sticky=page.locator('[aria-label="Итог и оплата"]');
+ const qr=page.getByRole('button',{name:'Сканировать QR',exact:true});
+ await expect(page.getByText('Сумма заказа',{exact:true}).first().locator('..')).toContainText('3 790,00 ₽');
+ await expect(page.getByText('Уже оплачено',{exact:true}).locator('..')).toContainText('2 900,00 ₽');
+ await expect(page.getByText('Осталось',{exact:true}).first().locator('..')).toContainText('890,00 ₽');
+ await expect(paymentButton(page)).toHaveText(/Оплатить 890,00\s*₽/);
+ await expect(nav).toBeVisible();
+ await expect(qr).toBeVisible();
+
+ const layerMetrics=async()=>page.evaluate(()=>{
+  const nav=document.querySelector<HTMLElement>('[aria-label="Основная навигация гостя"]')!;
+  const sticky=document.querySelector<HTMLElement>('[aria-label="Итог и оплата"]')!;
+  const qr=document.querySelector<HTMLElement>('[aria-label="Сканировать QR"]')!;
+  const navRect=nav.getBoundingClientRect(),stickyRect=sticky.getBoundingClientRect(),qrRect=qr.getBoundingClientRect();
+  return {navTop:navRect.top,navBottom:navRect.bottom,stickyTop:stickyRect.top,stickyBottom:stickyRect.bottom,qrTop:qrRect.top,navPosition:getComputedStyle(nav).position,stickyPosition:getComputedStyle(sticky).position};
+ });
+ const initial=await layerMetrics();
+ expect(initial.navPosition).toBe('fixed');
+ expect(initial.stickyPosition).toBe('fixed');
+ expect(Math.abs(initial.navBottom-844)).toBeLessThanOrEqual(1);
+ expect(initial.stickyBottom).toBeLessThanOrEqual(initial.qrTop+1);
+ expect(initial.stickyBottom).toBeLessThan(initial.navTop);
+
+ await page.getByRole('button',{name:/^Разделить счёт/}).click();
+ await expect(nav).toBeVisible();
+ await page.getByRole('button',{name:/^Разделить счёт/}).click();
+ await page.getByRole('button',{name:/^Бонусы MIRA/}).click();
+ await expect(nav).toBeVisible();
+ await page.getByRole('button',{name:'10%',exact:true}).click();
+ await page.getByRole('radio',{name:'Наличными',exact:true}).click();
+ await expect(nav).toBeVisible();
+ await expect(qr).toBeVisible();
+
+ const maxScroll=await page.evaluate(()=>document.documentElement.scrollHeight-innerHeight);
+ for(const y of [maxScroll,Math.round(maxScroll/2),0,maxScroll]){
+  await page.evaluate(scrollY=>scrollTo(0,scrollY),y);
+  await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
+  const currentMetrics=await layerMetrics();
+  expect(Math.abs(currentMetrics.navTop-initial.navTop)).toBeLessThanOrEqual(1);
+  expect(Math.abs(currentMetrics.stickyTop-initial.stickyTop)).toBeLessThanOrEqual(1);
+ }
+ const finalTotal=page.getByText('Итого к оплате',{exact:true}).locator('..');
+ const finalBottom=await finalTotal.evaluate(element=>element.getBoundingClientRect().bottom);
+ const stickyTop=await sticky.evaluate(element=>element.getBoundingClientRect().top);
+ expect(finalBottom).toBeLessThanOrEqual(stickyTop);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBeLessThanOrEqual(0);
+
+ await page.getByRole('button',{name:'Рядом',exact:true}).click();
+ await expect(page.getByRole('button',{name:'Рядом',exact:true})).toHaveAttribute('aria-current','page');
+ await page.getByRole('button',{name:'Главная',exact:true}).click();
+ await page.getByRole('button',{name:/^Счёт/}).first().click();
+ await expect(page.getByRole('heading',{name:'Мой счёт',exact:true})).toBeVisible();
+ await expect(page.getByText('Уже оплачено',{exact:true}).locator('..')).toContainText('2 900,00 ₽');
+ await expect(paymentButton(page)).toHaveText(/Оплатить 890,00\s*₽/);
+
+ await page.getByRole('button',{name:'Сканировать QR',exact:true}).click();
+ await expect(page.locator('.guest-camera-sheet')).toBeVisible();
+ await page.keyboard.press('Escape');
+ await expect(page.locator('.guest-camera-sheet')).not.toBeVisible();
 });
