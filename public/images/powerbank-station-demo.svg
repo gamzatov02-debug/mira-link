@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 300" role="img" aria-labelledby="title desc">
+  <title id="title">Демонстрационная станция пауэрбанков</title>
+  <desc id="desc">Тёмно-зелёная настольная станция с шестью съёмными пауэрбанками</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#123d2b"/><stop offset="1" stop-color="#031d14"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe28b"/><stop offset="1" stop-color="#d4a017"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-opacity=".32"/></filter>
+  </defs>
+  <rect width="360" height="300" rx="30" fill="url(#bg)"/>
+  <ellipse cx="180" cy="259" rx="120" ry="18" fill="#000" opacity=".24"/>
+  <g filter="url(#shadow)">
+    <path d="M76 79c0-13 11-24 24-24h160c13 0 24 11 24 24v158c0 13-11 24-24 24H100c-13 0-24-11-24-24z" fill="#08291d" stroke="#d7aa43" stroke-opacity=".75" stroke-width="2"/>
+    <rect x="96" y="75" width="168" height="46" rx="14" fill="#0f3b2a"/>
+    <path d="M117 103V89l8 10 8-10v14" fill="none" stroke="url(#gold)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="145" y="102" fill="#f4c65d" font-family="Arial,sans-serif" font-size="18" letter-spacing="2">POWER</text>
+    <g fill="#061c14" stroke="#416a57">
+      <rect x="96" y="137" width="24" height="86" rx="8"/><rect x="124" y="137" width="24" height="86" rx="8"/><rect x="152" y="137" width="24" height="86" rx="8"/><rect x="180" y="137" width="24" height="86" rx="8"/><rect x="208" y="137" width="24" height="86" rx="8"/><rect x="236" y="137" width="24" height="86" rx="8"/>
+    </g>
+    <g fill="url(#gold)">
+      <rect x="101" y="144" width="14" height="67" rx="5"/><rect x="129" y="144" width="14" height="67" rx="5"/><rect x="157" y="144" width="14" height="67" rx="5"/><rect x="185" y="144" width="14" height="67" rx="5"/><rect x="213" y="144" width="14" height="67" rx="5"/><rect x="241" y="144" width="14" height="67" rx="5"/>
+    </g>
+    <g fill="#193b2e"><circle cx="108" cy="199" r="2"/><circle cx="136" cy="199" r="2"/><circle cx="164" cy="199" r="2"/><circle cx="192" cy="199" r="2"/><circle cx="220" cy="199" r="2"/><circle cx="248" cy="199" r="2"/></g>
+  </g>
+</svg>

@@ -8,5 +8,3 @@ export interface PaymentAdapter{confirm(id:string,success:boolean):Promise<void>
 export class DemoPaymentAdapter implements PaymentAdapter{async confirm(id:string,success=true){await pause();await dispatch({type:success?'confirmPayment':'failPayment',id,source:'payment'})}}
 export interface TaxiAdapter{request(destination:string):Promise<string>}
 export class DemoTaxiAdapter implements TaxiAdapter{async request(destination:string){await pause();return `Демо: поездка до «${destination}» рассчитана. Машина не вызвана.`}}
-export interface PowerbankAdapter{rent():Promise<string>}
-export class DemoPowerbankAdapter implements PowerbankAdapter{async rent(){await pause();return 'Демо EnerGO: станция у входа, слот №3. Реальная аренда не запущена.'}}
