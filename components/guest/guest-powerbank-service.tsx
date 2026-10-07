@@ -24,7 +24,7 @@ function stationCountLabel(count:number){const mod100=count%100,mod10=count%10;c
 
 function StationOffer({station,provider,showRecommendation,onScan}:{station:PowerbankStation;provider?:PowerbankProvider;showRecommendation:boolean;onScan:()=>void}){
  return <article className={styles.offer} aria-label={`Предложение ${provider?.name??'провайдера'}`}>
-  <img src={station.image} alt="Станция с пауэрбанками для аренды"/>
+  <img src={station.image} alt={`Терминал ${provider?.name??'аренды пауэрбанков'}`}/>
   <div className={styles.offerBody}>
    <div className={styles.offerHeading}><div><strong>{provider?.name}</strong><span>Оператор аренды</span></div>{showRecommendation&&station.recommended&&<em>Рекомендуем</em>}</div>
    <p><MapPin aria-hidden="true"/>{station.locationLabel}{station.distanceMeters!==undefined&&<span>· {distanceLabel(station.distanceMeters)}</span>}</p>
@@ -62,9 +62,10 @@ export function GuestPowerbankService({venue,activeRentalId,qrTerminalId,busy=fa
  if(!view)return <section className={styles.screen} aria-label="Пауэрбанк"><div className={styles.loading}>Проверяем доступность…</div></section>;
  const showRental=scenario==='active'&&view.activeRental;
  const showReturn=scenario==='return'&&view.activeRental;
+ const heroStation=!showRental&&!showReturn&&!view.providerError&&scenario==='one'?view.currentStations[0]:undefined;
 
  return <section className={styles.screen} aria-labelledby="powerbank-title" data-powerbank-scenario={scenario}>
-  <header className={styles.pageTitle}><h2 id="powerbank-title">Пауэрбанк</h2></header>
+  {heroStation?<header className={styles.hero}><div><span className={styles.contextLabel}>СЕРВИС MIRA LINK</span><h2 id="powerbank-title">Пауэрбанк</h2><p>Заряд всегда рядом</p></div><img src={heroStation.image} alt="Реальный терминал EnerGO" fetchPriority="high"/></header>:<header className={styles.pageTitle}><h2 id="powerbank-title">Пауэрбанк</h2></header>}
 
   {showRental&&<section className={styles.activeRental} aria-labelledby="active-rental-title">
    <span className={styles.stateLabel}>АКТИВНАЯ АРЕНДА</span>
@@ -98,7 +99,7 @@ export function GuestPowerbankService({venue,activeRentalId,qrTerminalId,busy=fa
   <details className={styles.demoTools}><summary>Состояния пауэрбанка · демо</summary><label>Сценарий<select aria-label="Сценарий пауэрбанка" value={scenario} onChange={event=>setScenario(event.target.value as PowerbankDemoScenario)}>{Object.entries(scenarioLabels).map(([id,label])=><option key={id} value={id}>{label}</option>)}</select></label></details>
 
   <MiraBottomSheet title="Пауэрбанк" description={selected?`${providerFor(view.providers,selected)?.name} · ${selected.locationLabel}`:undefined} open={Boolean(selected)} onClose={()=>setSelected(undefined)}>
-   {selected&&<div className={styles.confirmation}><img src={selected.image} alt="Станция аренды пауэрбанков"/><div><span>Тариф</span><strong>{selected.tariff?.summary}</strong>{selected.tariff?.detail&&<small>{selected.tariff.detail}</small>}</div><p><ShieldCheck aria-hidden="true"/>Перед началом аренды проверьте тариф и выбранную станцию.</p><MiraButton loading={starting||busy} onClick={()=>void startRental()}>Начать аренду</MiraButton></div>}
+   {selected&&<div className={styles.confirmation}><img src={selected.image} alt={`Терминал ${providerFor(view.providers,selected)?.name??'аренды пауэрбанков'}`}/><div><span>Тариф</span><strong>{selected.tariff?.summary}</strong>{selected.tariff?.detail&&<small>{selected.tariff.detail}</small>}</div><p><ShieldCheck aria-hidden="true"/>Перед началом аренды проверьте тариф и выбранную станцию.</p><MiraButton loading={starting||busy} onClick={()=>void startRental()}>Начать аренду</MiraButton></div>}
   </MiraBottomSheet>
 
   <MiraBottomSheet title="Станции рядом" description={view.providers.length>1?'Совместимые предложения разных провайдеров':'Доступные станции '+(view.providers[0]?.name??'')} open={nearbyOpen} onClose={()=>setNearbyOpen(false)}>

@@ -3,7 +3,9 @@ import {test,expect,type Page} from '@playwright/test';
 import {getGuestThemePreset} from '../../lib/guest-theme';
 
 const output='docs/QA/guest-powerbank-2-1';
+const assetOutput='docs/QA/guest-powerbank-2-1a';
 mkdirSync(output,{recursive:true});
+mkdirSync(assetOutput,{recursive:true});
 
 async function setScenario(page:Page,value:'one'|'none'|'active'|'return'|'error'){
  const details=page.locator('details').filter({hasText:'Состояния пауэрбанка · демо'});
@@ -27,8 +29,11 @@ test('Powerbank 2.1 EnerGO-only launch states and rental flow',async({page})=>{
  await page.getByRole('button',{name:'Сканировать QR стола №12',exact:true}).click();
  await page.getByRole('button',{name:'Пауэрбанк',exact:true}).click();
  await expect(page.getByRole('heading',{name:'Пауэрбанк',exact:true})).toBeVisible();
- await expect(page.getByText('Заряд всегда рядом',{exact:true})).toHaveCount(0);
- await expect(page.getByText('СЕРВИС MIRA LINK',{exact:true})).toHaveCount(0);
+ await expect(page.getByText('Заряд всегда рядом',{exact:true})).toBeVisible();
+ await expect(page.getByText('СЕРВИС MIRA LINK',{exact:true})).toBeVisible();
+ const heroImage=page.getByRole('img',{name:'Реальный терминал EnerGO'});
+ await expect(heroImage).toHaveAttribute('src','/images/energo-terminal-primary.webp');
+ await expect(heroImage).toHaveCSS('object-fit','contain');
  await expect(page.getByText('MIRA Restaurant',{exact:true}).last()).toBeVisible();
  await expect(page.getByRole('region',{name:'Текущее заведение'}).getByText('Стол 12',{exact:true})).toHaveCount(0);
  await expect(page.getByLabel('Предложение EnerGO')).toContainText('6 доступно');
@@ -38,14 +43,21 @@ test('Powerbank 2.1 EnerGO-only launch states and rental flow',async({page})=>{
  await expect(page.getByText('Рекомендуем',{exact:true})).toHaveCount(0);
  await expect(page.getByText('6 доступно',{exact:true})).toHaveCount(1);
  await expect(page.getByText('Предоставляет EnerGO',{exact:true})).toHaveCount(0);
+ await expect(page.getByText('M POWER',{exact:true})).toHaveCount(0);
  await expect(page.getByText('Оператор аренды',{exact:true})).toBeVisible();
- await expect(page.getByLabel('Предложение EnerGO').locator('img')).toHaveJSProperty('complete',true);
- expect(await page.getByLabel('Предложение EnerGO').locator('img').evaluate((image:HTMLImageElement)=>image.naturalWidth)).toBeGreaterThan(0);
+ const offerImage=page.getByLabel('Предложение EnerGO').locator('img');
+ await expect(offerImage).toHaveJSProperty('complete',true);
+ await expect(offerImage).toHaveCSS('object-fit','cover');
+ expect(await offerImage.evaluate((image:HTMLImageElement)=>image.naturalWidth)).toBeGreaterThan(0);
  await expect(page.locator('.guest-shortcuts')).not.toContainText('Пауэрбанк');
  await expect(page.getByRole('navigation',{name:'Основная навигация гостя'})).toBeVisible();
  await expect(page.getByText('Готово',{exact:true})).toBeHidden({timeout:4000});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBe(0);
+ await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
  await page.screenshot({path:`${output}/01-energo-only-normal-390.png`});
+ await page.screenshot({path:`${assetOutput}/01-complete-powerbank-page-390.png`,fullPage:true});
+ await page.locator('[data-powerbank-scenario] header').first().screenshot({path:`${assetOutput}/02-real-energo-hero-390.png`});
+ await page.getByLabel('Предложение EnerGO').screenshot({path:`${assetOutput}/03-real-energo-card-390.png`});
 
  await page.getByRole('button',{name:'Другие станции рядом',exact:false}).click();
  const nearby=page.getByRole('dialog');
@@ -96,6 +108,8 @@ test('Powerbank 2.1 EnerGO-only launch states and rental flow',async({page})=>{
  await setScenario(page,'one');
  await expect(page.getByText('Provider B',{exact:true})).toHaveCount(0);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBe(0);
+ await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+ await page.screenshot({path:`${assetOutput}/05-mira-light-390.png`});
  await setTheme(page,'classic');
  await setScenario(page,'one');
  await expect(page.getByText('Provider B',{exact:true})).toHaveCount(0);
@@ -104,6 +118,8 @@ test('Powerbank 2.1 EnerGO-only launch states and rental flow',async({page})=>{
  await setScenario(page,'one');
  await expect(page.getByText('Provider B',{exact:true})).toHaveCount(0);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBe(0);
+ await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+ await page.screenshot({path:`${assetOutput}/04-mira-dark-390.png`});
  await page.screenshot({path:`${output}/06-mira-dark-390.png`});
 });
 
