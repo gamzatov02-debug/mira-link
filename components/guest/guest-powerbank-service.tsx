@@ -6,7 +6,7 @@ import {MiraBottomSheet,MiraButton} from '@/components/mira';
 import {demoPowerbankService,loadDemoPowerbankView,type PowerbankDemoScenario,type PowerbankProvider,type PowerbankServiceView,type PowerbankStation} from '@/lib/powerbank';
 import styles from './guest-powerbank-service.module.css';
 
-type VenueContext={id:string;name:string;tableId?:number};
+type VenueContext={id:string;name:string};
 type Props={
  venue?:VenueContext;
  activeRentalId?:string;
@@ -83,7 +83,7 @@ export function GuestPowerbankService({venue,activeRentalId,qrTerminalId,busy=fa
   {!showRental&&!showReturn&&!view.providerError&&scenario==='none'&&<section className={styles.emptyState}><BatteryCharging aria-hidden="true"/><span className={styles.contextLabel}>{venue?'СЕЙЧАС В ЭТОМ ЗАВЕДЕНИИ':'СЕЙЧАС РЯДОМ'}</span><h3>Нет свободных пауэрбанков</h3><p>Покажем ближайшие совместимые станции с доступными устройствами.</p><MiraButton onClick={()=>setNearbyOpen(true)}>Найти ближайшую станцию</MiraButton></section>}
 
   {!showRental&&!showReturn&&!view.providerError&&scenario!=='none'&&<>
-   <section className={styles.context} aria-label={venue?'Текущее заведение':'Станции рядом'}><div><span>{venue?'В этом заведении':'Рядом с вами'}</span><strong>{venue?.name??view.currentStations[0]?.venueName}</strong>{venue?.tableId&&<small>Стол {venue.tableId}</small>}</div>{view.currentStations.length>1&&<span><Zap aria-hidden="true"/>{view.currentStations.reduce((total,station)=>total+(station.availableUnits??0),0)} доступно</span>}</section>
+   <section className={styles.context} aria-label={venue?'Текущее заведение':'Станции рядом'}><div><span>{venue?'В этом заведении':'Рядом с вами'}</span><strong>{venue?.name??view.currentStations[0]?.venueName}</strong></div>{view.currentStations.length>1&&<span><Zap aria-hidden="true"/>{view.currentStations.reduce((total,station)=>total+(station.availableUnits??0),0)} доступно</span>}</section>
    <div className={styles.offers}>{view.currentStations.map(station=><StationOffer key={station.id} station={station} provider={providerFor(view.providers,station)} showRecommendation={view.providers.length>1} onRent={setSelected}/>)}</div>
   </>}
 
