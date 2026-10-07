@@ -98,7 +98,7 @@ export class PowerbankService{
  async getCompatibleReturnStations(rental:PowerbankRental){const adapter=this.adapters.get(rental.providerId);if(!adapter)return [];return (await adapter.getReturnStations(rental)).filter(station=>rental.compatibleProviderIds.includes(station.providerId))}
 }
 
-const stationImage='/images/energo-terminal-primary.webp';
+const stationImage='/images/energo-terminal-cutout.webp';
 export const demoPowerbankProviders:PowerbankProvider[]=[
  {id:'energo-demo',name:'EnerGO',adapterType:'demo-energo',status:'available',enabled:true,demo:true},
  {id:'provider-b-test',name:'Provider B',adapterType:'demo-provider-b',status:'available',enabled:false,demo:true},

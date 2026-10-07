@@ -3,7 +3,7 @@ import {test,expect,type Page} from '@playwright/test';
 import {getGuestThemePreset} from '../../lib/guest-theme';
 
 const output='docs/QA/guest-powerbank-2-1';
-const assetOutput='docs/QA/guest-powerbank-2-1a';
+const assetOutput='docs/QA/guest-powerbank-2-1b';
 mkdirSync(output,{recursive:true});
 mkdirSync(assetOutput,{recursive:true});
 
@@ -32,7 +32,7 @@ test('Powerbank 2.1 EnerGO-only launch states and rental flow',async({page})=>{
  await expect(page.getByText('Заряд всегда рядом',{exact:true})).toBeVisible();
  await expect(page.getByText('СЕРВИС MIRA LINK',{exact:true})).toBeVisible();
  const heroImage=page.getByRole('img',{name:'Реальный терминал EnerGO'});
- await expect(heroImage).toHaveAttribute('src','/images/energo-terminal-primary.webp');
+ await expect(heroImage).toHaveAttribute('src','/images/energo-terminal-cutout.webp');
  await expect(heroImage).toHaveCSS('object-fit','contain');
  await expect(page.getByText('MIRA Restaurant',{exact:true}).last()).toBeVisible();
  await expect(page.getByRole('region',{name:'Текущее заведение'}).getByText('Стол 12',{exact:true})).toHaveCount(0);
@@ -45,10 +45,8 @@ test('Powerbank 2.1 EnerGO-only launch states and rental flow',async({page})=>{
  await expect(page.getByText('Предоставляет EnerGO',{exact:true})).toHaveCount(0);
  await expect(page.getByText('M POWER',{exact:true})).toHaveCount(0);
  await expect(page.getByText('Оператор аренды',{exact:true})).toBeVisible();
- const offerImage=page.getByLabel('Предложение EnerGO').locator('img');
- await expect(offerImage).toHaveJSProperty('complete',true);
- await expect(offerImage).toHaveCSS('object-fit','cover');
- expect(await offerImage.evaluate((image:HTMLImageElement)=>image.naturalWidth)).toBeGreaterThan(0);
+ await expect(page.getByLabel('Предложение EnerGO').locator('img')).toHaveCount(0);
+ await expect(page.getByLabel('Предложение EnerGO').getByRole('button',{name:'Сканировать QR',exact:true})).toBeVisible();
  await expect(page.locator('.guest-shortcuts')).not.toContainText('Пауэрбанк');
  await expect(page.getByRole('navigation',{name:'Основная навигация гостя'})).toBeVisible();
  await expect(page.getByText('Готово',{exact:true})).toBeHidden({timeout:4000});
@@ -67,7 +65,7 @@ test('Powerbank 2.1 EnerGO-only launch states and rental flow',async({page})=>{
  await page.keyboard.press('Escape');
  await expect(nearby).toBeHidden();
 
- const scanTerminal=page.getByLabel('Предложение EnerGO').getByRole('button',{name:'Сканировать QR терминала',exact:true});
+ const scanTerminal=page.getByLabel('Предложение EnerGO').getByRole('button',{name:'Сканировать QR',exact:true});
  await expect(scanTerminal).toBeVisible();
  await scanTerminal.click();
  const scanner=page.getByRole('dialog').filter({has:page.getByRole('heading',{name:'Сканировать QR',exact:true})});

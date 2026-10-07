@@ -24,13 +24,11 @@ function stationCountLabel(count:number){const mod100=count%100,mod10=count%10;c
 
 function StationOffer({station,provider,showRecommendation,onScan}:{station:PowerbankStation;provider?:PowerbankProvider;showRecommendation:boolean;onScan:()=>void}){
  return <article className={styles.offer} aria-label={`Предложение ${provider?.name??'провайдера'}`}>
-  <img src={station.image} alt={`Терминал ${provider?.name??'аренды пауэрбанков'}`}/>
-  <div className={styles.offerBody}>
-   <div className={styles.offerHeading}><div><strong>{provider?.name}</strong><span>Оператор аренды</span></div>{showRecommendation&&station.recommended&&<em>Рекомендуем</em>}</div>
-   <p><MapPin aria-hidden="true"/>{station.locationLabel}{station.distanceMeters!==undefined&&<span>· {distanceLabel(station.distanceMeters)}</span>}</p>
-   <div className={styles.availability}>{station.availableUnits!==undefined&&<span><Zap aria-hidden="true"/><strong>{station.availableUnits}</strong> доступно</span>}{station.tariff&&<span><strong>{station.tariff.summary.split('/')[0].trim()}</strong><small>{station.tariff.summary.includes('/')?'первый час':''}</small></span>}</div>
-   <MiraButton onClick={onScan}><QrCode aria-hidden="true"/>Сканировать QR терминала</MiraButton>
-  </div>
+  <div className={styles.offerHeading}><div><strong>{provider?.name}</strong><span>Оператор аренды</span></div>{showRecommendation&&station.recommended&&<em>Рекомендуем</em>}{station.tariff&&<span className={styles.tariff}><strong>{station.tariff.summary.split('/')[0].trim()}</strong><small>{station.tariff.summary.includes('/')?'первый час':''}</small></span>}</div>
+  <p><MapPin aria-hidden="true"/>{station.locationLabel}{station.distanceMeters!==undefined&&<span>· {distanceLabel(station.distanceMeters)}</span>}</p>
+  <div className={styles.availability}>{station.availableUnits!==undefined&&<span><Zap aria-hidden="true"/><strong>{station.availableUnits}</strong> доступно</span>}</div>
+  <MiraButton onClick={onScan}><QrCode aria-hidden="true"/>Сканировать QR</MiraButton>
+  <small className={styles.scanHint}>Наведите камеру на QR-код станции</small>
  </article>;
 }
 
