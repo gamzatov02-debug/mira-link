@@ -55,7 +55,15 @@ test('Powerbank 2.1 EnerGO-only launch states and rental flow',async({page})=>{
  await page.keyboard.press('Escape');
  await expect(nearby).toBeHidden();
 
- await page.getByLabel('Предложение EnerGO').getByRole('button',{name:'Арендовать',exact:true}).click();
+ const scanTerminal=page.getByLabel('Предложение EnerGO').getByRole('button',{name:'Сканировать QR терминала',exact:true});
+ await expect(scanTerminal).toBeVisible();
+ await scanTerminal.click();
+ const scanner=page.getByRole('dialog').filter({has:page.getByRole('heading',{name:'Сканировать QR',exact:true})});
+ await expect(scanner).toBeVisible();
+ await page.keyboard.press('Escape');
+ await expect(scanner).toBeHidden();
+ await page.goto('/demo/guest/qr');
+ await page.getByRole('button',{name:'Демо: QR терминала',exact:true}).click();
  const confirmation=page.getByRole('dialog');
  await expect(confirmation.getByText('99 ₽ / первый час',{exact:true})).toBeVisible();
  await expect(confirmation.getByText('Далее 50 ₽ / час',{exact:true})).toBeVisible();

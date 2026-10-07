@@ -1,7 +1,7 @@
 'use client';
 
 import {useEffect,useMemo,useRef,useState} from 'react';
-import {BatteryCharging,ChevronRight,MapPin,RefreshCw,Route,ShieldCheck,Undo2,Zap} from 'lucide-react';
+import {BatteryCharging,ChevronRight,MapPin,QrCode,RefreshCw,Route,ShieldCheck,Undo2,Zap} from 'lucide-react';
 import {MiraBottomSheet,MiraButton} from '@/components/mira';
 import {demoPowerbankService,loadDemoPowerbankView,type PowerbankDemoScenario,type PowerbankProvider,type PowerbankServiceView,type PowerbankStation} from '@/lib/powerbank';
 import styles from './guest-powerbank-service.module.css';
@@ -12,6 +12,7 @@ type Props={
  activeRentalId?:string;
  qrTerminalId?:string;
  busy?:boolean;
+ onScanTerminal:()=>void;
  onStartRental:()=>Promise<unknown>;
 };
 
@@ -21,14 +22,14 @@ function distanceLabel(distance?:number){return distance===undefined?'':distance
 function providerFor(providers:PowerbankProvider[],station:PowerbankStation){return providers.find(provider=>provider.id===station.providerId)}
 function stationCountLabel(count:number){const mod100=count%100,mod10=count%10;const noun=mod100>=11&&mod100<=14?'станций':mod10===1?'станция':mod10>=2&&mod10<=4?'станции':'станций';return `${count} ${noun} поблизости`}
 
-function StationOffer({station,provider,showRecommendation,onRent}:{station:PowerbankStation;provider?:PowerbankProvider;showRecommendation:boolean;onRent:(station:PowerbankStation)=>void}){
+function StationOffer({station,provider,showRecommendation,onScan}:{station:PowerbankStation;provider?:PowerbankProvider;showRecommendation:boolean;onScan:()=>void}){
  return <article className={styles.offer} aria-label={`Предложение ${provider?.name??'провайдера'}`}>
   <img src={station.image} alt="Станция с пауэрбанками для аренды"/>
   <div className={styles.offerBody}>
    <div className={styles.offerHeading}><div><strong>{provider?.name}</strong><span>Оператор аренды</span></div>{showRecommendation&&station.recommended&&<em>Рекомендуем</em>}</div>
    <p><MapPin aria-hidden="true"/>{station.locationLabel}{station.distanceMeters!==undefined&&<span>· {distanceLabel(station.distanceMeters)}</span>}</p>
    <div className={styles.availability}>{station.availableUnits!==undefined&&<span><Zap aria-hidden="true"/><strong>{station.availableUnits}</strong> доступно</span>}{station.tariff&&<span><strong>{station.tariff.summary.split('/')[0].trim()}</strong><small>{station.tariff.summary.includes('/')?'первый час':''}</small></span>}</div>
-   <MiraButton onClick={()=>onRent(station)}>Арендовать</MiraButton>
+   <MiraButton onClick={onScan}><QrCode aria-hidden="true"/>Сканировать QR терминала</MiraButton>
   </div>
  </article>;
 }
@@ -37,7 +38,7 @@ function NearbyEntry({count,onOpen}:{count:number;onOpen:()=>void}){
  return <button type="button" className={styles.actionRow} onClick={onOpen}><span><strong>Другие станции рядом</strong><small>{stationCountLabel(count)}</small></span><span>Показать станции <ChevronRight aria-hidden="true"/></span></button>;
 }
 
-export function GuestPowerbankService({venue,activeRentalId,qrTerminalId,busy=false,onStartRental}:Props){
+export function GuestPowerbankService({venue,activeRentalId,qrTerminalId,busy=false,onScanTerminal,onStartRental}:Props){
  const [scenario,setScenario]=useState<PowerbankDemoScenario>(activeRentalId?'active':'one');
  const [view,setView]=useState<PowerbankServiceView|null>(null);
  const [selected,setSelected]=useState<PowerbankStation>();
@@ -48,7 +49,7 @@ export function GuestPowerbankService({venue,activeRentalId,qrTerminalId,busy=fa
 
  useEffect(()=>{let live=true;void loadDemoPowerbankView(scenario,venueId,activeRentalId).then(next=>{if(live)setView(next)});return()=>{live=false}},[scenario,venueId,activeRentalId]);
  useEffect(()=>{if(activeRentalId)setScenario('active')},[activeRentalId]);
- useEffect(()=>{if(!qrTerminalId||!view||qrOpened.current||!view.currentStations[0])return;qrOpened.current=true;setSelected(view.currentStations[0])},[qrTerminalId,view]);
+ useEffect(()=>{if(!qrTerminalId){qrOpened.current=false;return}if(!view||qrOpened.current||!view.currentStations[0])return;qrOpened.current=true;setSelected(view.currentStations[0])},[qrTerminalId,view]);
 
  const rentalProvider=useMemo(()=>view?.providers.find(provider=>provider.id===view.activeRental?.providerId),[view]);
  const startRental=async()=>{
@@ -84,7 +85,7 @@ export function GuestPowerbankService({venue,activeRentalId,qrTerminalId,busy=fa
 
   {!showRental&&!showReturn&&!view.providerError&&scenario!=='none'&&<>
    <section className={styles.context} aria-label={venue?'Текущее заведение':'Станции рядом'}><div><span>{venue?'В этом заведении':'Рядом с вами'}</span><strong>{venue?.name??view.currentStations[0]?.venueName}</strong></div>{view.currentStations.length>1&&<span><Zap aria-hidden="true"/>{view.currentStations.reduce((total,station)=>total+(station.availableUnits??0),0)} доступно</span>}</section>
-   <div className={styles.offers}>{view.currentStations.map(station=><StationOffer key={station.id} station={station} provider={providerFor(view.providers,station)} showRecommendation={view.providers.length>1} onRent={setSelected}/>)}</div>
+   <div className={styles.offers}>{view.currentStations.map(station=><StationOffer key={station.id} station={station} provider={providerFor(view.providers,station)} showRecommendation={view.providers.length>1} onScan={onScanTerminal}/>)}</div>
   </>}
 
   {!showReturn&&<NearbyEntry count={view.nearbyStations.length} onOpen={()=>setNearbyOpen(true)}/>}
