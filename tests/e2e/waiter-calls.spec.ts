@@ -28,7 +28,7 @@ async function createWaiterCall(page:Page){
  await page.getByRole('button',{name:'Официант',exact:true}).click();
  await page.getByRole('button',{name:'Позвать официанта',exact:true}).click();
  await expect(page.getByText('Официант вызван',{exact:true})).toBeVisible();
- await expect(page.getByText('Вызов отправлен',{exact:true})).toBeVisible();
+ await expect(page.getByText('Запрос отправлен',{exact:true})).toBeVisible();
 }
 
 const firstCall=(page:Page)=>page.getByRole('button',{name:/^Вызов, стол 12/}).first();
@@ -55,7 +55,7 @@ test('Guest-created call synchronizes to Calls, accepts and completes through th
  await expect(detail.getByText('Вызов официанта',{exact:true})).toBeVisible();
  await detail.getByRole('button',{name:'Принять вызов',exact:true}).click();
  await expect(detail.getByText('Принят',{exact:true}).first()).toBeVisible();
- await expect(page.getByText('Официант уже идёт',{exact:true})).toBeVisible();
+ await expect(page.getByText('Принят сотрудником',{exact:true})).toBeVisible();
  await detail.getByRole('button',{name:'Завершить вызов',exact:true}).click();
  await expect(detail.getByText('Завершён',{exact:true}).first()).toBeVisible();
  await expect(page.getByText('Обращение выполнено',{exact:true})).toBeVisible();

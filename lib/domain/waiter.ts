@@ -37,7 +37,7 @@ export function getShiftBlockingObligations(state:State,shiftId:string):ShiftBlo
   const tableId=tableForOrder(state,order);
   return !terminalOrder(order)&&(order.placedByWaiterId===shift.employeeId||(tableId!==undefined&&actionable.has(tableId)));
  }).map(order=>order.id);
- const callIds=state.calls.filter(call=>call.type==='waiter'&&call.status!=='completed'&&actionable.has(call.tableId)).map(call=>call.id);
+ const callIds=state.calls.filter(call=>call.type==='waiter'&&!['completed','cancelled'].includes(call.status)&&actionable.has(call.tableId)).map(call=>call.id);
  const cashPaymentIds=state.payments.filter(payment=>{
   const tableId=tableForPayment(state,payment);
   return payment.method==='cash'&&payment.status==='pending'&&(payment.waiterId===shift.employeeId||(tableId!==undefined&&actionable.has(tableId)));
@@ -79,7 +79,7 @@ export function getWaiterWorkspace(state:State,authContextId:string):WaiterWorks
  const actionableTables=venueTables.filter(table=>actionableIds.has(table.id));
  const readOnlyTables=venueTables.filter(table=>!actionableIds.has(table.id));
  const orders=state.orders.filter(order=>{const tableId=tableForOrder(state,order);return tableId!==undefined&&actionableIds.has(tableId)});
- const calls=state.calls.filter(call=>call.type==='waiter'&&call.status!=='completed'&&actionableIds.has(call.tableId));
+ const calls=state.calls.filter(call=>call.type==='waiter'&&!['completed','cancelled'].includes(call.status)&&actionableIds.has(call.tableId));
  const pendingCashPayments=state.payments.filter(payment=>{const tableId=tableForPayment(state,payment);return payment.method==='cash'&&payment.status==='pending'&&tableId!==undefined&&actionableIds.has(tableId)});
  return {authContext,employee,venue:state.venue,shift,assignment,assignedZones:venueZones.filter(zone=>assignment.zoneIds.includes(zone.id)),assignedTables:venueTables.filter(table=>assignment.tableIds.includes(table.id)),actionableTables,readOnlyTables,orders,calls,pendingCashPayments,obligations:getShiftBlockingObligations(state,shift.id)};
 }

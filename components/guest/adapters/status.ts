@@ -15,9 +15,10 @@ const order: Record<string, GuestStatusPresentation> = {
   cancelled: {tone: 'neutral', label: 'Отменён'},
 }
 const call: Record<string, GuestStatusPresentation> = {
-  created: {tone: 'pending', label: 'Вызов отправлен'},
-  accepted: {tone: 'info', label: 'Сотрудник уже идёт'},
-  completed: {tone: 'success', label: 'Обращение выполнено'},
+  created: {tone: 'pending', label: 'Запрос отправлен'},
+  accepted: {tone: 'info', label: 'Принят сотрудником'},
+  completed: {tone: 'success', label: 'Завершён'},
+  cancelled: {tone: 'neutral', label: 'Отменён'},
 }
 const payment: Record<string, GuestStatusPresentation> = {
   pending: {tone: 'pending', label: 'Ожидает подтверждения'},

@@ -127,10 +127,10 @@ function OrderAction({item,actor,busy,onRun}:{item:OrderPresentation;actor:Opera
  return null;
 }
 
-type CallFilter='all'|'created'|'accepted'|'completed';
+type CallFilter='all'|'created'|'accepted'|'completed'|'cancelled';
 type CallPresentation={call:StaffCall;table:Table;zone:Zone;session:State['sessions'][number]|undefined;actionable:boolean};
 
-const callStatuses:Record<StaffCall['status'],{label:string;tone:TableTone}>={created:{label:'Новый',tone:'warning'},accepted:{label:'Принят',tone:'info'},completed:{label:'Завершён',tone:'success'}};
+const callStatuses:Record<StaffCall['status'],{label:string;tone:TableTone}>={created:{label:'Новый',tone:'warning'},accepted:{label:'Принят',tone:'info'},completed:{label:'Завершён',tone:'success'},cancelled:{label:'Отменён гостем',tone:'neutral'}};
 const callPriority=(item:CallPresentation)=>item.call.status==='created'&&item.actionable?0:item.call.status==='accepted'&&item.actionable?1:item.call.status==='created'?2:item.call.status==='accepted'?3:4;
 const callElapsed=(createdAt:string,now:number|null)=>{if(now===null)return '—';const minutes=Math.max(0,Math.floor((now-Date.parse(createdAt))/60000));if(minutes<1)return 'только что';if(minutes<60)return `${minutes} мин`;const hours=Math.floor(minutes/60),rest=minutes%60;return rest?`${hours} ч ${rest} мин`:`${hours} ч`};
 
@@ -144,17 +144,17 @@ function CallsView({state,workspace,busy,onRun}:{state:State;workspace:WaiterWor
  const actionableIds=new Set(workspace.actionableTables.map(table=>table.id));
  const venueZoneIds=new Set(state.zones.filter(zone=>zone.venueId===workspace.venue.id).map(zone=>zone.id));
  const calls=state.calls.flatMap(call=>{const table=state.tables.find(item=>item.id===call.tableId);const zone=table&&state.zones.find(item=>item.id===table.zoneId);const session=call.sessionId?state.sessions.find(item=>item.id===call.sessionId):state.sessions.find(item=>item.tableId===call.tableId&&!item.closed);return call.type==='waiter'&&table&&zone&&venueZoneIds.has(zone.id)?[{call,table,zone,session,actionable:actionableIds.has(table.id)}]:[]}).sort((a,b)=>callPriority(a)-callPriority(b)||Date.parse(a.call.createdAt)-Date.parse(b.call.createdAt));
- const counts={all:calls.length,created:calls.filter(item=>item.call.status==='created').length,accepted:calls.filter(item=>item.call.status==='accepted').length,completed:calls.filter(item=>item.call.status==='completed').length};
+ const counts={all:calls.length,created:calls.filter(item=>item.call.status==='created').length,accepted:calls.filter(item=>item.call.status==='accepted').length,completed:calls.filter(item=>item.call.status==='completed').length,cancelled:calls.filter(item=>item.call.status==='cancelled').length};
  const visible=calls.filter(item=>filter==='all'||item.call.status===filter);
  const selected=visible.find(item=>item.call.id===selectedCallId);
  const visibleIds=visible.map(item=>item.call.id).join('|');
  useEffect(()=>{if(selectedCallId&&!visibleIds.split('|').includes(selectedCallId))setSelectedCallId(null)},[selectedCallId,visibleIds]);
  const actor:OperationalActorContext={authContextId:workspace.authContext.id,shiftId:workspace.shift.id,employeeId:workspace.employee.id,venueId:workspace.venue.id};
  const changeFilter=(next:CallFilter)=>{setFilter(next);setSelectedCallId(null)};
- const action=selected?.actionable&&selected.call.status!=='completed'?<CallAction item={selected} actor={actor} busy={busy} onRun={onRun}/>:undefined;
+ const action=selected?.actionable&&!['completed','cancelled'].includes(selected.call.status)?<CallAction item={selected} actor={actor} busy={busy} onRun={onRun}/>:undefined;
  return <section className="waiter-calls-workspace" aria-label="Вызовы официанта">
   <div className="waiter-calls-pane">
-   <nav className="waiter-call-filters" aria-label="Фильтры вызовов">{([['all','Все'],['created','Новые'],['accepted','В работе'],['completed','Завершённые']] as const).map(([id,label])=><Chip key={id} mode={mode} selected={filter===id} onClick={()=>changeFilter(id)}>{label} · {counts[id]}</Chip>)}</nav>
+   <nav className="waiter-call-filters" aria-label="Фильтры вызовов">{([['all','Все'],['created','Новые'],['accepted','В работе'],['completed','Завершённые'],['cancelled','Отменённые']] as const).map(([id,label])=><Chip key={id} mode={mode} selected={filter===id} onClick={()=>changeFilter(id)}>{label} · {counts[id]}</Chip>)}</nav>
    {visible.length?<div className="waiter-call-list" aria-live="polite">{visible.map(item=><CallListCard key={item.call.id} item={item} now={now} selected={selectedCallId===item.call.id} onSelect={()=>setSelectedCallId(item.call.id)}/>)}</div>:<div className="waiter-calls-empty"><Bell aria-hidden="true"/><strong>{calls.length?'В этом фильтре вызовов нет':'Активных вызовов нет'}</strong><span>{calls.length?'Список обновится автоматически при изменении статуса.':'Новые обращения гостей появятся здесь автоматически.'}</span></div>}
   </div>
   <aside className="waiter-call-detail-pane" aria-label="Детали вызова" data-split-view={viewport==='split'||undefined}>{selected?<CallDetail item={selected} state={state} now={now} action={action}/>:<div className="waiter-call-detail-empty"><Bell aria-hidden="true"/><strong>Выберите вызов, чтобы увидеть детали</strong><span>Список и выбранный фильтр останутся видимыми.</span></div>}</aside>
@@ -193,7 +193,7 @@ function tablePresentation(state:State,workspace:WaiterWorkspace,table:Table):Ta
  const zone=state.zones.find(item=>item.id===table.zoneId)!;
  const session=state.sessions.find(item=>item.tableId===table.id&&!item.closed);
  const orders=session?state.orders.filter(item=>item.sessionId===session.id&&item.executionStatus!=='cancelled'):[];
- const call=state.calls.find(item=>item.tableId===table.id&&item.type==='waiter'&&item.status!=='completed');
+ const call=state.calls.find(item=>item.tableId===table.id&&item.type==='waiter'&&!['completed','cancelled'].includes(item.status));
  const cash=session?state.payments.find(item=>item.sessionId===session.id&&item.method==='cash'&&item.status==='pending'):undefined;
  const latest=orders.at(-1);
  const hasError=orders.some(item=>item.executionStatus==='error');
