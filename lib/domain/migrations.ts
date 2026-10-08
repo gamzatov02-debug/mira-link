@@ -1,4 +1,5 @@
 import type {EmployeeRole,State,Zone} from './model';
+import {createDemoVenueEvents} from '../events';
 
 type MutableRecord=Record<string,any>;
 
@@ -22,6 +23,7 @@ export function normalizeState(input:unknown):State{
  source.venue={
   ...source.venue,
   organizationId,
+  timeZone:typeof source.venue.timeZone==='string'?source.venue.timeZone:'Europe/Moscow',
   wifi:source.venue.wifi&&typeof source.venue.wifi.ssid==='string'
    ?source.venue.wifi
    :{ssid:'MIRA_GUEST',password:'mira2026',security:'WPA'},
@@ -72,6 +74,9 @@ export function normalizeState(input:unknown):State{
  source.rentals=array(source.rentals);
  source.deliveries=array(source.deliveries);
  source.favorites=array(source.favorites);
+ const storedVenueEvents=Array.isArray(source.venueEvents)?source.venueEvents:null;
+ const demoCatalogueExpired=Boolean(storedVenueEvents?.length&&storedVenueEvents.every((item:MutableRecord)=>item?.demo===true)&&storedVenueEvents.every((item:MutableRecord)=>Date.parse(item.startsAt)<=Date.now()));
+ source.venueEvents=!storedVenueEvents||demoCatalogueExpired?createDemoVenueEvents(new Date(),venueId,source.venue.timeZone):storedVenueEvents;
  source.version=2;
  return source as State;
 }

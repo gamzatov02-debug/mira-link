@@ -2,7 +2,7 @@ export type ExecutionStatus='created'|'submitted'|'accepted'|'in_progress'|'read
 export type FinancialStatus='unpaid'|'partially_paid'|'paid'|'refund_pending'|'partially_refunded'|'refunded'|'force_closed_with_balance';
 export type Organization={id:string;name:string};
 export type VenueWifi={ssid:string;password:string;security:'WPA'|'WPA2'|'WEP'|'nopass';hidden?:boolean};
-export type Venue={id:string;organizationId:string;name:string;cashbackRate:number;bonusLimit:number;wifi:VenueWifi};
+export type Venue={id:string;organizationId:string;name:string;cashbackRate:number;bonusLimit:number;wifi:VenueWifi;timeZone?:string};
 export type Zone={id:string;venueId:string;name:string};
 export type Table={id:number;zoneId:string;waiterId:string};
 export type EmployeeRole='waiter'|'admin';
@@ -57,9 +57,11 @@ export type Promotion={
 export type PromoCode={id:string;code:string;description:string;enabled:boolean};
 export type Refund={id:string;paymentId:string;amount:number;status:'pending'|'completed'};
 export type Event={id:string;type:string;at:string;detail:string};
+/** Venue-facing catalogue content. Kept separate from Event, which is the operational audit log. */
+export type VenueEvent={id:string;venueId:string;title:string;description:string;category:string;startsAt:string;published:boolean;endsAt?:string;image?:string;shortDescription?:string;locationLabel?:string;demo?:boolean};
 export type PowerbankRental={id:string;guestId?:string;status:'active'|'returned'};
 export type DeliveryOrder={id:string;guestId?:string;address:string;items:string;status:'created'};
-export type State={version:2;revision:number;seq:number;organizations:Organization[];venue:Venue;zones:Zone[];tables:Table[];employees:Employee[];employeeAuthContexts:EmployeeAuthContext[];shifts:Shift[];shiftAssignments:ShiftAssignment[];products:Product[];sessions:Session[];guests:Guest[];users:User[];carts:Record<string,CartItem[]>;orders:Order[];splits:Split[];parts:PaymentPart[];payments:Payment[];financialSplits:FinancialSplit[];additionalTips:AdditionalTip[];calls:StaffCall[];notifications:Notification[];bonusTransactions:BonusTransaction[];bookings:Booking[];reviews:Review[];promotions:Promotion[];promoCodes:PromoCode[];refunds:Refund[];events:Event[];config:{commissionRate:number;tipCommissionRate:number;additionalTipCommissionRate:number;demoMode:boolean};simulator:{delay:number;posError:boolean};rentals:PowerbankRental[];deliveries:DeliveryOrder[];favorites:string[]};
+export type State={version:2;revision:number;seq:number;organizations:Organization[];venue:Venue;zones:Zone[];tables:Table[];employees:Employee[];employeeAuthContexts:EmployeeAuthContext[];shifts:Shift[];shiftAssignments:ShiftAssignment[];products:Product[];sessions:Session[];guests:Guest[];users:User[];carts:Record<string,CartItem[]>;orders:Order[];splits:Split[];parts:PaymentPart[];payments:Payment[];financialSplits:FinancialSplit[];additionalTips:AdditionalTip[];calls:StaffCall[];notifications:Notification[];bonusTransactions:BonusTransaction[];bookings:Booking[];reviews:Review[];promotions:Promotion[];venueEvents:VenueEvent[];promoCodes:PromoCode[];refunds:Refund[];events:Event[];config:{commissionRate:number;tipCommissionRate:number;additionalTipCommissionRate:number;demoMode:boolean};simulator:{delay:number;posError:boolean};rentals:PowerbankRental[];deliveries:DeliveryOrder[];favorites:string[]};
 export type CommonOrder={sessionId:string;items:OrderItem[];total:number};
 export type Bill={sessionId:string;total:number;paid:number;unpaidBalance:number;financialStatus:FinancialStatus};
 export type Menu=Product[]; export type Category=string; export type Waiter=OperationalActorContext; export type Role=EmployeeRole; export type Tip=Pick<Payment,'id'|'tips'|'guestId'>; export type PlatformCommission=Pick<FinancialSplit,'miraCommissionShare'|'venueCommissionLiability'>; export type BonusAccount=Pick<User,'id'|'bonusBalance'>; export type POSState=State['simulator'];

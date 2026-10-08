@@ -18,6 +18,8 @@ export function assertInvariants(s:State){
  check(s.venue.bonusLimit>=0&&s.venue.bonusLimit<=.5,'Максимум списания бонусов — 50%');
  check(s.venue.cashbackRate>=.05&&s.venue.cashbackRate<=1,'Кешбэк от 5 до 100%');
  check(s.config.commissionRate>=0&&s.config.commissionRate<=1&&s.config.tipCommissionRate>=0&&s.config.tipCommissionRate<=1,'Ставка комиссии от 0 до 100%');
+ check(new Set(s.venueEvents.map(item=>item.id)).size===s.venueEvents.length,'Мероприятие продублировано');
+ for(const item of s.venueEvents){check(typeof item.venueId==='string'&&typeof item.title==='string'&&typeof item.description==='string'&&typeof item.category==='string','Мероприятие некорректно');check(Number.isFinite(Date.parse(item.startsAt)),'Дата мероприятия некорректна')}
  check(new Set(s.zones.map(item=>item.id)).size===s.zones.length,'Зона продублирована');
  for(const zone of s.zones)check(zone.venueId===s.venue.id,'Зона относится к другому заведению');
  for(const table of s.tables)check(s.zones.some(zone=>zone.id===table.zoneId),'Зона стола не найдена');

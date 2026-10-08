@@ -1,9 +1,10 @@
 import type {State,Product} from './model';
+import {createDemoVenueEvents} from '../events';
 const dishes:[string,string,number,string][]=[['Буррата с томатами','Закуски',890,'220 г'],['Тартар из говядины','Закуски',980,'180 г'],['Карпаччо из лосося','Закуски',1090,'160 г'],['Зелёный салат','Салаты',690,'240 г'],['Салат с креветками','Салаты',940,'260 г'],['Тёплый салат с уткой','Салаты',990,'250 г'],['Тыквенный крем-суп','Супы',590,'300 г'],['Том ям','Супы',890,'350 г'],['Ризотто с грибами','Горячее',990,'280 г'],['Паста с креветками','Горячее',1190,'300 г'],['Стейк рибай','Горячее',2890,'320 г'],['Лосось на гриле','Горячее',1690,'280 г'],['Баскский чизкейк','Десерты',590,'150 г'],['Шоколадный фондан','Десерты',640,'170 г'],['Лимонад юдзу','Напитки',390,'400 мл'],['Капучино','Напитки',290,'250 мл']];
 export const seed=():State=>({
  version:2,revision:0,seq:0,
  organizations:[{id:'org-mira',name:'MIRA LINK Demo Organization'}],
- venue:{id:'mira',organizationId:'org-mira',name:'MIRA Restaurant',cashbackRate:0.05,bonusLimit:0.5,wifi:{ssid:'MIRA_GUEST',password:'mira2026',security:'WPA'}},
+ venue:{id:'mira',organizationId:'org-mira',name:'MIRA Restaurant',cashbackRate:0.05,bonusLimit:0.5,wifi:{ssid:'MIRA_GUEST',password:'mira2026',security:'WPA'},timeZone:'Europe/Moscow'},
  zones:[{id:'zone-main',venueId:'mira',name:'Основной зал'},{id:'zone-terrace',venueId:'mira',name:'Терраса'}],
  tables:Array.from({length:12},(_,i)=>({id:i+1,zoneId:i<6?'zone-main':'zone-terrace',waiterId:i<6?'w2':'w1'})),
  employees:[
@@ -18,7 +19,6 @@ export const seed=():State=>({
   {id:'pr-discount',venueId:'mira',type:'discount',title:'−20% на десерты по будням',shortDescription:'Сладкое завершение обеда по специальной цене',description:'Скидка распространяется на десерты из специальной подборки.',benefit:'−20%',validity:'По будням',timeWindow:'12:00–16:00',image:'/images/menu/p13.png',eligibleProductIds:['p13','p14'],eligibleCategories:['Десерты'],conditions:['Предложение действует по будням с 12:00 до 16:00.','Подробные условия применения определяет заведение.'],published:true},
   {id:'pr-gift',venueId:'mira',type:'gift',title:'Десерт в подарок',shortDescription:'При заказе блюд на сумму от 2 000 ₽',description:'Получите один десерт из специальной подборки при выполнении условий предложения.',benefit:'Подарок к заказу',validity:'До конца месяца',minimumOrder:200000,image:'/images/menu/p14.png',eligibleProductIds:['p13','p14'],eligibleCategories:['Десерты'],conditions:['Минимальная сумма заказа — 2 000 ₽.','Один подарок на один заказ.'],published:true},
   {id:'pr-expired',venueId:'mira',type:'discount',title:'Сезонное предложение сентября',description:'Завершённое демонстрационное предложение.',endAt:'2026-09-30T23:59:59+03:00',published:true}
- ],promoCodes:[],refunds:[],events:[],config:{commissionRate:0,tipCommissionRate:0,additionalTipCommissionRate:0,demoMode:true},simulator:{delay:400,posError:false},rentals:[],deliveries:[],favorites:[]
+ ],venueEvents:createDemoVenueEvents(),promoCodes:[],refunds:[],events:[],config:{commissionRate:0,tipCommissionRate:0,additionalTipCommissionRate:0,demoMode:true},simulator:{delay:400,posError:false},rentals:[],deliveries:[],favorites:[]
 });
-export const lifestyleEvents=[{id:'jazz',title:'Джаз. Вино. Хороший вечер.',date:'Пятница · 20:00',description:'Акустический джаз в MIRA Restaurant. Демонстрационное событие.'},{id:'chef',title:'Ужин с шефом',date:'Суббота · 19:00',description:'Знакомство с сезонным меню. Демонстрационное событие.'}];
 export const nearbyVenues=[{id:'mira',name:'MIRA Restaurant',category:'Современная кухня',distance:'120 м',rating:'4,9',hours:'12:00–00:00'},{id:'garden',name:'Garden Café',category:'Кофе и завтраки',distance:'450 м',rating:'4,8',hours:'08:00–22:00'},{id:'atelier',name:'Atelier',category:'Авторская кухня',distance:'800 м',rating:'4,7',hours:'13:00–23:00'}];

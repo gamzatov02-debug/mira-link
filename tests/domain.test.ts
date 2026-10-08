@@ -6,6 +6,7 @@ import {normalizeState} from '../lib/domain/migrations';
 import {getShiftBlockingObligations,getWaiterWorkspace,hasEmployeeRole,validateWaiterActor} from '../lib/domain/waiter';
 import {createDemoPowerbankService,loadDemoPowerbankView} from '../lib/powerbank';
 import {getGuestPromotions,promotionAvailability} from '../lib/promotions';
+import {createDemoVenueEvents,getVenueEvents,nearestWeekendKeys,venueDateKey} from '../lib/events';
 import * as q from '../lib/domain/selectors';
 function scenario(){let state=seed();let counter=0;const run=(c:any)=>{const next=execute(state,c);state=next.state;return next.result};const enter=(registered=false)=>run({type:'enterTableByToken',token:'mira-table-12',confirm:true,registered}).guestId;const order=(guestId:string,productId='p1')=>{run({type:'setCart',guestId,items:[{productId,quantity:1,modifierIds:[],comment:''}]});return run({type:'submitOrder',guestId,key:`order-${++counter}`})};const pay=(guestId:string,extra:any={})=>{const partId=run({type:'createSplit',guestId,mode:extra.mode??'own'});const id=run({type:'createPaymentIntent',guestId,partId,method:'online',guestPaysCommission:true,...extra});run({type:'confirmPayment',id,source:extra.method==='cash'?'pos':'payment'});return id};return {get s(){return state},run,enter,order,pay}}
 test('active session protection and one session per table',()=>{const x=scenario();x.enter();const before=structuredClone(x.s);assert.deepEqual(x.run({type:'enterTableByToken',token:'mira-table-12'}),{requiresJoin:true});assert.deepEqual(x.s,before);x.enter();assert.equal(x.s.sessions.length,1);assert.equal(x.s.guests.length,2)});
@@ -27,6 +28,32 @@ test('guest promotion discovery filters categories, expired records and event co
  const records=structuredClone(state.promotions);getGuestPromotions(state.promotions,'all',now);assert.deepEqual(state.promotions,records);
  const withEvent=[...state.promotions,{id:'event-only',type:'event' as const,title:'Живая музыка',description:'Концерт по пятницам',published:true}];
  assert.equal(getGuestPromotions(withEvent,'all',now).some(item=>item.id==='event-only'),false);
+});
+test('venue event catalogue filters local dates, publication, venue and past records',()=>{
+ const now=new Date('2026-10-08T12:00:00+03:00'),base={venueId:'mira',description:'Описание',category:'Музыка',published:true};
+ const events:any[]=[
+  {...base,id:'past',title:'Прошедшее',startsAt:'2026-10-08T11:00:00+03:00'},
+  {...base,id:'today',title:'Сегодня',startsAt:'2026-10-08T20:00:00+03:00'},
+  {...base,id:'tomorrow',title:'Завтра',startsAt:'2026-10-09T18:00:00+03:00'},
+  {...base,id:'saturday',title:'Суббота',startsAt:'2026-10-10T19:00:00+03:00'},
+  {...base,id:'sunday',title:'Воскресенье',startsAt:'2026-10-11T19:00:00+03:00'},
+  {...base,id:'hidden',title:'Скрыто',startsAt:'2026-10-10T20:00:00+03:00',published:false},
+  {...base,id:'other',title:'Другое заведение',startsAt:'2026-10-10T20:00:00+03:00',venueId:'other'},
+ ];
+ const options={venueId:'mira',now,timeZone:'Europe/Moscow'};
+ assert.deepEqual(getVenueEvents(events,{...options,filter:'all'}).map(item=>item.id),['today','tomorrow','saturday','sunday']);
+ assert.deepEqual(getVenueEvents(events,{...options,filter:'today'}).map(item=>item.id),['today']);
+ assert.deepEqual(getVenueEvents(events,{...options,filter:'tomorrow'}).map(item=>item.id),['tomorrow']);
+ assert.deepEqual(getVenueEvents(events,{...options,filter:'weekend'}).map(item=>item.id),['saturday','sunday']);
+ assert.deepEqual(nearestWeekendKeys(now,'Europe/Moscow'),['2026-10-10','2026-10-11']);
+ assert.equal(venueDateKey(events[1].startsAt,'Europe/Moscow'),'2026-10-08');
+});
+test('demo venue events are explicit, current, venue-bound and separate from promotions',()=>{
+ const now=new Date('2026-10-08T12:00:00+03:00'),events=createDemoVenueEvents(now,'mira','Europe/Moscow');
+ assert.ok(events.length>1);assert.ok(events.every(item=>item.demo&&item.venueId==='mira'&&item.published&&Date.parse(item.startsAt)>now.getTime()));
+ const state=seed();assert.equal(state.promotions.some(promotion=>events.some(event=>event.id===promotion.id)),false);
+ const missing:any=structuredClone(state);delete missing.venueEvents;assert.ok(normalizeState(missing).venueEvents.length>0);
+ const intentionalEmpty:any=structuredClone(state);intentionalEmpty.venueEvents=[];assert.deepEqual(normalizeState(intentionalEmpty).venueEvents,[]);
 });
 test('POS errors, retry and order submission idempotency',()=>{const x=scenario(),g=x.enter(),id=x.order(g);x.run({type:'submitOrder',guestId:g,key:'order-1'});assert.equal(x.s.orders.length,1);x.run({type:'posStatus',orderId:id,status:'error'});x.run({type:'posStatus',orderId:id,status:'accepted'});x.run({type:'posStatus',orderId:id,status:'error'});assert.equal(x.s.orders[0].executionStatus,'accepted')});
 test('failed payment can retry and cannot change successful payment',()=>{const x=scenario(),g=x.enter();x.order(g);const partId=x.run({type:'createSplit',guestId:g,mode:'all'}),id=x.run({type:'createPaymentIntent',guestId:g,partId,method:'online'});x.run({type:'failPayment',id});assert.equal(q.getRevenue(x.s),0);const retry=x.run({type:'createPaymentIntent',guestId:g,partId,method:'online'});x.run({type:'confirmPayment',id:retry,source:'payment'});const snap=structuredClone(x.s.payments[1]);x.run({type:'failPayment',id:retry});assert.deepEqual(x.s.payments[1],snap)});
