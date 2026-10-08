@@ -27,8 +27,8 @@ async function enterGuest(page:Page){
 async function createWaiterCall(page:Page){
  await page.getByRole('button',{name:'Официант',exact:true}).click();
  await page.getByRole('button',{name:'Позвать официанта',exact:true}).click();
- await expect(page.getByRole('heading',{name:'Официант · Стол 12',exact:true})).toBeVisible();
- await expect(page.getByText('pending',{exact:true})).toBeVisible();
+ await expect(page.getByText('Официант вызван',{exact:true})).toBeVisible();
+ await expect(page.getByText('Вызов отправлен',{exact:true})).toBeVisible();
 }
 
 const firstCall=(page:Page)=>page.getByRole('button',{name:/^Вызов, стол 12/}).first();
