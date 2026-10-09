@@ -1,0 +1,25 @@
+# MIRA LINK — payment-free, temporary demonstration hosting.
+# Render Free spins down after 15 minutes of inactivity.
+# Never commit real passwords or session secrets to this repository.
+services:
+  - type: web
+    name: mira-link-demo
+    runtime: node
+    plan: free
+    region: frankfurt
+    branch: main
+    autoDeployTrigger: commit
+    buildCommand: npm ci && npx next build --webpack
+    startCommand: npx next start --hostname 0.0.0.0 --port $PORT
+    healthCheckPath: /demo/login
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: DEMO_AUTH_SESSION_SECRET
+        generateValue: true
+      - key: DEMO_AUTH_USERS
+        sync: false
