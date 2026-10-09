@@ -7,6 +7,7 @@ import {getShiftBlockingObligations,getWaiterWorkspace,hasEmployeeRole,validateW
 import {createDemoPowerbankService,loadDemoPowerbankView} from '../lib/powerbank';
 import {getGuestPromotions,promotionAvailability} from '../lib/promotions';
 import {createDemoVenueEvents,getVenueEvents,nearestWeekendKeys,venueDateKey} from '../lib/events';
+import {demoLocation,getNearbyVenues} from '../lib/nearby';
 import * as q from '../lib/domain/selectors';
 function scenario(){let state=seed();let counter=0;const run=(c:any)=>{const next=execute(state,c);state=next.state;return next.result};const enter=(registered=false)=>run({type:'enterTableByToken',token:'mira-table-12',confirm:true,registered}).guestId;const order=(guestId:string,productId='p1')=>{run({type:'setCart',guestId,items:[{productId,quantity:1,modifierIds:[],comment:''}]});return run({type:'submitOrder',guestId,key:`order-${++counter}`})};const pay=(guestId:string,extra:any={})=>{const partId=run({type:'createSplit',guestId,mode:extra.mode??'own'});const id=run({type:'createPaymentIntent',guestId,partId,method:'online',guestPaysCommission:true,...extra});run({type:'confirmPayment',id,source:extra.method==='cash'?'pos':'payment'});return id};return {get s(){return state},run,enter,order,pay}}
 test('active session protection and one session per table',()=>{const x=scenario();x.enter();const before=structuredClone(x.s);assert.deepEqual(x.run({type:'enterTableByToken',token:'mira-table-12'}),{requiresJoin:true});assert.deepEqual(x.s,before);x.enter();assert.equal(x.s.sessions.length,1);assert.equal(x.s.guests.length,2)});
@@ -28,6 +29,12 @@ test('guest promotion discovery filters categories, expired records and event co
  const records=structuredClone(state.promotions);getGuestPromotions(state.promotions,'all',now);assert.deepEqual(state.promotions,records);
  const withEvent=[...state.promotions,{id:'event-only',type:'event' as const,title:'Живая музыка',description:'Концерт по пятницам',published:true}];
  assert.equal(getGuestPromotions(withEvent,'all',now).some(item=>item.id==='event-only'),false);
+});
+test('nearby catalogue keeps demo geography explicit and uses only published venue promotions',()=>{
+ const state=seed(),venues=getNearbyVenues(state.products,state.promotions,demoLocation),mira=venues.find(venue=>venue.id==='mira')!,garden=venues.find(venue=>venue.id==='garden')!;
+ assert.equal(venues.length,6);assert.ok(venues.every(venue=>venue.dataSource==='demo'&&!venue.distanceReliable&&!venue.address.includes('Москва')));
+ assert.deepEqual(mira.promotions,state.promotions.filter(promotion=>promotion.published&&promotion.venueId==='mira').map(promotion=>promotion.title));
+ assert.deepEqual(garden.promotions,[]);assert.ok(venues.every((venue,index)=>index===0||venues[index-1].distanceMeters<=venue.distanceMeters));
 });
 test('venue event catalogue filters local dates, publication, venue and past records',()=>{
  const now=new Date('2026-10-08T12:00:00+03:00'),base={venueId:'mira',description:'Описание',category:'Музыка',published:true};

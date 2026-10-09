@@ -1,5 +1,8 @@
 "use client"
 
+import {ChevronRight} from "lucide-react"
+import styles from "./guest-venue-card.module.css"
+
 export type GuestVenueCardProps = {
   id: string
   name: string
@@ -7,12 +10,16 @@ export type GuestVenueCardProps = {
   category: string
   distance: string
   distanceMeters: number
+  distanceReliable?: boolean
   rating: string | number
   hours: string
   status?: string
   imageType?: string
   selected?: boolean
+  onSelect?: () => void
   onOpen: () => void
+  onMenu?: () => void
+  onDelivery?: () => void
 }
 
 /** Canonical Guest discovery card for a venue result. */
@@ -23,29 +30,37 @@ export function GuestVenueCard({
   category,
   distance,
   distanceMeters,
+  distanceReliable = false,
   rating,
   hours,
   status,
   imageType,
   selected = false,
+  onSelect,
   onOpen,
+  onMenu,
+  onDelivery,
 }: GuestVenueCardProps) {
   return (
     <div
       data-venue-id={id}
-      data-distance={distanceMeters}
+      data-distance={Math.round(distanceMeters)}
       data-venue-image-type={imageType}
-      className={`nearby-list-item ${selected ? "selected" : ""}`}
+      className={`nearby-list-item ${styles.card} ${selected ? styles.selected : ""}`}
     >
-      <button type="button" className="nearby-venue-card" aria-label={`О заведении ${name}`} onClick={onOpen}>
-        <img className="nearby-venue-photo" src={image} alt="" />
-        <span className="nearby-venue-content">
-          <strong className="nearby-venue-name">{name}</strong>
-          <span className="nearby-venue-meta">{category} · {distance} · ★ {rating}</span>
-          <span className="nearby-venue-hours">{hours}{status ? ` · ${status}` : ""}</span>
-          <span className="nearby-venue-action">О заведении →</span>
+      <button type="button" className={styles.select} aria-label={`Выбрать ${name} на карте`} aria-pressed={selected} onClick={onSelect ?? onOpen}>
+        <img className={styles.photo} src={image} alt="" />
+        <span className={styles.content}>
+          <strong className={styles.name}>{name}</strong>
+          <span className={styles.meta}>{category} · ★ {rating}{distanceReliable ? ` · ${distance}` : ""}</span>
+          <span className={styles.hours}>{hours}{status ? ` · ${status}` : ""}</span>
         </span>
       </button>
+      <div className={styles.actions}>
+        <button type="button" onClick={onOpen}>Подробнее <ChevronRight aria-hidden/></button>
+        {onMenu&&<button type="button" onClick={onMenu}>Меню</button>}
+        {onDelivery&&<button type="button" onClick={onDelivery}>Доставка</button>}
+      </div>
     </div>
   )
 }
