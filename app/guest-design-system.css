@@ -27,6 +27,12 @@
 .guest-theme .popular-dish strong{font-size:16px}.guest-quick-actions span{font-size:14px}@media(max-width:359px){.guest-quick-actions span{font-size:11px}}
 
 /* Stage 6 screen composition; Pattern roots retain their own geometry. */
+.guest-theme .popular-grid{grid-auto-columns:clamp(98px,calc((100% - 4px)*.288),106px);gap:6px}
+.guest-theme .home-popular-media{height:56px;flex-basis:56px}
+.guest-theme .home-popular-body{gap:3px;padding:6px}
+.guest-theme .home-popular-body h3{min-height:28px;font-size:12px;line-height:14px}
+.guest-theme .home-popular-body>strong{font-size:11px;line-height:14px}
+.guest-theme .home-popular-action{min-height:44px;padding-inline:4px;font-size:12px}
 .guest-theme .guest-pattern-stack{display:grid;gap:12px;margin:12px 0}
 .guest-theme .guest-tip-presets button,.guest-theme .guest-tip-checkbox button{min-width:44px;min-height:44px}
 .guest-theme .guest-payment-tip-card{display:grid;gap:12px}

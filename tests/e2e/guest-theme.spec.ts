@@ -16,5 +16,24 @@ test('Theme Lab applies live, persists, and themes Guest portals',async({page})=
 });
 
 test('authenticated user manages dish favorites without a restaurant session; anonymous action opens GST-037',async({page})=>{
- await page.goto('/demo/guest/home');await page.getByRole('button',{name:'В избранное: Буррата с томатами',exact:true}).click();const gate=page.getByRole('dialog',{name:'Войдите в аккаунт'});await expect(gate).toBeVisible();expect(await page.evaluate(()=>localStorage.getItem('mira-dish-favorites:u1'))).toBeNull();expect(await page.evaluate(()=>sessionStorage.getItem('mira-guest'))).toBeNull();await gate.getByRole('button',{name:'Войти как Алексей',exact:true}).click();await expect(gate).toBeHidden();expect(await page.evaluate(()=>localStorage.getItem('mira-link-user-v1'))).toBe('u1');expect(await page.evaluate(()=>sessionStorage.getItem('mira-guest'))).toBeNull();expect(await page.evaluate(()=>{const raw=localStorage.getItem('mira-link-demo-v1');if(!raw)return {sessions:0,guests:0};const state=JSON.parse(raw);return {sessions:state.sessions.length,guests:state.guests.length}})).toEqual({sessions:0,guests:0});await page.getByRole('button',{name:'Ещё',exact:true}).click();await page.getByRole('button',{name:'Избранное',exact:true}).click();await expect(page.getByRole('heading',{name:'Буррата с томатами',exact:true})).toBeVisible();await page.getByRole('button',{name:'Фото и состав',exact:true}).click();await expect(page.getByRole('dialog').getByText('Состав блюда',{exact:true})).toBeVisible();await expect(page.getByRole('button',{name:'В корзину',exact:true})).toBeDisabled();await page.keyboard.press('Escape');await page.getByRole('button',{name:'Убрать блюдо из избранного',exact:true}).click();await expect(page.getByText('Здесь появятся любимые блюда. Сохраните понравившееся на главной.',{exact:true})).toBeVisible();
+ await page.goto('/demo/guest/home');
+ await page.getByRole('button',{name:'В избранное: Буррата с томатами',exact:true}).click();
+ const gate=page.getByRole('dialog',{name:'Войдите в аккаунт'});
+ await expect(gate).toBeVisible();
+ expect(await page.evaluate(()=>localStorage.getItem('mira-dish-favorites:u1'))).toBeNull();
+ expect(await page.evaluate(()=>sessionStorage.getItem('mira-guest'))).toBeNull();
+ await gate.getByRole('button',{name:'Войти как Алексей',exact:true}).click();
+ await expect(gate).toBeHidden();
+ expect(await page.evaluate(()=>localStorage.getItem('mira-link-user-v1'))).toBe('u1');
+ expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('mira-dish-favorites:u1')??'[]'))).toEqual(['p1']);
+ expect(await page.evaluate(()=>sessionStorage.getItem('mira-guest'))).toBeNull();
+ expect(await page.evaluate(()=>{const raw=localStorage.getItem('mira-link-demo-v1');if(!raw)return {sessions:0,guests:0};const state=JSON.parse(raw);return {sessions:state.sessions.length,guests:state.guests.length}})).toEqual({sessions:0,guests:0});
+ await page.getByRole('button',{name:'Ещё',exact:true}).click();
+ await page.getByRole('button',{name:'Избранное',exact:true}).click();
+ await page.getByRole('button',{name:'Открыть: Буррата с томатами',exact:true}).click();
+ await expect(page.getByRole('dialog').getByText('Состав блюда',{exact:true})).toBeVisible();
+ await expect(page.locator('.product-sticky-cta')).toBeDisabled();
+ await page.keyboard.press('Escape');
+ await page.getByRole('button',{name:'Убрать из избранного: Буррата с томатами',exact:true}).click();
+ await expect(page.getByText('Здесь появятся любимые блюда. Сохраните понравившееся на главной.',{exact:true})).toBeVisible();
 });

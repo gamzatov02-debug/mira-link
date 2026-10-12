@@ -1,0 +1,593 @@
+{
+  "before": {
+    "viewport": 390,
+    "pageOverflow": 0,
+    "carousel": {
+      "clientWidth": 366,
+      "scrollWidth": 817,
+      "gap": 7,
+      "boxWidth": 366
+    },
+    "card": {
+      "width": 130.3125,
+      "height": 194,
+      "imageHeight": 70,
+      "title": "Буррата с томатами",
+      "titleScrollHeight": 34,
+      "titleClientHeight": 34,
+      "metadata": "220 г · 890 ₽",
+      "metadataVisible": true,
+      "favouriteWidth": 44,
+      "favouriteHeight": 44,
+      "actionWidth": 112.3125,
+      "actionHeight": 48,
+      "actionText": "Выбрать"
+    },
+    "image": {
+      "objectFit": "cover",
+      "naturalWidth": 600,
+      "naturalHeight": 400
+    },
+    "cards": [
+      {
+        "title": "Буррата с томатами",
+        "width": 130.3125,
+        "height": 194,
+        "titleScrollHeight": 34,
+        "titleClientHeight": 34,
+        "naturalTitleHeight": 34,
+        "titleFits": true,
+        "metadata": "220 г · 890 ₽",
+        "metadataFits": true
+      },
+      {
+        "title": "Тартар из говядины",
+        "width": 130.3125,
+        "height": 194,
+        "titleScrollHeight": 34,
+        "titleClientHeight": 34,
+        "naturalTitleHeight": 34,
+        "titleFits": true,
+        "metadata": "180 г · 980 ₽",
+        "metadataFits": true
+      },
+      {
+        "title": "Карпаччо из лосося",
+        "width": 130.3125,
+        "height": 194,
+        "titleScrollHeight": 34,
+        "titleClientHeight": 34,
+        "naturalTitleHeight": 34,
+        "titleFits": true,
+        "metadata": "160 г · 1 090 ₽",
+        "metadataFits": true
+      },
+      {
+        "title": "Зелёный салат",
+        "width": 130.3125,
+        "height": 194,
+        "titleScrollHeight": 34,
+        "titleClientHeight": 34,
+        "naturalTitleHeight": 17,
+        "titleFits": true,
+        "metadata": "240 г · 690 ₽",
+        "metadataFits": true
+      },
+      {
+        "title": "Салат с креветками",
+        "width": 130.3125,
+        "height": 194,
+        "titleScrollHeight": 34,
+        "titleClientHeight": 34,
+        "naturalTitleHeight": 34,
+        "titleFits": true,
+        "metadata": "260 г · 940 ₽",
+        "metadataFits": true
+      },
+      {
+        "title": "Тёплый салат с уткой",
+        "width": 130.3125,
+        "height": 194,
+        "titleScrollHeight": 34,
+        "titleClientHeight": 34,
+        "naturalTitleHeight": 34,
+        "titleFits": true,
+        "metadata": "250 г · 990 ₽",
+        "metadataFits": true
+      }
+    ]
+  },
+  "after": [
+    {
+      "viewport": 390,
+      "pageOverflow": 0,
+      "carousel": {
+        "clientWidth": 366,
+        "scrollWidth": 656,
+        "gap": 6,
+        "boxWidth": 366
+      },
+      "card": {
+        "width": 104.25,
+        "height": 162,
+        "imageHeight": 56,
+        "title": "Буррата с томатами",
+        "titleScrollHeight": 28,
+        "titleClientHeight": 28,
+        "metadata": "220 г · 890 ₽",
+        "metadataVisible": true,
+        "favouriteWidth": 44,
+        "favouriteHeight": 44,
+        "actionWidth": 90.25,
+        "actionHeight": 44,
+        "actionText": "Выбрать"
+      },
+      "image": {
+        "objectFit": "cover",
+        "naturalWidth": 600,
+        "naturalHeight": 400
+      },
+      "cards": [
+        {
+          "title": "Буррата с томатами",
+          "width": 104.25,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "220 г · 890 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Тартар из говядины",
+          "width": 104.25,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "180 г · 980 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Карпаччо из лосося",
+          "width": 104.25,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "160 г · 1 090 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Зелёный салат",
+          "width": 104.25,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 14,
+          "titleFits": true,
+          "metadata": "240 г · 690 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Салат с креветками",
+          "width": 104.25,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "260 г · 940 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Тёплый салат с уткой",
+          "width": 104.25,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "250 г · 990 ₽",
+          "metadataFits": true
+        }
+      ]
+    },
+    {
+      "viewport": 320,
+      "pageOverflow": 0,
+      "carousel": {
+        "clientWidth": 296,
+        "scrollWidth": 618,
+        "gap": 6,
+        "boxWidth": 296
+      },
+      "card": {
+        "width": 98,
+        "height": 162,
+        "imageHeight": 56,
+        "title": "Буррата с томатами",
+        "titleScrollHeight": 28,
+        "titleClientHeight": 28,
+        "metadata": "220 г · 890 ₽",
+        "metadataVisible": true,
+        "favouriteWidth": 44,
+        "favouriteHeight": 44,
+        "actionWidth": 84,
+        "actionHeight": 44,
+        "actionText": "Выбрать"
+      },
+      "image": {
+        "objectFit": "cover",
+        "naturalWidth": 600,
+        "naturalHeight": 400
+      },
+      "cards": [
+        {
+          "title": "Буррата с томатами",
+          "width": 98,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "220 г · 890 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Тартар из говядины",
+          "width": 98,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "180 г · 980 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Карпаччо из лосося",
+          "width": 98,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "160 г · 1 090 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Зелёный салат",
+          "width": 98,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "240 г · 690 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Салат с креветками",
+          "width": 98,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "260 г · 940 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Тёплый салат с уткой",
+          "width": 98,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "250 г · 990 ₽",
+          "metadataFits": true
+        }
+      ]
+    },
+    {
+      "viewport": 390,
+      "pageOverflow": 0,
+      "carousel": {
+        "clientWidth": 366,
+        "scrollWidth": 656,
+        "gap": 6,
+        "boxWidth": 366
+      },
+      "card": {
+        "width": 104.25,
+        "height": 162,
+        "imageHeight": 56,
+        "title": "Буррата с томатами",
+        "titleScrollHeight": 28,
+        "titleClientHeight": 28,
+        "metadata": "220 г · 890 ₽",
+        "metadataVisible": true,
+        "favouriteWidth": 44,
+        "favouriteHeight": 44,
+        "actionWidth": 90.25,
+        "actionHeight": 44,
+        "actionText": "Выбрать"
+      },
+      "image": {
+        "objectFit": "cover",
+        "naturalWidth": 600,
+        "naturalHeight": 400
+      },
+      "cards": [
+        {
+          "title": "Буррата с томатами",
+          "width": 104.25,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "220 г · 890 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Тартар из говядины",
+          "width": 104.25,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "180 г · 980 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Карпаччо из лосося",
+          "width": 104.25,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "160 г · 1 090 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Зелёный салат",
+          "width": 104.25,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 14,
+          "titleFits": true,
+          "metadata": "240 г · 690 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Салат с креветками",
+          "width": 104.25,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "260 г · 940 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Тёплый салат с уткой",
+          "width": 104.25,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "250 г · 990 ₽",
+          "metadataFits": true
+        }
+      ],
+      "theme": "light"
+    },
+    {
+      "viewport": 375,
+      "pageOverflow": 0,
+      "carousel": {
+        "clientWidth": 351,
+        "scrollWidth": 630,
+        "gap": 6,
+        "boxWidth": 351
+      },
+      "card": {
+        "width": 99.921875,
+        "height": 162,
+        "imageHeight": 56,
+        "title": "Буррата с томатами",
+        "titleScrollHeight": 28,
+        "titleClientHeight": 28,
+        "metadata": "220 г · 890 ₽",
+        "metadataVisible": true,
+        "favouriteWidth": 44,
+        "favouriteHeight": 44,
+        "actionWidth": 85.921875,
+        "actionHeight": 44,
+        "actionText": "Выбрать"
+      },
+      "image": {
+        "objectFit": "cover",
+        "naturalWidth": 600,
+        "naturalHeight": 400
+      },
+      "cards": [
+        {
+          "title": "Буррата с томатами",
+          "width": 99.921875,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "220 г · 890 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Тартар из говядины",
+          "width": 99.921875,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "180 г · 980 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Карпаччо из лосося",
+          "width": 99.921875,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "160 г · 1 090 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Зелёный салат",
+          "width": 99.921875,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "240 г · 690 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Салат с креветками",
+          "width": 99.921875,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "260 г · 940 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Тёплый салат с уткой",
+          "width": 99.921875,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "250 г · 990 ₽",
+          "metadataFits": true
+        }
+      ]
+    },
+    {
+      "viewport": 1440,
+      "pageOverflow": 0,
+      "carousel": {
+        "clientWidth": 446,
+        "scrollWidth": 666,
+        "gap": 6,
+        "boxWidth": 446
+      },
+      "card": {
+        "width": 106,
+        "height": 162,
+        "imageHeight": 56,
+        "title": "Буррата с томатами",
+        "titleScrollHeight": 28,
+        "titleClientHeight": 28,
+        "metadata": "220 г · 890 ₽",
+        "metadataVisible": true,
+        "favouriteWidth": 44,
+        "favouriteHeight": 44,
+        "actionWidth": 92,
+        "actionHeight": 44,
+        "actionText": "Выбрать"
+      },
+      "image": {
+        "objectFit": "cover",
+        "naturalWidth": 600,
+        "naturalHeight": 400
+      },
+      "cards": [
+        {
+          "title": "Буррата с томатами",
+          "width": 106,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "220 г · 890 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Тартар из говядины",
+          "width": 106,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "180 г · 980 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Карпаччо из лосося",
+          "width": 106,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "160 г · 1 090 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Зелёный салат",
+          "width": 106,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 14,
+          "titleFits": true,
+          "metadata": "240 г · 690 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Салат с креветками",
+          "width": 106,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "260 г · 940 ₽",
+          "metadataFits": true
+        },
+        {
+          "title": "Тёплый салат с уткой",
+          "width": 106,
+          "height": 162,
+          "titleScrollHeight": 28,
+          "titleClientHeight": 28,
+          "naturalTitleHeight": 28,
+          "titleFits": true,
+          "metadata": "250 г · 990 ₽",
+          "metadataFits": true
+        }
+      ]
+    }
+  ]
+}
