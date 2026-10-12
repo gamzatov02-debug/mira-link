@@ -15,7 +15,7 @@ test('Guest Home keeps the approved visual hierarchy at 390px',async({page})=>{
  const [heroBox,primaryBox,promoBox,popularBox,servicesBox]=await Promise.all([hero,primaryActions,promo,popular,services].map(locator=>locator.evaluate(node=>node.getBoundingClientRect().toJSON())));
  expect(heroBox.height).toBeCloseTo(188,0);
  expect(primaryBox.height).toBeCloseTo(82,0);
- expect(promoBox.height).toBeCloseTo(116,0);
+ expect(promoBox.height).toBeCloseTo(116*1.25,2);
  expect(servicesBox.height).toBeCloseTo(72,0);
  expect(primaryBox.y).toBeGreaterThanOrEqual(heroBox.bottom);
  expect(promoBox.y).toBeGreaterThanOrEqual(primaryBox.bottom);
@@ -48,6 +48,7 @@ test('Guest Home keeps the approved visual hierarchy at 390px',async({page})=>{
  expect(promoImageBox.height).toBeGreaterThanOrEqual(promoBox.height-2);
  expect(promoActionBox.width).toBeGreaterThanOrEqual(44);
  expect(promoActionBox.height).toBeGreaterThanOrEqual(44);
+ expect(promoActionBox.y+promoActionBox.height/2).toBeCloseTo(promoBox.y+promoBox.height/2,0);
  expect(promoActionBox.right).toBeLessThanOrEqual(promoBox.right);
  expect(promoActionBox.bottom).toBeLessThanOrEqual(promoBox.bottom);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
@@ -118,12 +119,18 @@ for(const width of [320,375,390,1440])test(`Guest Home reordered services fit ${
  const promo=page.locator('.guest-promo');
  await expect(services.getByRole('button')).toHaveCount(4);
  const expectedServiceHeight=width<768?72:78;
- const expectedPromoHeight=width<768?116:123;
+ const expectedPromoHeight=(width<768?116:123)*1.25;
  const serviceMetrics=await services.getByRole('button').evaluateAll(buttons=>buttons.map(button=>{const box=button.getBoundingClientRect();const caption=button.querySelector('small')!;return {height:box.height,captionFits:caption.scrollHeight<=caption.clientHeight&&caption.scrollWidth<=caption.clientWidth}}));
  for(const metric of serviceMetrics){expect(metric.height).toBeCloseTo(expectedServiceHeight,0);expect(metric.height).toBeGreaterThanOrEqual(44);expect(metric.captionFits).toBe(true)}
- expect((await promo.boundingBox())!.height).toBeCloseTo(expectedPromoHeight,0);
+ const [promoBox,promoImageBox,promoActionBox]=await Promise.all([promo,promo.locator('img'),promo.locator('.promo-action')].map(locator=>locator.evaluate(node=>node.getBoundingClientRect().toJSON())));
+ expect(promoBox.height).toBeCloseTo(expectedPromoHeight,2);
+ expect(promoBox.height/(width<768?116:123)).toBeCloseTo(1.25,3);
  expect(await promo.locator('img').evaluate(node=>getComputedStyle(node).objectFit)).toBe('cover');
- expect((await promo.locator('.promo-action').boundingBox())!.height).toBeGreaterThanOrEqual(44);
+ expect(await promo.locator('img').evaluate(node=>getComputedStyle(node).objectPosition)).toBe('50% 58%');
+ expect(promoImageBox.width).toBeGreaterThanOrEqual(promoBox.width-2);
+ expect(promoImageBox.height).toBeGreaterThanOrEqual(promoBox.height-2);
+ expect(promoActionBox.height).toBeGreaterThanOrEqual(44);
+ expect(promoActionBox.y+promoActionBox.height/2).toBeCloseTo(promoBox.y+promoBox.height/2,0);
  expect(await services.getByRole('button').evaluateAll(buttons=>new Set(buttons.map(button=>Math.round(button.getBoundingClientRect().y))).size)).toBe(1);
  const carousel=page.getByLabel('Популярное');
  expect(await carousel.evaluate(node=>node.scrollWidth>node.clientWidth)).toBe(true);

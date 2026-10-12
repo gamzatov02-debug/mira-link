@@ -1,5 +1,5 @@
 :global(.guest-theme) :global(.guest-promo-banner).promoBanner {
-  height: 123px;
+  height: 153.75px;
 }
 
 :global(.guest-quick-actions).secondaryActions > button {
@@ -36,7 +36,7 @@
 
 @media (max-width: 767px) {
   :global(.guest-theme) :global(.guest-promo-banner).promoBanner {
-    height: 116px;
+    height: 145px;
   }
 
   :global(.guest-quick-actions).secondaryActions > button {
