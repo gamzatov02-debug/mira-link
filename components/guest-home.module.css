@@ -1,0 +1,84 @@
+:global(.guest-theme) :global(.guest-promo-banner).promoBanner {
+  height: 123px;
+}
+
+:global(.guest-quick-actions).secondaryActions > button {
+  height: 78px;
+}
+
+:global(.guest-quick-actions).secondaryActions {
+  height: 78px;
+  grid-auto-rows: 78px;
+}
+
+.secondaryActions svg {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+}
+
+.secondaryActions small {
+  max-width: 100%;
+  margin-top: 1px;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.homeApp {
+  --guest-home-nav-envelope: 84px;
+  --guest-home-nav-clearance: 16px;
+}
+
+.homeApp:not(:global(.has-cart)) > :global(.guest-content) {
+  padding-bottom: calc(var(--guest-home-nav-envelope) + var(--guest-home-nav-clearance) + env(safe-area-inset-bottom));
+  scroll-padding-bottom: calc(var(--guest-home-nav-envelope) + var(--guest-home-nav-clearance) + env(safe-area-inset-bottom));
+}
+
+@media (max-width: 767px) {
+  :global(.guest-theme) :global(.guest-promo-banner).promoBanner {
+    height: 116px;
+  }
+
+  :global(.guest-quick-actions).secondaryActions > button {
+    height: 72px;
+    padding-block: 2px;
+  }
+
+  :global(.guest-quick-actions).secondaryActions {
+    height: 72px;
+    grid-auto-rows: 72px;
+  }
+
+  .secondaryActions span {
+    line-height: 16px;
+  }
+
+  .secondaryActions small {
+    font-size: 9.5px;
+    line-height: 11px;
+    letter-spacing: -0.01em;
+  }
+}
+
+@media (max-width: 359px) {
+  :global(.guest-quick-actions).secondaryActions > button { padding-inline: 1px; }
+
+  .secondaryActions svg {
+    width: 22px;
+    height: 22px;
+    margin-bottom: 2px;
+  }
+
+  .secondaryActions small {
+    font-size: 9px;
+    line-height: 11px;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 767px) {
+  .secondaryActions > button:first-child small {
+    font-size: 9px;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+  }
+}
