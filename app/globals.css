@@ -31,3 +31,10 @@
 /* Avoid Tailwind's outline utility adding a second border to the existing variant. */
 .button.outline{outline:none}
 .button:focus-visible{outline:2px solid var(--accent-gold);outline-offset:4px}
+
+
+/* Guest product canvas: the outer demo toolbar is not part of the approved mobile Mini App visual. */
+@media (max-width:767px){
+  .demo-mode-guest > .demo-header{display:none}
+  .demo-mode-guest .guest-standalone{margin:0;max-width:none}
+}
