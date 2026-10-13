@@ -609,13 +609,13 @@
   gap:8px;
   margin:4px 0 16px;
 }
-.guest-theme .guest-tip-presets>.chip{width:100%;justify-content:center;background:transparent}
-.guest-theme .guest-tip-presets>.chip>button{width:100%;min-height:48px;padding:4px;border-radius:24px;font-size:10px}
-.guest-theme .guest-tip-presets>.chip:has(button[aria-pressed="true"]){
+.guest-theme .guest-tip-presets>span{width:100%;justify-content:center;background:transparent}
+.guest-theme .guest-tip-presets>span>button{width:100%;min-height:48px;padding:4px;border-radius:24px;font-size:10px}
+.guest-theme .guest-tip-presets>span:has(button[aria-pressed="true"]){
   border-color:var(--color-accent-primary);
   background:var(--color-accent-primary);
 }
-.guest-theme .guest-tip-presets>.chip:has(button[aria-pressed="true"]) button{
+.guest-theme .guest-tip-presets>span:has(button[aria-pressed="true"]) button{
   color:var(--color-button-primary-text);
 }
 .guest-theme .guest-tip-custom-card,
@@ -648,7 +648,7 @@
 .guest-theme .guest-tips-sticky .button{min-height:54px;border-radius:27px}
 @media(max-width:359px){
  .guest-theme .guest-tip-presets{gap:4px}
- .guest-theme .guest-tip-presets>.chip>button{font-size:9px}
+ .guest-theme .guest-tip-presets>span>button{font-size:9px}
  .guest-theme .guest-tips-avatar{width:76px;height:76px}
 }
 
