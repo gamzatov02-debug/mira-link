@@ -35,3 +35,7 @@
 .guest-theme .bottom-nav button[aria-current=page]:before{
   background:var(--guest-active-bg);
 }
+
+
+/* Latest approved v2.1 bottom navigation uses color emphasis only; no top indicator bar. */
+.guest-theme .bottom-nav button[aria-current=page]:before{display:none}
