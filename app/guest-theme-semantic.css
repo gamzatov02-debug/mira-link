@@ -651,3 +651,56 @@
  .guest-theme .guest-tip-presets>.chip>button{font-size:9px}
  .guest-theme .guest-tips-avatar{width:76px;height:76px}
 }
+
+
+/* v2.1 compact headers for top-level non-restaurant pages. */
+.guest-theme .guest-compact-header{
+  min-height:64px;
+  display:grid;
+  grid-template-columns:minmax(88px,1fr) auto minmax(88px,1fr);
+  align-items:center;
+  gap:8px;
+  margin:0 0 6px;
+}
+.guest-theme .guest-compact-header h1{
+  margin:0;
+  text-align:center;
+  font-family:var(--restaurant-font);
+  font-size:22px;
+  line-height:28px;
+  font-weight:400;
+  white-space:nowrap;
+}
+.guest-theme .guest-compact-brand{
+  min-height:44px;
+  display:flex;
+  align-items:center;
+  justify-self:start;
+  gap:6px;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:var(--color-accent-primary);
+  font-size:11px;
+  letter-spacing:.13em;
+  white-space:nowrap;
+}
+.guest-theme .guest-compact-brand img{width:30px;height:30px;object-fit:contain}
+.guest-theme .guest-compact-back,
+.guest-theme .guest-compact-actions>button{
+  width:40px;height:40px;display:grid;place-items:center;padding:0;
+  border:1px solid var(--color-border-primary);border-radius:50%;
+  background:var(--color-surface-glass);color:var(--color-text-primary);
+}
+.guest-theme .guest-compact-back{justify-self:start}
+.guest-theme .guest-compact-actions{
+  display:flex;justify-content:flex-end;gap:6px;min-width:88px;
+}
+.guest-theme .guest-compact-actions svg,
+.guest-theme .guest-compact-back svg{width:18px;height:18px}
+@media(max-width:359px){
+ .guest-theme .guest-compact-header{grid-template-columns:minmax(70px,1fr) auto minmax(70px,1fr)}
+ .guest-theme .guest-compact-brand span{display:none}
+ .guest-theme .guest-compact-actions{min-width:70px;gap:4px}
+ .guest-theme .guest-compact-back,.guest-theme .guest-compact-actions>button{width:36px;height:36px}
+}
