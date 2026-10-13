@@ -525,3 +525,37 @@
   background:var(--color-surface-glass);
   color:var(--color-accent-primary);
 }
+
+
+/* v2.1 mobile subpages rely on their own headers + bottom navigation, not the legacy quick-nav strip. */
+@media(max-width:767px){
+  .guest-theme .guest-shortcuts{display:none!important}
+
+  .guest-theme .guest-cart-header{
+    min-height:58px;
+    display:grid;
+    grid-template-columns:44px minmax(0,1fr) 44px;
+    align-items:center;
+    gap:8px;
+  }
+  .guest-theme .guest-cart-header h2{
+    margin:0;
+    text-align:center;
+    font-family:var(--restaurant-font);
+    font-size:25px;
+    line-height:31px;
+    font-weight:400;
+  }
+  .guest-theme .guest-cart-header>button{
+    width:44px;
+    height:44px;
+    display:grid;
+    place-items:center;
+    padding:0;
+    border:1px solid var(--color-border-primary);
+    border-radius:50%;
+    background:var(--color-surface-glass);
+    color:var(--color-text-primary);
+  }
+  .guest-theme .guest-cart-header svg{width:19px;height:19px}
+}
