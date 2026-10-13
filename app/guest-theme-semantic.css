@@ -483,3 +483,45 @@
   .guest-product-eyebrow,.guest-product-description,.guest-product-meta,.guest-product-base-price{display:none}
   .guest-product-modifiers h3{margin-top:12px}
 }
+
+
+/* v2.1 menu header: back / centered serif title / favourites. */
+.guest-theme .guest-menu-heading{
+  min-height:58px;
+  display:grid;
+  grid-template-columns:44px minmax(0,1fr) 44px;
+  align-items:center;
+  gap:8px;
+  margin:0;
+}
+.guest-theme .guest-menu-heading h2{
+  margin:0;
+  text-align:center;
+  font-family:var(--restaurant-font);
+  font-size:27px;
+  line-height:32px;
+  font-weight:400;
+  letter-spacing:-.025em;
+}
+.guest-theme .guest-menu-back,
+.guest-theme .guest-menu-favorite{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  color:var(--color-text-primary);
+}
+.guest-theme .guest-menu-back svg,
+.guest-theme .guest-menu-favorite svg{
+  width:20px;
+  height:20px;
+}
+.guest-theme .guest-menu-favorite{
+  border:1px solid var(--color-border-primary);
+  background:var(--color-surface-glass);
+  color:var(--color-accent-primary);
+}
