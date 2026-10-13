@@ -894,3 +894,37 @@
     padding-bottom:10px!important;
   }
 }
+
+
+/* Shared v2.1 ambient background: the same layered emerald/ivory field continues across all Guest screens. */
+.guest-theme>.guest-app{
+  isolation:isolate;
+  overflow-x:clip;
+  background:var(--color-bg-primary)!important;
+}
+.guest-theme>.guest-app::before{
+  content:"";
+  position:fixed;
+  z-index:0;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(145% 54% at -22% 14%,color-mix(in srgb,var(--color-surface-elevated) 82%,transparent) 0 28%,transparent 29%),
+    radial-gradient(115% 44% at 112% 37%,color-mix(in srgb,var(--color-surface-soft) 74%,transparent) 0 25%,transparent 26%),
+    radial-gradient(135% 48% at -20% 69%,color-mix(in srgb,var(--color-surface-elevated) 68%,transparent) 0 24%,transparent 25%),
+    linear-gradient(132deg,transparent 0 29%,color-mix(in srgb,var(--color-surface-primary) 46%,transparent) 30% 41%,transparent 42% 61%,color-mix(in srgb,var(--color-surface-elevated) 28%,transparent) 62% 70%,transparent 71%);
+  opacity:.66;
+}
+.guest-theme[data-mode="light"]>.guest-app::before{
+  background:
+    radial-gradient(145% 54% at -22% 14%,rgba(234,226,209,.78) 0 28%,transparent 29%),
+    radial-gradient(115% 44% at 112% 37%,rgba(247,242,232,.88) 0 25%,transparent 26%),
+    radial-gradient(135% 48% at -20% 69%,rgba(239,231,214,.64) 0 24%,transparent 25%),
+    linear-gradient(132deg,transparent 0 29%,rgba(220,210,190,.22) 30% 41%,transparent 42% 61%,rgba(245,239,228,.42) 62% 70%,transparent 71%);
+  opacity:.72;
+}
+.guest-theme>.guest-app>.guest-content{
+  position:relative;
+  z-index:1;
+  background:transparent!important;
+}
