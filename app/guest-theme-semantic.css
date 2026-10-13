@@ -704,3 +704,22 @@
  .guest-theme .guest-compact-actions{min-width:70px;gap:4px}
  .guest-theme .guest-compact-back,.guest-theme .guest-compact-actions>button{width:36px;height:36px}
 }
+
+
+/* v2.1 ambient canvas is shared by every Guest screen, not only Home. */
+.guest-theme>.guest-app{
+  background:
+    radial-gradient(112% 46% at 10% 14%,color-mix(in srgb,var(--color-accent-primary) 7%,transparent),transparent 62%),
+    linear-gradient(128deg,transparent 0 37%,color-mix(in srgb,var(--color-surface-elevated) 25%,transparent) 44%,transparent 54%),
+    linear-gradient(51deg,transparent 0 51%,color-mix(in srgb,var(--color-surface-primary) 36%,transparent) 59%,transparent 69%),
+    var(--color-bg-primary);
+  background-attachment:local;
+}
+.guest-theme[data-mode="light"]>.guest-app{
+  background:
+    radial-gradient(110% 46% at 10% 14%,rgba(204,174,118,.12),transparent 62%),
+    linear-gradient(128deg,transparent 0 39%,rgba(224,216,197,.26) 46%,transparent 56%),
+    linear-gradient(51deg,transparent 0 53%,rgba(244,240,231,.58) 61%,transparent 70%),
+    var(--color-bg-primary);
+}
+.guest-theme>.guest-app>.guest-content{background:transparent}
