@@ -982,3 +982,109 @@
     height:6px;
   }
 }
+
+
+/* v2.1 approved QR landing screen. */
+.guest-theme .guest-qr-entry{
+  min-height:calc(100dvh - 68px - env(safe-area-inset-bottom));
+  display:grid;
+  grid-template-rows:auto auto auto auto auto 1fr;
+  gap:14px;
+  padding-bottom:calc(84px + env(safe-area-inset-bottom));
+}
+.guest-theme .guest-qr-copy{
+  padding:12px 0 4px;
+  text-align:center;
+}
+.guest-theme .guest-qr-copy h2{
+  margin:0 0 4px;
+  font-family:var(--restaurant-font);
+  font-size:28px;
+  line-height:34px;
+  font-weight:400;
+  letter-spacing:-.025em;
+}
+.guest-theme .guest-qr-copy .guest-qr-intro{
+  margin:0;
+  color:var(--color-text-muted);
+  font-size:10px;
+  line-height:14px;
+}
+.guest-theme .guest-qr-scanner{
+  min-height:300px;
+  display:grid;
+  place-items:center;
+  padding:22px;
+  border-radius:18px;
+  background:color-mix(in srgb,var(--color-surface-primary) 62%,transparent);
+  box-shadow:none;
+}
+.guest-theme .guest-qr-frame{
+  position:relative;
+  width:min(68vw,230px);
+  aspect-ratio:1;
+  display:grid;
+  place-items:center;
+  color:var(--color-accent-primary);
+}
+.guest-theme .guest-qr-frame>i{
+  position:absolute;
+  width:54px;
+  height:54px;
+  border-color:var(--color-accent-primary);
+  border-style:solid;
+  border-width:0;
+}
+.guest-theme .guest-qr-frame>i:nth-child(1){left:0;top:0;border-left-width:3px;border-top-width:3px}
+.guest-theme .guest-qr-frame>i:nth-child(2){right:0;top:0;border-right-width:3px;border-top-width:3px}
+.guest-theme .guest-qr-frame>i:nth-child(3){left:0;bottom:0;border-left-width:3px;border-bottom-width:3px}
+.guest-theme .guest-qr-frame>i:nth-child(4){right:0;bottom:0;border-right-width:3px;border-bottom-width:3px}
+.guest-theme .guest-qr-frame>svg{
+  width:86px;
+  height:86px;
+  stroke-width:1.4;
+  color:var(--color-accent-light);
+}
+.guest-theme .guest-qr-hint{
+  margin:-4px 0 0;
+  text-align:center;
+  color:var(--color-text-secondary);
+  font-size:10px;
+  line-height:14px;
+}
+.guest-theme .guest-qr-security{
+  display:grid;
+  grid-template-columns:30px minmax(0,1fr);
+  gap:10px;
+  align-items:start;
+  margin:0;
+  padding:12px;
+  border-radius:14px;
+  background:var(--color-surface-glass);
+}
+.guest-theme .guest-qr-security>span{
+  width:30px;
+  height:30px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--color-border-primary);
+  border-radius:50%;
+  color:var(--color-accent-primary);
+}
+.guest-theme .guest-qr-security svg{width:15px;height:15px}
+.guest-theme .guest-qr-security strong{
+  font-size:10px;
+  line-height:14px;
+}
+.guest-theme .guest-qr-security p{
+  margin:2px 0 0;
+  color:var(--color-text-muted);
+  font-size:9px;
+  line-height:13px;
+}
+.guest-theme .guest-qr-entry>.button{
+  align-self:end;
+}
+@media(max-width:767px){
+  .guest-theme .guest-qr-demo-tools{display:none}
+}
