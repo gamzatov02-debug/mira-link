@@ -42,3 +42,8 @@
 @media (max-width:767px){
   .demo-mode-guest .guest-demo-tools{display:none}
 }
+
+@media (max-width:767px){
+  .demo-mode-guest .guest-theme>.guest-app{min-height:100dvh}
+  .demo-mode-guest .guest-theme .brand-welcome{min-height:100dvh}
+}
