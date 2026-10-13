@@ -9,6 +9,7 @@ import {VenueMap} from './venue-map';
 import {MiraButton as Button,MiraChip,MiraInput as Input,MiraSelect as Select,MiraSearch,MiraModal as Modal,MiraEmptyState as Empty,MiraToast} from './mira';
 import {guestProductionMode} from '@/components/guest/adapters/status';
 import {GuestMenuProductCard} from '@/components/guest/guest-menu-product-card';
+import {GuestCompactHeader} from '@/components/guest/guest-compact-header';
 import {GuestProductDetail} from '@/components/guest/guest-product-detail';
 import {GuestVenueCard} from '@/components/guest/guest-venue-card';
 import {baseProductQuantity,productRequiresRequiredModifier,withBaseProductQuantity} from '@/components/guest/guest-menu-cart';
@@ -65,7 +66,7 @@ export function Nearby({navigate,canFavorite,initialVenueId,favourites,onFavouri
   finally{lock.current=false;setBusy(false)}
  }
  return <div className={`nearby-screen ${styles.screen}`}>
-  <header className={styles.heading}><h2>Рядом с вами</h2></header>
+  <GuestCompactHeader title="Рядом с вами" navigate={navigate} back/>
   <section className={styles.location} aria-label="Местоположение"><div><strong>{geo.status==='located'?'Ваше местоположение':geo.status==='loading'?'Определяем местоположение…':'Местоположение не определено'}</strong></div><div className={styles.locationActions}><Button className="ghost small" disabled={geo.status==='loading'} onClick={geo.request}>{geo.status==='located'?'Обновить':'Определить'}</Button></div></section>
   <MiraSearch label="Поиск рядом" placeholder="Ресторан, кухня или блюдо" value={search} onChange={e=>setSearch(e.target.value)}/>
   <nav className={styles.filters} aria-label="Фильтры заведений">{[['all','Все'],['restaurant','Рестораны'],['coffee','Кофейни'],['delivery','Доставка']].map(([id,label])=><MiraChip key={id} selected={filter===id} onClick={()=>setFilter(id)}>{label}</MiraChip>)}</nav>
