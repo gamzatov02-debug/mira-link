@@ -409,3 +409,24 @@
   :global(.guest-theme) :global(.guest-quick-actions small){font-size:8.5px}
   :global(.guest-theme) :global(.popular-grid){grid-auto-columns:130px}
 }
+
+
+:global(.guest-theme) .homeApp{
+  background:
+    radial-gradient(110% 46% at 12% 14%,color-mix(in srgb,var(--color-accent-primary) 8%,transparent),transparent 62%),
+    linear-gradient(128deg,transparent 0 38%,color-mix(in srgb,var(--color-surface-elevated) 28%,transparent) 45%,transparent 55%),
+    linear-gradient(52deg,transparent 0 52%,color-mix(in srgb,var(--color-surface-primary) 38%,transparent) 59%,transparent 69%),
+    var(--color-bg-primary);
+}
+
+:global(.guest-theme[data-mode="light"]) .homeApp{
+  background:
+    radial-gradient(100% 46% at 10% 16%,rgba(204,174,118,.13),transparent 62%),
+    linear-gradient(128deg,transparent 0 39%,rgba(224,216,197,.28) 46%,transparent 56%),
+    linear-gradient(52deg,transparent 0 54%,rgba(244,240,231,.62) 61%,transparent 70%),
+    var(--color-bg-primary);
+}
+
+:global(.guest-theme) .homeApp > :global(.guest-content){
+  background:transparent;
+}
