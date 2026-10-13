@@ -85,7 +85,7 @@
 
 
 /* v2.1 approved visual baseline alignment: geometry follows the final Emerald Night / Ivory Light composition. */
-:global(.guest-theme) :global(.guest-service-kicker){
+.homeApp :global(.guest-service-kicker){
   margin:16px 2px 10px;
   font-size:9px;
   line-height:12px;
@@ -94,25 +94,25 @@
   text-transform:uppercase;
 }
 
-:global(.guest-theme) :global(.restaurant-hero){
+.homeApp :global(.restaurant-hero){
   height:239px;
   border-radius:22px;
   margin-bottom:0;
   box-shadow:0 17px 36px var(--color-shadow);
 }
 
-:global(.guest-theme) :global(.restaurant-hero-copy){
+.homeApp :global(.restaurant-hero-copy){
   left:16px;
   top:20px;
 }
 
-:global(.guest-theme) :global(.restaurant-hero-copy > span){
+.homeApp :global(.restaurant-hero-copy > span){
   font-size:9px;
   line-height:12px;
   color:var(--color-accent-light);
 }
 
-:global(.guest-theme) :global(.restaurant-hero-copy h2){
+.homeApp :global(.restaurant-hero-copy h2){
   margin:13px 0 9px;
   max-width:260px;
   font-size:34px;
@@ -120,13 +120,13 @@
   letter-spacing:-.045em;
 }
 
-:global(.guest-theme) :global(.restaurant-hero-copy p){
+.homeApp :global(.restaurant-hero-copy p){
   max-width:174px;
   font-size:11px;
   line-height:17.5px;
 }
 
-:global(.guest-theme) :global(.hero-menu-cta){
+.homeApp :global(.hero-menu-cta){
   position:absolute;
   left:16px;
   bottom:14px;
@@ -146,12 +146,12 @@
   line-height:16px;
 }
 
-:global(.guest-theme) :global(.hero-menu-cta svg){
+.homeApp :global(.hero-menu-cta svg){
   width:16px;
   height:16px;
 }
 
-:global(.guest-theme) :global(.hero-paging){
+.homeApp :global(.hero-paging){
   right:12px;
   bottom:16px;
   gap:8px;
@@ -159,7 +159,7 @@
   letter-spacing:.08em;
 }
 
-:global(.guest-theme) :global(.hero-paging > button){
+.homeApp :global(.hero-paging > button){
   width:34px;
   height:34px;
   border:0;
@@ -167,31 +167,31 @@
   color:var(--color-hero-text);
 }
 
-:global(.guest-theme) :global(.hero-dots){
+.homeApp :global(.hero-dots){
   display:flex;
   align-items:center;
   gap:3px;
 }
 
-:global(.guest-theme) :global(.hero-dots b){
+.homeApp :global(.hero-dots b){
   width:4px;
   height:4px;
   border-radius:50%;
   background:color-mix(in srgb,var(--color-hero-text) 36%,transparent);
 }
 
-:global(.guest-theme) :global(.hero-dots b[data-active="true"]){
+.homeApp :global(.hero-dots b[data-active="true"]){
   width:11px;
   border-radius:8px;
   background:var(--color-accent-primary);
 }
 
-:global(.guest-theme) :global(.guest-quick-actions){
+.homeApp :global(.guest-quick-actions){
   gap:7px;
   margin:0 0 15px;
 }
 
-:global(.guest-theme) :global(.guest-quick-actions > button){
+.homeApp :global(.guest-quick-actions > button){
   height:83px;
   border-radius:17px;
   padding:4px 2px;
@@ -202,19 +202,19 @@
   box-shadow:0 8px 20px var(--color-shadow),inset 0 1px 0 color-mix(in srgb,#fff 14%,transparent);
 }
 
-:global(.guest-theme) :global(.guest-quick-actions svg){
+.homeApp :global(.guest-quick-actions svg){
   width:25px;
   height:25px;
   margin-bottom:0;
 }
 
-:global(.guest-theme) :global(.guest-quick-actions span){
+.homeApp :global(.guest-quick-actions span){
   font-size:11px;
   line-height:14px;
   font-weight:600;
 }
 
-:global(.guest-theme) :global(.guest-quick-actions small){
+.homeApp :global(.guest-quick-actions small){
   min-height:10px;
   max-width:74px;
   margin-top:0;
@@ -223,7 +223,7 @@
   text-align:center;
 }
 
-:global(.guest-theme) :global(.guest-promo-banner).promoBanner{
+.homeApp :global(.guest-promo-banner).promoBanner{
   height:116px;
   margin:0 0 20px;
   border-radius:20px;
@@ -234,7 +234,7 @@
   box-shadow:0 12px 25px var(--color-shadow);
 }
 
-:global(.guest-theme) :global(.guest-promo-banner).promoBanner > img{
+.homeApp :global(.guest-promo-banner).promoBanner > img{
   position:absolute;
   inset:0;
   width:100%;
@@ -244,7 +244,7 @@
   object-position:72% 50%;
 }
 
-:global(.guest-theme) :global(.guest-promo-banner-shade){
+.homeApp :global(.guest-promo-banner-shade){
   position:absolute;
   inset:0;
   z-index:1;
@@ -252,11 +252,11 @@
   background:linear-gradient(90deg,rgba(2,25,17,.98) 0%,rgba(2,25,17,.90) 35%,rgba(2,25,17,.58) 64%,rgba(2,25,17,.04) 100%);
 }
 
-:global(.guest-theme[data-mode="light"]) :global(.guest-promo-banner-shade){
+:global(.guest-theme[data-mode="light"]) .homeApp :global(.guest-promo-banner-shade){
   background:linear-gradient(90deg,rgba(250,246,236,.98) 0%,rgba(250,246,236,.90) 38%,rgba(250,246,236,.60) 64%,rgba(250,246,236,.05) 100%);
 }
 
-:global(.guest-theme) :global(.guest-promo-banner-copy){
+.homeApp :global(.guest-promo-banner-copy){
   position:absolute;
   inset:12px auto 12px 12px;
   z-index:2;
@@ -268,18 +268,18 @@
   text-align:left;
 }
 
-:global(.guest-theme) :global(.guest-promo-banner-copy small){
+.homeApp :global(.guest-promo-banner-copy small){
   font-size:9px;
   line-height:12px;
   letter-spacing:.16em;
   color:var(--color-accent-light);
 }
 
-:global(.guest-theme[data-mode="light"]) :global(.guest-promo-banner-copy small){
+:global(.guest-theme[data-mode="light"]) .homeApp :global(.guest-promo-banner-copy small){
   color:var(--color-accent-dark);
 }
 
-:global(.guest-theme) :global(.guest-promo-banner-copy strong){
+.homeApp :global(.guest-promo-banner-copy strong){
   margin:7px 0 3px;
   font-family:var(--restaurant-font);
   font-size:24px;
@@ -288,14 +288,14 @@
   color:var(--color-text-primary);
 }
 
-:global(.guest-theme) :global(.guest-promo-banner-copy em){
+.homeApp :global(.guest-promo-banner-copy em){
   font-style:normal;
   font-size:9px;
   line-height:13px;
   color:var(--color-text-secondary);
 }
 
-:global(.guest-theme) :global(.guest-promo-banner .promo-action){
+.homeApp :global(.guest-promo-banner .promo-action){
   position:absolute;
   right:12px;
   bottom:12px;
@@ -306,18 +306,18 @@
   box-shadow:0 4px 13px rgba(0,0,0,.25);
 }
 
-:global(.guest-theme) :global(.guest-popular > .row){
+.homeApp :global(.guest-popular > .row){
   margin:4px 0 12px;
 }
 
-:global(.guest-theme) :global(.guest-popular h2){
+.homeApp :global(.guest-popular h2){
   font-size:22px;
   line-height:24px;
   letter-spacing:-.045em;
   font-weight:550;
 }
 
-:global(.guest-theme) :global(.guest-popular-more){
+.homeApp :global(.guest-popular-more){
   min-height:44px;
   padding:8px 0;
   border:0;
@@ -327,13 +327,13 @@
   white-space:nowrap;
 }
 
-:global(.guest-theme) :global(.popular-grid){
+.homeApp :global(.popular-grid){
   grid-auto-columns:145px;
   gap:9px;
   padding-bottom:8px;
 }
 
-:global(.guest-theme) :global(.popular-dish){
+.homeApp :global(.popular-dish){
   width:145px;
   min-height:205px;
   padding-bottom:8px;
@@ -343,12 +343,12 @@
   -webkit-backdrop-filter:blur(12px);
 }
 
-:global(.guest-theme) :global(.popular-image),
-:global(.guest-theme) :global(.popular-dish img){
+.homeApp :global(.popular-image),
+.homeApp :global(.popular-dish img){
   height:112px;
 }
 
-:global(.guest-theme) :global(.popular-dish > span){
+.homeApp :global(.popular-dish > span){
   min-height:29px;
   margin:9px 10px 2px;
   font-size:11px;
@@ -356,23 +356,23 @@
   font-weight:600;
 }
 
-:global(.guest-theme) :global(.popular-dish > small){
+.homeApp :global(.popular-dish > small){
   margin:0 10px 6px;
   font-size:9px;
   line-height:12px;
 }
 
-:global(.guest-theme) :global(.popular-dish > div){
+.homeApp :global(.popular-dish > div){
   padding:0 10px;
 }
 
-:global(.guest-theme) :global(.popular-dish strong){
+.homeApp :global(.popular-dish strong){
   font-size:13px;
   line-height:16px;
   letter-spacing:0;
 }
 
-:global(.guest-theme) :global(.popular-dish > div > button){
+.homeApp :global(.popular-dish > div > button){
   min-height:30px;
   width:30px;
   height:30px;
@@ -384,7 +384,7 @@
   line-height:1;
 }
 
-:global(.guest-theme) :global(.dish-favorite){
+.homeApp :global(.dish-favorite){
   top:4px;
   right:4px;
   width:31px;
@@ -395,19 +395,19 @@
   color:#fff;
 }
 
-:global(.guest-theme) :global(.dish-favorite svg){
+.homeApp :global(.dish-favorite svg){
   width:16px;
   height:16px;
 }
 
 @media (max-width:350px){
-  :global(.guest-theme) :global(.restaurant-hero){height:215px}
-  :global(.guest-theme) :global(.restaurant-hero-copy h2){font-size:30px}
-  :global(.guest-theme) :global(.guest-quick-actions){gap:5px}
-  :global(.guest-theme) :global(.guest-quick-actions > button){height:77px}
-  :global(.guest-theme) :global(.guest-quick-actions span){font-size:10px}
-  :global(.guest-theme) :global(.guest-quick-actions small){font-size:8.5px}
-  :global(.guest-theme) :global(.popular-grid){grid-auto-columns:130px}
+  .homeApp :global(.restaurant-hero){height:215px}
+  .homeApp :global(.restaurant-hero-copy h2){font-size:30px}
+  .homeApp :global(.guest-quick-actions){gap:5px}
+  .homeApp :global(.guest-quick-actions > button){height:77px}
+  .homeApp :global(.guest-quick-actions span){font-size:10px}
+  .homeApp :global(.guest-quick-actions small){font-size:8.5px}
+  .homeApp :global(.popular-grid){grid-auto-columns:130px}
 }
 
 
