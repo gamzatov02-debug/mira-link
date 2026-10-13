@@ -810,3 +810,47 @@
   .guest-theme .guest-qr-mark{width:116px;height:116px}
   .guest-theme .guest-qr-mark svg{width:86px;height:86px}
 }
+
+
+/* v2.1 More hub */
+.guest-theme .guest-more-section{
+  display:grid;
+  gap:7px;
+  margin:4px 0 13px;
+}
+.guest-theme .guest-more-kicker{
+  padding:0 2px;
+  color:var(--color-accent-primary);
+  font-size:8px;
+  line-height:11px;
+  letter-spacing:.11em;
+}
+.guest-theme .guest-more-list{
+  display:grid;
+  gap:5px;
+}
+.guest-theme .guest-more-list>button{
+  min-height:54px;
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr) 18px;
+  align-items:center;
+  gap:10px;
+  padding:7px 10px;
+  border:1px solid var(--color-border-primary);
+  border-radius:16px;
+  background:var(--color-surface-glass);
+  color:var(--color-text-primary);
+  text-align:left;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.guest-theme .guest-more-icon{
+  width:30px;height:30px;display:grid;place-items:center;
+  border:1px solid var(--color-border-accent);border-radius:50%;
+  color:var(--color-accent-primary);
+}
+.guest-theme .guest-more-icon svg{width:15px;height:15px}
+.guest-theme .guest-more-copy{display:grid;gap:1px;min-width:0}
+.guest-theme .guest-more-copy strong{font-size:12px;line-height:15px}
+.guest-theme .guest-more-copy small{font-size:8px;line-height:11px;color:var(--color-text-muted)}
+.guest-theme .guest-more-list>button>svg{width:16px;height:16px;color:var(--color-accent-primary)}
