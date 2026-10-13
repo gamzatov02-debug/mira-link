@@ -3,7 +3,7 @@ import type {CSSProperties} from 'react';
 export const themeNames={navy_gold:'Navy Gold',emerald_gold:'Emerald Gold',espresso_gold:'Espresso Gold',onyx_gold:'Onyx Gold',plum_gold:'Plum Gold',ruby_gold:'Ruby Gold',amber_gold:'Amber Gold',ivory_gold:'Ivory Gold',porcelain_gold:'Porcelain Gold'} as const;
 export type ThemeId=keyof typeof themeNames;
 export type BrandConfig={restaurantName:string;restaurantLogo?:string;restaurantDisplayFont:string;heroImages:string[];restaurantImages:string[];promoImages:string[];marketingContent:string[]};
-export const defaultBrand:BrandConfig={restaurantName:'MIRA Restaurant',restaurantDisplayFont:'Georgia, serif',heroImages:['/images/mira-restaurant.jpg','/images/menu/p11.png','/images/burrata.png','/images/menu/p13.png'],restaurantImages:['/images/mira-restaurant.jpg'],promoImages:['/images/menu/p10.png'],marketingContent:['Современная кухня. Время для вашего вечера.','Блюда с характером. Внимание к каждой детали.','Свежие вкусы и любимые сочетания.','Сладкое завершение вашего вечера.']};
+export const defaultBrand:BrandConfig={restaurantName:'MIRA Restaurant',restaurantDisplayFont:'Georgia, serif',heroImages:['/images/venues/atelier.jpg','/images/venues/ember-grill.jpg','/images/venues/garden-cafe.jpg','/images/mira-restaurant.jpg'],restaurantImages:['/images/venues/atelier.jpg'],promoImages:['/images/menu/p10.png'],marketingContent:['Современная кухня. Время для вашего вечера.','Блюда с характером. Внимание к каждой детали.','Свежие вкусы и любимые сочетания.','Сладкое завершение вашего вечера.']};
 
 const palettes:Record<ThemeId,string[]>={
  navy_gold:['#03234B','#011831','#082A50','#0C345E','#123D69','#FAFBFD','#D3DEE9','#91A5B9','#A4C3E139'],
