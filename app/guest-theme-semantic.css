@@ -1309,3 +1309,168 @@
   .guest-theme .guest-service-screen .guest-wifi-surface>header,
   .guest-theme .guest-service-screen [data-powerbank-scenario] .demoTools{display:none}
 }
+
+
+/* v2.1 account surfaces */
+.guest-theme .guest-profile-screen,
+.guest-theme .guest-bonuses-screen,
+.guest-theme .guest-history-screen{
+  padding-bottom:calc(84px + env(safe-area-inset-bottom));
+}
+.guest-theme .guest-profile-identity{
+  display:grid;
+  justify-items:start;
+  gap:3px;
+  padding:10px 2px 14px;
+}
+.guest-theme .guest-profile-avatar{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  margin:0 0 5px;
+  border:1px solid var(--color-border-accent);
+  border-radius:50%;
+  background:var(--color-surface-glass);
+  color:var(--color-accent-primary);
+  font-family:var(--restaurant-font);
+  font-size:18px;
+}
+.guest-theme .guest-profile-identity h2{
+  margin:0;
+  font-family:var(--restaurant-font);
+  font-size:22px;
+  line-height:27px;
+  font-weight:400;
+}
+.guest-theme .guest-profile-identity p{
+  margin:0;
+  color:var(--color-text-muted);
+  font-size:9px;
+  line-height:13px;
+}
+.guest-theme .guest-profile-list{
+  display:grid;
+  gap:7px;
+}
+.guest-theme .guest-profile-list>button{
+  width:100%;
+  min-height:58px;
+  display:grid;
+  grid-template-columns:32px minmax(0,1fr) 18px;
+  align-items:center;
+  gap:9px;
+  padding:8px 10px;
+  border:1px solid var(--color-border-accent);
+  border-radius:14px;
+  background:var(--color-surface-glass);
+  color:var(--color-text-primary);
+  text-align:left;
+}
+.guest-theme .guest-profile-row-icon{
+  width:32px;
+  height:32px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--color-border-accent);
+  border-radius:50%;
+  color:var(--color-accent-primary);
+  font-family:var(--restaurant-font);
+  font-size:10px;
+}
+.guest-theme .guest-profile-list>button>span:nth-child(2){
+  display:grid;
+  gap:2px;
+  min-width:0;
+}
+.guest-theme .guest-profile-list strong{
+  font-size:10px;
+  line-height:14px;
+}
+.guest-theme .guest-profile-list small{
+  display:block;
+  overflow:hidden;
+  color:var(--color-text-muted);
+  font-size:8px;
+  line-height:11px;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.guest-theme .guest-profile-list svg{
+  width:15px;
+  height:15px;
+  color:var(--color-accent-primary);
+}
+
+.guest-theme .guest-bonus-hero{
+  min-height:178px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  gap:5px;
+  margin:0 0 8px;
+  padding:20px;
+  border-color:var(--color-border-accent);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 82% 15%,color-mix(in srgb,var(--color-accent-primary) 13%,transparent),transparent 43%),
+    var(--color-surface-glass);
+}
+.guest-theme .guest-bonus-hero>span{
+  color:var(--color-accent-primary);
+  font-size:9px;
+  line-height:12px;
+  letter-spacing:.14em;
+}
+.guest-theme .guest-bonus-hero>strong{
+  display:block;
+  font-family:var(--restaurant-font);
+  font-size:34px;
+  line-height:38px;
+  font-weight:400;
+  letter-spacing:-.035em;
+}
+.guest-theme .guest-bonus-hero>small{
+  color:var(--color-text-secondary);
+  font-size:9px;
+}
+.guest-theme .guest-bonus-hero>p{
+  margin:8px 0 0;
+  color:var(--color-text-muted);
+  font-size:8px;
+  line-height:12px;
+}
+.guest-theme .guest-account-section-title{
+  margin:8px 0 2px;
+  font-family:var(--restaurant-font);
+  font-size:18px;
+  line-height:23px;
+  font-weight:400;
+}
+.guest-theme .guest-bonus-history{
+  display:grid;
+  border-block:1px solid var(--color-border-primary);
+}
+.guest-theme .guest-bonus-history>div{
+  min-height:52px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:8px 2px;
+  border-bottom:1px solid var(--color-border-primary);
+}
+.guest-theme .guest-bonus-history>div:last-child{border-bottom:0}
+.guest-theme .guest-bonus-history>div>span{display:grid;gap:1px}
+.guest-theme .guest-bonus-history strong{font-size:10px;line-height:14px}
+.guest-theme .guest-bonus-history small{font-size:8px;line-height:11px;color:var(--color-text-muted)}
+.guest-theme .guest-bonus-note{
+  margin:8px 0 0;
+  padding:11px;
+  border-color:var(--color-border-primary);
+  background:var(--color-surface-glass);
+}
+.guest-theme .guest-bonus-note small{color:var(--color-accent-primary);font-size:8px}
+.guest-theme .guest-bonus-note p{margin:3px 0;font-size:8px;line-height:12px}
+.guest-theme .guest-bonus-note span{font-size:8px;color:var(--color-text-muted)}
