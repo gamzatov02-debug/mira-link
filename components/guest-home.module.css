@@ -280,10 +280,10 @@
 }
 
 .homeApp :global(.guest-promo-banner-copy strong){
-  margin:7px 0 3px;
+  margin:5px 0 2px;
   font-family:var(--restaurant-font);
-  font-size:24px;
-  line-height:25px;
+  font-size:18px;
+  line-height:20px;
   font-weight:400;
   color:var(--color-text-primary);
 }
@@ -318,17 +318,20 @@
 }
 
 .homeApp :global(.guest-popular-more){
-  min-height:44px;
-  padding:8px 0;
-  border:0;
-  background:transparent;
-  color:var(--color-accent-primary);
+  min-height:40px;
+  padding:8px 14px;
+  border:1px solid var(--color-border-primary);
+  border-radius:13px;
+  background:var(--color-surface-glass);
+  color:var(--color-text-primary);
   font-size:10px;
   white-space:nowrap;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
 }
 
 .homeApp :global(.popular-grid){
-  grid-auto-columns:106px;
+  grid-auto-columns:88px;
   gap:6px;
   padding-bottom:8px;
 }
@@ -407,7 +410,7 @@
   .homeApp :global(.guest-quick-actions > button){height:77px}
   .homeApp :global(.guest-quick-actions span){font-size:10px}
   .homeApp :global(.guest-quick-actions small){font-size:8.5px}
-  .homeApp :global(.popular-grid){grid-auto-columns:98px}
+  .homeApp :global(.popular-grid){grid-auto-columns:82px}
 }
 
 
