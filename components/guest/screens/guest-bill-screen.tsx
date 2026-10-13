@@ -77,23 +77,7 @@ export function GuestBillScreen(props:GuestBillScreenProps){
    </div>
   </Card>
 
-  {!closed&&<Card mode={mode} className={styles.sectionCard}>
-   <h2 className={styles.visuallyHidden}>Разделение счёта</h2>
-   <button type="button" className={styles.compactRow} aria-expanded={split.expanded} disabled={busy||!!payment.pending} onClick={()=>props.onSplitChange(!split.expanded)}><span><strong>Разделить счёт</strong><small>По блюдам, поровну или своей суммой</small></span><span className={styles.rowTrailing}><ChevronRight aria-hidden="true"/></span></button>
-   {split.expanded&&<div className={styles.disclosure} role="region" aria-label="Варианты разделения счёта">
-    <h3>Как разделить?</h3>
-    <div className={styles.splitModes}>
-     <Button mode={mode} size="m" variant={split.mode==='own'?'primary':'secondary'} disabled={busy} onClick={()=>props.onSplitMode('own')}>Свои позиции</Button>
-     <Button mode={mode} size="m" variant={split.mode==='items'?'primary':'secondary'} disabled={busy} onClick={()=>props.onSplitMode('items')}>По блюдам</Button>
-     <Button mode={mode} size="m" variant={split.mode==='equal'?'primary':'secondary'} disabled={busy} onClick={()=>props.onSplitMode('equal')}>Поровну</Button>
-     <Button mode={mode} size="m" variant={split.mode==='all'?'primary':'secondary'} disabled={busy} onClick={()=>props.onSplitMode('all')}>Оплатить весь остаток</Button>
-    </div>
-    <div className={styles.splitItems}><h3>Позиции счёта</h3>{split.items.map(item=><Checkbox key={item.id} mode={mode} label={<span>{item.label}<small>Остаток {item.remaining}</small></span>} checked={item.selected} disabled={item.disabled||busy} onCheckedChange={checked=>props.onToggleItem(item.id,checked===true)}/>)}</div>
-    <div className={styles.customSplit}><Field mode={mode} label="Своя сумма, ₽"><TextInput mode={mode} type="number" inputMode="decimal" min="0" value={split.customAmount} disabled={busy} onChange={event=>props.onCustomAmount(event.target.value)}/></Field><Button mode={mode} size="m" disabled={busy||!split.customAmount} onClick={props.onCustomSubmit}>Выбрать</Button></div>
-   </div>}
-   {split.expanded&&split.partAmount&&<div className={styles.partAmount}><span>Ваша часть счёта</span><strong>{split.partAmount}</strong></div>}
-   {error&&<Alert mode={mode} status="error" title="Не удалось выбрать часть счёта">{error}</Alert>}
-  </Card>}
+  {!closed&&!split.partAmount&&!payment.pending&&<Card mode={mode} className={styles.sectionCard}><p className={styles.helper}>Подготавливаем оплату оставшейся суммы счёта…</p>{error&&<Alert mode={mode} status="error" title="Не удалось подготовить оплату">{error}</Alert>}</Card>}
 
   {split.partAmount&&!payment.pending&&<>
    <Card mode={mode} className={styles.sectionCard}>
