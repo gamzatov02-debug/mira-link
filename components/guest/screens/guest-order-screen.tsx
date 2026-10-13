@@ -1,7 +1,7 @@
 'use client';
 
 import {useMemo,useState} from 'react';
-import {ChevronRight,ReceiptText,UtensilsCrossed} from 'lucide-react';
+import {ArrowLeft,ChevronRight,MoreHorizontal,ReceiptText,UtensilsCrossed} from 'lucide-react';
 import {BottomSheet,Button,EmptyState,StatusBadge} from '@/components/design-system';
 import {ProductImage} from '@/components/mira-domain-ui';
 import {orderStatusPresentation,guestProductionMode} from '@/components/guest/adapters/status';
@@ -63,7 +63,7 @@ function OrderGroup({state,order,label,showGuest,onSelect}:{state:State;order:Or
  </section>;
 }
 
-export function GuestOrderScreen({state,sessionId,onOpenMenu,onOpenBill}:{state:State;sessionId?:string;onOpenMenu:()=>void;onOpenBill:()=>void}){
+export function GuestOrderScreen({state,sessionId,onBack,onOpenMenu,onOpenBill}:{state:State;sessionId?:string;onBack:()=>void;onOpenMenu:()=>void;onOpenBill:()=>void}){
  const [servedOpen,setServedOpen]=useState(false),[selection,setSelection]=useState<Selection>(null);
  const session=sessionId?state.sessions.find(candidate=>candidate.id===sessionId):undefined;
  const orders=useMemo(()=>state.orders.filter(order=>order.sessionId===sessionId).sort((a,b)=>Date.parse(a.createdAt)-Date.parse(b.createdAt)),[state.orders,sessionId]);
@@ -77,19 +77,19 @@ export function GuestOrderScreen({state,sessionId,onOpenMenu,onOpenBill}:{state:
  const selectedStatus=selection&&orderStatusPresentation(selection.order.executionStatus);
 
  return <section className={styles.screen} aria-label="Мой заказ">
-  <header className={styles.pageHeader}>
-   <span>ТЕКУЩЕЕ ПОСЕЩЕНИЕ</span>
+  <header className={styles.v21Header}>
+   <button type="button" aria-label="Назад" onClick={onBack}><ArrowLeft/></button>
    <h1>Мой заказ</h1>
-   {session&&<p><strong>{state.venue.name}</strong><i aria-hidden="true">·</i> Стол {session.tableId}</p>}
+   <button type="button" aria-label="Ещё"><MoreHorizontal/></button>
   </header>
 
   {!orders.length&&<EmptyState mode={guestProductionMode} icon={<ReceiptText aria-hidden="true"/>} title="Вы ещё ничего не заказали" description="Выберите блюда в меню — здесь появится их статус приготовления." primaryAction={<Button mode={guestProductionMode} size="l" onClick={onOpenMenu}>Открыть меню</Button>}/>}
 
   {orders.length>0&&<>
    <section className={styles.summary} aria-label="Статус заказа">
-    <span>{allServed?'ЗАВЕРШЕНО':'СЕЙЧАС'}</span>
+    <div className={styles.summaryTop}><span>Заказ №{orders.at(-1)?.id.slice(-4)??'—'}</span><b>{allServed?'Готово':'В работе'}</b></div>
     <strong>{allServed?'Всё подано':progressSummary(orders)}</strong>
-    <p>{orders.reduce((sum,order)=>sum+order.items.length,0)} {positions(orders.reduce((sum,order)=>sum+order.items.length,0))} в этом посещении</p>
+    <div className={styles.progress} aria-label="Этапы заказа">{['Принят','Подтверждён','Готовится','Готов','Подан'].map((label,index)=>{const status=orders.at(-1)?.executionStatus;const rank=status==='submitted'?0:status==='accepted'?1:status==='in_progress'?2:status==='ready'?3:status==='served'||status==='completed'?4:0;return <span key={label} data-done={index<=rank}><i/>{label}</span>})}</div>
    </section>
 
    {active.map(order=><OrderGroup state={state} order={order} label={orders.indexOf(order)===0?'Текущий заказ':'Дозаказ'} showGuest={showGuest} onSelect={setSelection} key={order.id}/>)}
