@@ -13,6 +13,13 @@ test('capture v2.1 guest screens',async({page})=>{
   for(const name of ['home','menu','nearby','qr','events','promotions','more','wifi','powerbank','taxi'] as const){
     await page.goto('/demo/guest/'+name,{waitUntil:'networkidle'});
     await shot(page,name);
+    if(name==='home'){
+      const metrics=await page.evaluate(()=>{
+        const pick=(selector:string)=>{const el=document.querySelector(selector);if(!el)return null;const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {x:r.x,y:r.y,width:r.width,height:r.height,fontSize:s.fontSize,lineHeight:s.lineHeight}};
+        return {header:pick('.guest-header'),hero:pick('.restaurant-hero'),quick:pick('.guest-quick-actions'),promo:pick('.guest-promo-banner'),popular:pick('.guest-popular'),bottomNav:pick('.bottom-nav')};
+      });
+      fs.writeFileSync('visual-artifacts/home-metrics.json',JSON.stringify(metrics,null,2));
+    }
   }
 
   // Open demo table session through the hidden developer-only QR scenario.
