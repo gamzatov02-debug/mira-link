@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import {ArrowLeft,Banknote,ChevronRight,CreditCard,ReceiptText,QrCode,UserRound} from 'lucide-react';
+import {ArrowLeft,Banknote,ChevronRight,CreditCard,Heart,MoreHorizontal,ReceiptText,QrCode,UserRound} from 'lucide-react';
 import {Alert,Button,Card,Checkbox,Chip,Field,Radio,StatusBadge,TextInput} from '@/components/design-system';
 import type {MiraMode} from '@/components/design-system/tokens';
 import styles from './guest-bill-screen.module.css';
@@ -14,6 +14,7 @@ type PaymentRecord={id:string;method:string;total:string;tone:Tone;label:string}
 
 export type GuestBillScreenProps={
  mode:MiraMode;
+ stage?:'legacy'|'bill'|'payment';
  venueName:string;
  tableId?:number;
  status:{tone:Tone;label:string};
@@ -29,6 +30,8 @@ export type GuestBillScreenProps={
  tips:{amount:string;preset:number|null;custom:string;waiterName?:string;waiterPhoto?:string;showCommissionControl:boolean;guestPaysCommission:boolean;commission:string;commissionNote?:string;cashNote?:string};
  payment:{method:'online'|'cash';payable:string;restaurantAmount:string;splitAmount?:string;bonusAmount?:string;tipAmount?:string;commissionAmount?:string;pending?:{method:'online'|'cash';total:string;tone:Tone;label:string};records:PaymentRecord[]};
  onBack:()=>void;
+ onProceed?:()=>void;
+ onTips?:()=>void;
  onSplitChange:(expanded:boolean)=>void;
  onToggleItem:(id:string,checked:boolean)=>void;
  onSplitMode:(mode:'all'|'own'|'items'|'equal')=>void;
@@ -46,13 +49,43 @@ export type GuestBillScreenProps={
 const tipPresets=[0,10,15,20,25];
 
 export function GuestBillScreen(props:GuestBillScreenProps){
- const {mode,venueName,tableId,status,items,billTotal,paidAmount,remainingAmount,closed,busy,error,split,bonus,tips,payment}=props;
+ const {mode,venueName,tableId,status,items,billTotal,paidAmount,remainingAmount,closed,busy,error,split,bonus,tips,payment,stage='legacy'}=props;
  const [showAll,setShowAll]=useState(false);
  const [bonusOpen,setBonusOpen]=useState(Boolean(bonus?.applied));
+ const [paymentOption,setPaymentOption]=useState<'card'|'sbp'|'other'>(payment.method==='cash'?'other':'card');
  const visibleItems=showAll?items:items.slice(0,4);
  const bonusExpanded=bonusOpen||Boolean(bonus?.applied);
  const canPay=!closed&&!!split.partAmount&&!payment.pending;
  const payLabel=payment.method==='cash'?`Передать ${payment.payable} наличными`:`Оплатить ${payment.payable}`;
+
+ if(stage==='bill')return <section className={`${styles.screen} ${styles.v21Bill}`} aria-labelledby="guest-bill-title">
+  <header className={styles.v21Header}><button type="button" aria-label="Назад" onClick={props.onBack}><ArrowLeft/></button><h1 id="guest-bill-title">Счёт</h1><button type="button" aria-label="Ещё"><MoreHorizontal/></button></header>
+  <div className={styles.v21BillIntro}><h2>Счёт за стол №{tableId??'—'}</h2><span>{closed?'Закрыт':'Открыт'}</span></div>
+  <div className={styles.v21BillItems}>{items.map(item=><div key={item.id}><span><strong>{item.name}</strong><small>{item.quantity} × {item.unitPrice}</small></span><strong>{item.total}</strong></div>)}</div>
+  <div className={styles.v21BillTotals}>
+   <div><span>Сумма</span><strong>{billTotal}</strong></div>
+   {paidAmount&&<div><span>Оплачено</span><strong>−{paidAmount}</strong></div>}
+   <div className={styles.v21Payable}><span>К оплате</span><strong>{remainingAmount}</strong></div>
+  </div>
+  {bonus&&<div className={styles.v21BonusHint}><span>Бонусы</span><small>Можно списать до {bonus.limit} по правилам заведения</small></div>}
+  {!closed&&<div className={styles.v21BottomAction}><Button mode={mode} size="l" fullWidth disabled={busy} onClick={props.onProceed}>Перейти к оплате</Button></div>}
+ </section>;
+
+ if(stage==='payment')return <section className={`${styles.screen} ${styles.v21Payment}`} aria-labelledby="guest-payment-title">
+  <header className={styles.v21Header}><button type="button" aria-label="Назад" onClick={props.onBack}><ArrowLeft/></button><h1 id="guest-payment-title">Оплата</h1><button type="button" aria-label="Ещё"><MoreHorizontal/></button></header>
+  <div className={styles.v21PaymentAmount}><span>Сумма к оплате</span><strong>{payment.payable}</strong></div>
+  <section className={styles.v21Methods}><h2>Способ оплаты</h2>
+   <button type="button" data-selected={paymentOption==='card'} onClick={()=>{setPaymentOption('card');props.onMethodChange('online')}}><span><strong>Банковская карта</strong><small>•••• 4242</small></span><b>{paymentOption==='card'?'✓':'○'}</b></button>
+   <button type="button" data-selected={paymentOption==='sbp'} onClick={()=>{setPaymentOption('sbp');props.onMethodChange('online')}}><span><strong>СБП</strong><small>Быстрая оплата</small></span><b>{paymentOption==='sbp'?'✓':'○'}</b></button>
+   <button type="button" data-selected={paymentOption==='other'} onClick={()=>{setPaymentOption('other');props.onMethodChange('cash')}}><span><strong>Другой способ</strong><small>Партнёрский provider</small></span><b>{paymentOption==='other'?'✓':'○'}</b></button>
+  </section>
+  {bonus&&<button type="button" className={styles.v21PaymentRow} onClick={()=>{const raw=Number(bonus.available.replace(/[^0-9,]/g,'').replace(',','.'))||0;props.onBonus?.(bonus.applied?'0':String(raw))}}><span className={styles.v21RowIcon}>M</span><span><strong>Использовать бонусы</strong><small>{bonus.applied?`− ${bonus.applied} применено`:`Доступно ${bonus.available}`}</small></span><ChevronRight/></button>}
+  <button type="button" className={styles.v21PaymentRow} onClick={props.onTips}><span className={styles.v21RowIcon}><Heart/></span><span><strong>Чаевые после оплаты</strong><small>Можно оставить отдельно</small></span><ChevronRight/></button>
+  {payment.pending&&<Alert mode={mode} status={payment.pending.tone==='pending'?'info':payment.pending.tone} title={payment.pending.label}>{payment.pending.total}</Alert>}
+  {!!payment.records.length&&<section className={styles.paymentHistory} aria-label="Платежи по счёту">{payment.records.map(record=><div key={record.id}><span>{record.method}</span><strong>{record.total}</strong><StatusBadge mode={mode} status={record.tone}>{record.label}</StatusBadge></div>)}</section>}
+  {!closed&&!payment.pending&&<div className={styles.v21BottomAction}><Button mode={mode} size="l" fullWidth disabled={busy||!split.partAmount} loading={busy} onClick={props.onSubmit}>Оплатить {payment.payable}</Button></div>}
+  {payment.pending?.method==='online'&&<div className={styles.confirmActions}><Button mode={mode} size="l" loading={busy} onClick={()=>props.onConfirm(true)}>Симулировать успешную оплату</Button><Button mode={mode} size="l" variant="secondary" disabled={busy} onClick={()=>props.onConfirm(false)}>Симулировать ошибку</Button></div>}
+ </section>;
  return <section className={styles.screen} aria-labelledby="guest-bill-title">
   <header className={styles.header}>
    <button type="button" className={styles.back} aria-label="Назад к посещению" onClick={props.onBack}><ArrowLeft aria-hidden="true"/></button>
