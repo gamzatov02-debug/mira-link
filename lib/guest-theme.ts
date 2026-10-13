@@ -17,16 +17,16 @@ const palettes:Record<ThemeId,string[]>={
  porcelain_gold:['#FFFFFF','#F7F6F3','#FFFFFF','#F8F7F5','#FFFFFF','#171513','#605B55','#96908A','#E9E5DF']
 };
 
-export const guestThemePresetNames={classic:'MIRA Classic',dark:'MIRA Dark',light:'MIRA Light',custom:'Custom'} as const;
+export const guestThemePresetNames={classic:'Emerald Night',dark:'Emerald Deep',light:'Ivory Light',custom:'Custom'} as const;
 export type GuestThemePresetId=keyof typeof guestThemePresetNames;
 export const guestThemeKeys=['background','surface','surfaceElevated','surfaceSoft','accent','accentStrong','accentSoft','textPrimary','textSecondary','textMuted','border','borderStrong','activeBackground','activeText','bottomNavBackground','gradientStart','gradientEnd'] as const;
 export type GuestThemeKey=typeof guestThemeKeys[number];
 export type GuestThemePalette=Record<GuestThemeKey,string>;
 export type GuestThemeSelection={preset:GuestThemePresetId;palette:GuestThemePalette};
 
-const classicPalette:GuestThemePalette={background:'#043820',surface:'#073C23',surfaceElevated:'#105432',surfaceSoft:'#0B482B',accent:'#F4C65D',accentStrong:'#93651F',accentSoft:'#FFE28B',textPrimary:'#F8FBF8',textSecondary:'#CEE1D3',textMuted:'#91AC99',border:'#AAD1B533',borderStrong:'#F4C65DB8',activeBackground:'#F4C65D',activeText:'#19130B',bottomNavBackground:'#012715',gradientStart:'#FFE082',gradientEnd:'#D4A017'};
+const classicPalette:GuestThemePalette={background:'#031B14',surface:'#082C20C4',surfaceElevated:'#103A28D9',surfaceSoft:'#0B3027D6',accent:'#EAC37B',accentStrong:'#B67A36',accentSoft:'#F5D38C',textPrimary:'#FAF8F1',textSecondary:'#BBCDC2',textMuted:'#91A99B',border:'#D8B97850',borderStrong:'#DCC596A8',activeBackground:'#EAC37B',activeText:'#173323',bottomNavBackground:'#041F18F2',gradientStart:'#F4DCA8',gradientEnd:'#D9A954'};
 const darkPalette:GuestThemePalette={background:'#021A11',surface:'#082A1C',surfaceElevated:'#103A28',surfaceSoft:'#0B3222',accent:'#E7BE64',accentStrong:'#8E611F',accentSoft:'#F7D98E',textPrimary:'#F8FAF6',textSecondary:'#C7D7CC',textMuted:'#879E90',border:'#A7C8B52E',borderStrong:'#E7BE64A8',activeBackground:'#E7BE64',activeText:'#171109',bottomNavBackground:'#01140D',gradientStart:'#F2D47F',gradientEnd:'#B98224'};
-const lightPalette:GuestThemePalette={background:'#F5F0E6',surface:'#FFFDF7',surfaceElevated:'#EEE6D7',surfaceSoft:'#F8F3EA',accent:'#B47A25',accentStrong:'#7E531B',accentSoft:'#E7C579',textPrimary:'#183629',textSecondary:'#4D685B',textMuted:'#7A8B82',border:'#6E5A3829',borderStrong:'#B47A25A8',activeBackground:'#183629',activeText:'#FFFDF7',bottomNavBackground:'#FFF9EF',gradientStart:'#E7C067',gradientEnd:'#AA7424'};
+const lightPalette:GuestThemePalette={background:'#FDFDFA',surface:'#FFFFFFEB',surfaceElevated:'#FFFFFFF2',surfaceSoft:'#FBF8F1E8',accent:'#97662D',accentStrong:'#7B4F20',accentSoft:'#E3C88F',textPrimary:'#18382B',textSecondary:'#52685C',textMuted:'#65776D',border:'#B1A08065',borderStrong:'#B88B49A8',activeBackground:'#EDD5A5',activeText:'#18382B',bottomNavBackground:'#FBFBF9F2',gradientStart:'#F2D79B',gradientEnd:'#C28A3B'};
 const presetPalettes={classic:classicPalette,dark:darkPalette,light:lightPalette} as const;
 
 export type ThemeConfig={themeId:string;version:'1.0';mode:'dark'|'light';semantic:GuestThemePalette;colors:Record<string,string>;effects:{cardShadow:string;accentGlow:string;backdropBlur:number};appearance:{mapStyle:'dark'|'light';logoVariant:'gold'|'bronze';primaryButton:'gold-gradient'}};
