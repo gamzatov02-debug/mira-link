@@ -1157,3 +1157,155 @@
   height:15px;
   color:var(--color-accent-primary);
 }
+
+
+/* v2.1 secondary service/account surfaces */
+.guest-theme .guest-service-screen,
+.guest-theme .guest-taxi-screen,
+.guest-theme .guest-bookings-screen,
+.guest-theme .guest-favorites-screen,
+.guest-theme .guest-notifications-screen,
+.guest-theme .guest-communications-screen{
+  display:grid;
+  gap:10px;
+  padding-bottom:calc(84px + env(safe-area-inset-bottom));
+}
+
+.guest-theme .guest-booking-main{
+  min-height:48px;
+  border-radius:24px;
+}
+.guest-theme .guest-bookings-screen>h3,
+.guest-theme .guest-taxi-screen>h3{
+  margin:6px 0 0;
+  font-size:11px;
+  line-height:15px;
+}
+.guest-theme .guest-booking-card{
+  min-height:70px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 18px;
+  align-items:center;
+  gap:10px;
+  margin:0;
+  padding:10px 12px;
+  border-color:var(--color-border-accent);
+  background:var(--color-surface-glass);
+}
+.guest-theme .guest-booking-card>div{display:grid;gap:2px}
+.guest-theme .guest-booking-card strong{font-size:11px;line-height:15px}
+.guest-theme .guest-booking-card p{margin:0;color:var(--color-text-secondary);font-size:9px;line-height:12px}
+.guest-theme .guest-booking-card small{font-size:8px;line-height:11px}
+.guest-theme .guest-booking-card>svg{width:15px;height:15px;color:var(--color-accent-primary)}
+.guest-theme .guest-muted-note{margin:0;color:var(--color-text-muted);font-size:9px;line-height:13px}
+
+.guest-theme .guest-favorite-tabs{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+}
+.guest-theme .guest-favorite-tabs button{
+  min-height:32px;
+  padding:5px 12px;
+  border:1px solid var(--color-border-primary);
+  border-radius:999px;
+  background:var(--color-surface-glass);
+  color:var(--color-text-secondary);
+  font-size:9px;
+}
+.guest-theme .guest-favorite-tabs button[aria-current=page]{
+  border-color:var(--color-accent-primary);
+  background:var(--color-accent-primary);
+  color:var(--color-button-primary-text);
+}
+.guest-theme .guest-favorite-list{display:grid;gap:8px}
+.guest-theme .guest-favorite-row{
+  width:100%;
+  min-height:72px;
+  display:grid;
+  grid-template-columns:56px minmax(0,1fr) 24px;
+  align-items:center;
+  gap:10px;
+  padding:7px;
+  border:1px solid var(--color-border-accent);
+  border-radius:14px;
+  background:var(--color-surface-glass);
+  color:var(--color-text-primary);
+  text-align:left;
+}
+.guest-theme .guest-favorite-row img{width:56px;height:56px;object-fit:cover;border-radius:10px}
+.guest-theme .guest-favorite-row>span{display:grid;gap:2px}
+.guest-theme .guest-favorite-row strong{font-size:10px;line-height:14px}
+.guest-theme .guest-favorite-row small{font-size:8px;line-height:11px;color:var(--color-text-muted)}
+.guest-theme .guest-favorite-row>svg{width:18px;height:18px;color:var(--color-accent-primary)}
+
+.guest-theme .guest-notification-card{
+  min-height:60px;
+  display:grid;
+  grid-template-columns:30px minmax(0,1fr) auto;
+  align-items:start;
+  gap:8px;
+  margin:0;
+  padding:9px 10px;
+  border-color:var(--color-border-accent);
+  background:var(--color-surface-glass);
+}
+.guest-theme .guest-notification-icon{
+  width:30px;height:30px;display:grid;place-items:center;
+  border:1px solid var(--color-border-accent);border-radius:50%;
+  color:var(--color-accent-primary);font-family:var(--restaurant-font);font-size:10px
+}
+.guest-theme .guest-notification-card>div{display:grid;gap:2px}
+.guest-theme .guest-notification-card strong{font-size:9px;line-height:13px}
+.guest-theme .guest-notification-card p{margin:0;font-size:8px;line-height:12px;color:var(--color-text-secondary)}
+.guest-theme .guest-notification-card>small{font-size:7px;line-height:10px;color:var(--color-text-muted)}
+
+.guest-theme .guest-communications-screen>h2{
+  margin:4px 0 2px;
+  font-family:var(--restaurant-font);
+  font-size:18px;
+  line-height:23px;
+  font-weight:400;
+}
+.guest-theme .guest-communication-card{
+  min-height:82px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:10px;
+  margin:0;
+  padding:12px;
+  border-color:var(--color-border-accent);
+  background:var(--color-surface-glass);
+}
+.guest-theme .guest-communication-card>div{display:grid;gap:3px}
+.guest-theme .guest-communication-card h3{margin:0;font-size:10px;line-height:14px}
+.guest-theme .guest-communication-card p{margin:0;font-size:8px;line-height:12px;color:var(--color-text-muted)}
+.guest-theme .guest-communication-note{margin:0;padding:11px;border-color:var(--color-border-primary);background:var(--color-surface-glass)}
+.guest-theme .guest-communication-note small{display:block;font-size:8px;line-height:11px;color:var(--color-text-muted)}
+.guest-theme .guest-communication-note strong{font-size:10px}
+.guest-theme .guest-communication-note p{margin:3px 0 0;font-size:8px;line-height:12px}
+
+.guest-theme .guest-taxi-route{display:grid;gap:8px}
+.guest-theme .guest-taxi-route>label{
+  min-height:54px;display:grid;gap:1px;padding:9px 11px;
+  border:1px solid var(--color-border-primary);border-radius:14px;background:var(--color-surface-glass)
+}
+.guest-theme .guest-taxi-route>label>span{font-size:8px;color:var(--color-text-muted)}
+.guest-theme .guest-taxi-route>label>strong{font-size:10px}
+.guest-theme .guest-taxi-route>label>small{font-size:8px;color:var(--color-text-muted)}
+.guest-theme .guest-taxi-options{display:grid;gap:7px}
+.guest-theme .guest-taxi-options button{
+  width:100%;min-height:54px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:9px 11px;border:1px solid var(--color-border-accent);border-radius:14px;
+  background:var(--color-surface-glass);color:var(--color-text-primary);text-align:left
+}
+.guest-theme .guest-taxi-options button>span{display:grid;gap:1px}
+.guest-theme .guest-taxi-options strong{font-size:10px}.guest-theme .guest-taxi-options small{font-size:8px;color:var(--color-text-muted)}
+.guest-theme .guest-taxi-options b{font-size:9px;color:var(--color-accent-primary)}
+.guest-theme .guest-taxi-screen>.button{min-height:50px;border-radius:26px;margin-top:4px}
+
+@media(max-width:767px){
+  .guest-theme .guest-service-screen .guest-wifi-surface>header,
+  .guest-theme .guest-service-screen [data-powerbank-scenario] .demoTools{display:none}
+}
