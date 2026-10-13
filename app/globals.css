@@ -38,3 +38,7 @@
   .demo-mode-guest > .demo-header{display:none}
   .demo-mode-guest .guest-standalone{margin:0;max-width:none}
 }
+
+@media (max-width:767px){
+  .demo-mode-guest .guest-demo-tools{display:none}
+}
