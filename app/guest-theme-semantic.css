@@ -928,3 +928,57 @@
   z-index:1;
   background:transparent!important;
 }
+
+
+/* v2.1 compact Guest header geometry from the approved 390 px screens. */
+@media(max-width:767px){
+  .guest-theme .guest-header{
+    height:calc(74px + env(safe-area-inset-top));
+    padding-top:env(safe-area-inset-top);
+    gap:6px;
+  }
+  .guest-theme .guest-logo{
+    width:auto;
+    max-width:150px;
+    height:40px;
+    min-width:112px;
+  }
+  .guest-theme .guest-header-controls{
+    gap:4px;
+    flex:0 0 auto;
+  }
+  .guest-theme .table-selector{
+    width:70px;
+    min-height:32px;
+    height:32px;
+    gap:3px;
+    padding:0 7px;
+    border-radius:16px;
+    font-size:10px;
+    line-height:12px;
+  }
+  .guest-theme .table-selector svg{
+    width:12px;
+    height:12px;
+  }
+  .guest-theme .guest-header .icon-button{
+    width:36px;
+    height:36px;
+    min-width:36px;
+    min-height:36px;
+    padding:8px;
+    border-radius:50%;
+    background:transparent;
+    border:1px solid var(--color-border-primary);
+  }
+  .guest-theme .guest-header .icon-button svg{
+    width:18px;
+    height:18px;
+  }
+  .guest-theme .unread-dot{
+    right:5px;
+    top:4px;
+    width:6px;
+    height:6px;
+  }
+}
