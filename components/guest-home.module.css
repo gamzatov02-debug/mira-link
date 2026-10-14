@@ -478,3 +478,22 @@
     font-size:11px;
   }
 }
+
+
+/* Latest reference: hero carousel controls are circular emerald/glass buttons with gold edge. */
+.homeApp :global(.hero-paging > button){
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border:1px solid color-mix(in srgb,var(--color-accent-primary) 78%,transparent);
+  border-radius:50%;
+  background:color-mix(in srgb,var(--color-surface-elevated) 74%,transparent);
+  color:var(--color-accent-primary);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.homeApp :global(.hero-paging > button svg){
+  width:18px;
+  height:18px;
+}
