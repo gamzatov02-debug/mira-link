@@ -3,7 +3,7 @@ import type {CSSProperties} from 'react';
 export const themeNames={navy_gold:'Navy Gold',emerald_gold:'Emerald Gold',espresso_gold:'Espresso Gold',onyx_gold:'Onyx Gold',plum_gold:'Plum Gold',ruby_gold:'Ruby Gold',amber_gold:'Amber Gold',ivory_gold:'Ivory Gold',porcelain_gold:'Porcelain Gold'} as const;
 export type ThemeId=keyof typeof themeNames;
 export type BrandConfig={restaurantName:string;restaurantLogo?:string;restaurantDisplayFont:string;heroImages:string[];restaurantImages:string[];promoImages:string[];marketingContent:string[]};
-export const defaultBrand:BrandConfig={restaurantName:'MIRA Restaurant',restaurantDisplayFont:'Georgia, serif',heroImages:['/images/mira-restaurant.jpg','/images/venues/atelier.jpg','/images/venues/ember-grill.jpg','/images/venues/garden-cafe.jpg'],restaurantImages:['/images/mira-restaurant.jpg'],promoImages:['/images/menu/p13.png'],marketingContent:['Современная кухня. Время для вашего вечера.','Блюда с характером. Внимание к каждой детали.','Свежие вкусы и любимые сочетания.','Сладкое завершение вашего вечера.']};
+export const defaultBrand:BrandConfig={restaurantName:'MIRA Restaurant',restaurantDisplayFont:'Georgia, serif',heroImages:['/images/mira-restaurant.jpg','/images/menu/p11.png','/images/burrata.png','/images/menu/p13.png'],restaurantImages:['/images/mira-restaurant.jpg'],promoImages:['/images/menu/p13.png'],marketingContent:['Современная кухня. Время для вашего вечера.','Блюда с характером. Внимание к каждой детали.','Свежие вкусы и любимые сочетания.','Сладкое завершение вашего вечера.']};
 
 const palettes:Record<ThemeId,string[]>={
  navy_gold:['#03234B','#011831','#082A50','#0C345E','#123D69','#FAFBFD','#D3DEE9','#91A5B9','#A4C3E139'],
@@ -17,7 +17,7 @@ const palettes:Record<ThemeId,string[]>={
  porcelain_gold:['#FFFFFF','#F7F6F3','#FFFFFF','#F8F7F5','#FFFFFF','#171513','#605B55','#96908A','#E9E5DF']
 };
 
-export const guestThemePresetNames={classic:'Emerald Night',dark:'Emerald Deep',light:'Ivory Light',custom:'Custom'} as const;
+export const guestThemePresetNames={classic:'MIRA Classic',dark:'MIRA Dark',light:'MIRA Light',custom:'Custom'} as const;
 export type GuestThemePresetId=keyof typeof guestThemePresetNames;
 export const guestThemeKeys=['background','surface','surfaceElevated','surfaceSoft','accent','accentStrong','accentSoft','textPrimary','textSecondary','textMuted','border','borderStrong','activeBackground','activeText','bottomNavBackground','gradientStart','gradientEnd'] as const;
 export type GuestThemeKey=typeof guestThemeKeys[number];
@@ -26,7 +26,7 @@ export type GuestThemeSelection={preset:GuestThemePresetId;palette:GuestThemePal
 
 const classicPalette:GuestThemePalette={background:'#043820',surface:'#073C23',surfaceElevated:'#105432',surfaceSoft:'#0B482B',accent:'#F4C65D',accentStrong:'#93651F',accentSoft:'#FFE28B',textPrimary:'#F8FBF8',textSecondary:'#CEE1D3',textMuted:'#91AC99',border:'#AAD1B533',borderStrong:'#F4C65DB8',activeBackground:'#F4C65D',activeText:'#19130B',bottomNavBackground:'#012715',gradientStart:'#FFE082',gradientEnd:'#D4A017'};
 const darkPalette:GuestThemePalette={background:'#021A11',surface:'#082A1C',surfaceElevated:'#103A28',surfaceSoft:'#0B3222',accent:'#E7BE64',accentStrong:'#8E611F',accentSoft:'#F7D98E',textPrimary:'#F8FAF6',textSecondary:'#C7D7CC',textMuted:'#879E90',border:'#A7C8B52E',borderStrong:'#E7BE64A8',activeBackground:'#E7BE64',activeText:'#171109',bottomNavBackground:'#01140D',gradientStart:'#F2D47F',gradientEnd:'#B98224'};
-const lightPalette:GuestThemePalette={background:'#FDFDFA',surface:'#FFFFFFEB',surfaceElevated:'#FFFFFFF2',surfaceSoft:'#FBF8F1E8',accent:'#97662D',accentStrong:'#7B4F20',accentSoft:'#E3C88F',textPrimary:'#18382B',textSecondary:'#52685C',textMuted:'#65776D',border:'#B1A08065',borderStrong:'#B88B49A8',activeBackground:'#EDD5A5',activeText:'#18382B',bottomNavBackground:'#FBFBF9F2',gradientStart:'#F2D79B',gradientEnd:'#C28A3B'};
+const lightPalette:GuestThemePalette={background:'#F5F0E6',surface:'#FFFDF7',surfaceElevated:'#EEE6D7',surfaceSoft:'#F8F3EA',accent:'#B47A25',accentStrong:'#7E531B',accentSoft:'#E7C579',textPrimary:'#183629',textSecondary:'#4D685B',textMuted:'#7A8B82',border:'#6E5A3829',borderStrong:'#B47A25A8',activeBackground:'#183629',activeText:'#FFFDF7',bottomNavBackground:'#FFF9EF',gradientStart:'#E7C067',gradientEnd:'#AA7424'};
 const presetPalettes={classic:classicPalette,dark:darkPalette,light:lightPalette} as const;
 
 export type ThemeConfig={themeId:string;version:'1.0';mode:'dark'|'light';semantic:GuestThemePalette;colors:Record<string,string>;effects:{cardShadow:string;accentGlow:string;backdropBlur:number};appearance:{mapStyle:'dark'|'light';logoVariant:'gold'|'bronze';primaryButton:'gold-gradient'}};
