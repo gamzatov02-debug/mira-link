@@ -5,7 +5,6 @@ import {ArrowRight,CalendarDays,ChevronRight,Clock3,MapPin} from 'lucide-react';
 import {BottomSheet,Button} from '@/components/design-system';
 import {guestProductionMode} from '@/components/guest/adapters/status';
 import {useGuestTheme} from '@/components/guest-theme';
-import {GuestCompactHeader} from '@/components/guest/guest-compact-header';
 import {formatEventDate,formatEventTime,getVenueEvents,type GuestEventFilter} from '@/lib/events';
 import {themeStyle} from '@/lib/guest-theme';
 import type {VenueEvent} from '@/lib/domain/model';
@@ -27,8 +26,7 @@ export function GuestEvents({events,venueId,venueName,timeZone='Europe/Moscow',n
  const selected=events.find(event=>event.id===selectedId&&event.published&&(!venueId||event.venueId===venueId));
  const chooseFilter=(value:GuestEventFilter)=>{setFilter(value);setSelectedId('')};
  return <section className={styles.screen} aria-labelledby="guest-events-title">
-  <GuestCompactHeader title="Афиша" navigate={navigate}/>
-  <h1 id="guest-events-title" className={styles.visuallyHidden}>Афиша</h1>
+  <header className={styles.header}><h1 id="guest-events-title">Афиша</h1><p>{venueName?<>События, музыка и особые вечера<br/>в <strong>{venueName}</strong>.</>:<>Интересные события и мероприятия рядом с вами.</>}</p></header>
   <nav className={styles.filters} aria-label="Дата мероприятий">{filters.map(([id,label])=><button type="button" key={id} aria-pressed={filter===id} onClick={()=>chooseFilter(id)}>{label}</button>)}</nav>
   {!visible.length&&<div className={styles.empty}><CalendarDays aria-hidden="true"/><h2>{filter==='all'?'Пока нет запланированных событий':'На выбранные даты событий нет'}</h2><p>{filter==='all'?'Следите за обновлениями афиши.':'Посмотрите все ближайшие мероприятия.'}</p>{filter!=='all'&&<Button mode={guestProductionMode} size="l" onClick={()=>chooseFilter('all')}>Показать все</Button>}</div>}
   {featured&&<article className={styles.featured} data-event-id={featured.id}><img src={featured.image??fallbackImage} alt=""/><span className={styles.featuredShade} aria-hidden="true"/><div className={styles.featuredBody}><span className={styles.badge}>{featured.category}</span><h2>{featured.title}</h2><p className={styles.meta}><CalendarDays aria-hidden="true"/>{eventMeta(featured,timeZone)}</p><p className={styles.meta}><MapPin aria-hidden="true"/>{featured.locationLabel?`${venueName??'Заведение'} · ${featured.locationLabel}`:venueName??'Заведение'}</p><p className={styles.featuredDescription}>{featured.shortDescription??featured.description}</p><button type="button" className={styles.more} onClick={()=>setSelectedId(featured.id)}>Подробнее <ArrowRight aria-hidden="true"/></button></div></article>}
