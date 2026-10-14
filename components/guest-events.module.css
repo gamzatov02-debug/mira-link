@@ -9,7 +9,3 @@
 @container guest-product-surface (max-width:390px){.featured{min-height:270px}.featuredBody{padding:15px}.featuredBody h2{font-size:22px;line-height:26px}.card{grid-template-columns:98px minmax(0,1fr) 20px;gap:9px}.thumbnail{width:98px;height:104px}}
 @container guest-product-surface (max-width:330px){.filters button{padding-inline:13px}.featured{min-height:258px}.card{grid-template-columns:84px minmax(0,1fr) 18px;gap:8px}.thumbnail{width:84px;height:98px}.cardCopy p{display:none}}
 @media(max-width:390px){.featured{min-height:270px}.card{grid-template-columns:98px minmax(0,1fr) 20px;gap:9px}.thumbnail{width:98px;height:104px}}
-
-.visuallyHidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
-.featuredBody h2{font-family:var(--restaurant-font);font-weight:400;font-size:28px;line-height:30px}
-.feed>h2{font-size:20px;line-height:26px;font-weight:650}
