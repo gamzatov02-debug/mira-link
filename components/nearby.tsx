@@ -1,16 +1,16 @@
 'use client';
 import {useCallback,useEffect,useMemo,useRef,useState} from 'react';
-import {ChevronRight,X} from 'lucide-react';
+import {X} from 'lucide-react';
 import {useDomain,dispatch} from '@/lib/store';
 import type {CartItem,Product} from '@/lib/domain/model';
 import {demoLocation,getNearbyVenues,isVenueOpen,type Location,type NearbyVenue} from '@/lib/nearby';
 import {formatMoney} from '@/lib/domain/selectors';
 import {VenueMap} from './venue-map';
-import {MiraButton as Button,MiraChip,MiraInput as Input,MiraSelect as Select,MiraModal as Modal,MiraEmptyState as Empty,MiraToast} from './mira';
+import {MiraButton as Button,MiraChip,MiraInput as Input,MiraSelect as Select,MiraSearch,MiraModal as Modal,MiraEmptyState as Empty,MiraToast} from './mira';
 import {guestProductionMode} from '@/components/guest/adapters/status';
 import {GuestMenuProductCard} from '@/components/guest/guest-menu-product-card';
-import {GuestCompactHeader} from '@/components/guest/guest-compact-header';
 import {GuestProductDetail} from '@/components/guest/guest-product-detail';
+import {GuestVenueCard} from '@/components/guest/guest-venue-card';
 import {baseProductQuantity,productRequiresRequiredModifier,withBaseProductQuantity} from '@/components/guest/guest-menu-cart';
 import {menuPresentation} from '@/lib/menu-presentation';
 import styles from './nearby.module.css';
@@ -65,19 +65,16 @@ export function Nearby({navigate,canFavorite,initialVenueId,favourites,onFavouri
   finally{lock.current=false;setBusy(false)}
  }
  return <div className={`nearby-screen ${styles.screen}`}>
-  <GuestCompactHeader title="Рядом с вами" navigate={navigate} back/>
-  <button type="button" className={styles.locationTrigger} disabled={geo.status==='loading'} onClick={geo.request}>{geo.status==='located'?'Местоположение определено':geo.status==='loading'?'Определяем местоположение…':'Определить местоположение'}</button>
-  <nav className={styles.filters} aria-label="Фильтры заведений">{[['all','Все'],['restaurant','Рестораны'],['coffee','Кофейни'],['delivery','Доставка']].map(([id,label])=><MiraChip key={id} selected={filter===id} onClick={()=>setFilter(id)}>{label}</MiraChip>)}</nav>
+  <header className={styles.heading}><span>КАТАЛОГ MIRA LINK</span><h2>Рядом</h2><p>Рестораны и кафе в одном месте</p></header>
+  <section className={styles.location} aria-label="Местоположение"><div><strong>{geo.status==='located'?'Геопозиция получена':geo.status==='loading'?'Определяем местоположение…':'Демокарта'}</strong><p>{geo.status==='located'?'Координаты заведений пока демонстрационные — расстояния скрыты.':'Показаны условные заведения и схема района.'}</p></div><div className={styles.locationActions}><Button className="outline small" disabled={geo.status==='loading'} onClick={geo.request}>{geo.status==='located'?'Обновить':'Использовать геопозицию'}</Button><Button className="outline small" onClick={geo.useDemo}>Демо-режим</Button></div></section>
+  <MiraSearch label="Поиск рядом" placeholder="Ресторан, кухня или блюдо" value={search} onChange={e=>setSearch(e.target.value)}/>
+  <nav className={styles.filters} aria-label="Фильтры заведений">{[['all','Все'],['restaurant','Рестораны'],['coffee','Кофе'],['cafe','Кафе'],['delivery','Доставка'],['promotions','Акции']].map(([id,label])=><MiraChip key={id} selected={filter===id} onClick={()=>setFilter(id)}>{label}</MiraChip>)}</nav>
   <div className={styles.mapArea} id="nearby-map" ref={mapArea}><VenueMap venues={visible} location={geo.location} selectedId={selected?.id} onSelect={setSelectedId} isDemo/>
   {selected&&<article className={styles.preview} data-venue-preview><img src={selected.venueImage} alt=""/><div className={styles.previewBody}><small>ВЫБРАНО НА КАРТЕ</small><strong>{selected.name}</strong><span>{selected.category} · ★ {selected.rating}</span><div><button type="button" onClick={()=>open(selected)}>Подробнее</button><button type="button" onClick={()=>open(selected,'menu')}>Меню</button></div></div><button type="button" className={styles.closePreview} aria-label="Закрыть карточку заведения" onClick={()=>setSelectedId('')}><X aria-hidden/></button></article>}
   </div>
-  <div className={styles.listHeading}><div><h3>Заведения рядом</h3></div></div>
-  {!visible.length&&<Empty>Места не найдены. Измените фильтр.</Empty>}
-  <div className={styles.compactList}>{visible.map(v=><button type="button" key={v.id} className={styles.compactVenue} data-selected={selected?.id===v.id} onClick={()=>open(v)}>
-   <span className={styles.venueDot} aria-hidden="true"/>
-   <span className={styles.venueCopy}><strong>{v.name}</strong><small>{v.distanceReliable?v.distance:'рядом'} · ★ {v.rating}</small></span>
-   <ChevronRight aria-hidden="true"/>
-  </button>)}</div>
+  <div className={styles.listHeading}><div><h3>Заведения рядом</h3><p>Единый каталог MIRA LINK</p></div><span>{visible.length}</span></div><p className="catalog-note">Демонстрационный каталог. Точные адреса и расстояния появятся после подключения реального источника заведений.</p>
+  {!visible.length&&<Empty>Места не найдены. Измените запрос или фильтр.</Empty>}
+  <div className={`nearby-list ${styles.list}`}>{visible.map(v=><GuestVenueCard key={v.id} id={v.id} name={v.name} image={v.venueImage} category={v.category} distance={v.distance} distanceMeters={v.distanceMeters} distanceReliable={v.distanceReliable} rating={v.rating} hours={v.hours} status={now?(isVenueOpen(v.hours,now)?'Открыто':'Закрыто'):undefined} imageType={v.venueImageType} selected={selected?.id===v.id} onSelect={()=>setSelectedId(v.id)} onOpen={()=>open(v)} onMenu={()=>open(v,'menu')} onDelivery={v.deliveryEnabled?()=>open(v,'delivery'):undefined}/>)}</div>
   <Modal title={venue?.name??'О месте'} description={mode==='details'?'Демонстрационная карточка заведения':mode==='menu'?'Меню заведения · просмотр без входа к столу':'ДЕМО · заказ не будет отправлен реально'} open={!!venue} onClose={()=>{if(!busy){setDetailOpen(false);setProductId('')}}}>
    {venue&&<div className="nearby-details">
     <nav className="quick-nav" aria-label="Разделы заведения">{[['details','О заведении'],['menu','Меню'],...(venue.deliveryEnabled?[['delivery','Заказать домой']]:[])].map(([id,label])=><MiraChip selected={mode===id} key={id} onClick={()=>{setMode(id as typeof mode);setProductId('')}}>{label}{id==='delivery'&&cart.length?` (${cart.reduce((n,item)=>n+item.quantity,0)})`:''}</MiraChip>)}</nav>
