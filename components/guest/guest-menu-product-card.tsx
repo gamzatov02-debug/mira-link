@@ -10,7 +10,6 @@ export type GuestMenuProductCardProps = {
   title: string
   description: string
   metadata: string
-  price?: string
   image?: string
   favourite: boolean
   quantity: number
@@ -30,7 +29,6 @@ export function GuestMenuProductCard({
   title,
   description,
   metadata,
-  price,
   image,
   favourite,
   quantity,
@@ -75,7 +73,6 @@ export function GuestMenuProductCard({
           <strong className="guest-menu-product-title">{title}</strong>
           <span className="guest-menu-product-description">{description}</span>
           <span className="guest-menu-product-metadata">{metadata}</span>
-          {price && <strong className="guest-menu-product-price">{price}</strong>}
         </span>
       </button>
 
