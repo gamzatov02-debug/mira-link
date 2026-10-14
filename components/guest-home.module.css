@@ -433,3 +433,48 @@
 :global(.guest-theme) .homeApp > :global(.guest-content){
   background:transparent;
 }
+
+
+/* Final 390px Home proportions from the latest user screenshot. */
+@media(max-width:767px){
+  .homeApp :global(.restaurant-hero){
+    height:160px;
+  }
+  .homeApp :global(.guest-quick-actions){
+    gap:6px;
+    margin:8px 0;
+  }
+  .homeApp :global(.guest-quick-actions > button){
+    height:72px;
+    min-height:72px;
+  }
+  .homeApp :global(.guest-promo-banner).promoBanner{
+    height:122px;
+    margin:8px 0 10px;
+  }
+  .homeApp :global(.guest-popular > .row){
+    margin:2px 0 8px;
+  }
+  .homeApp :global(.home-popular-media){
+    height:52px;
+    flex-basis:52px;
+  }
+  .homeApp :global(.home-popular-body){
+    gap:2px;
+    padding:5px;
+  }
+  .homeApp :global(.home-popular-body h3){
+    min-height:26px;
+    font-size:11px;
+    line-height:13px;
+  }
+  .homeApp :global(.home-popular-body > strong){
+    font-size:10px;
+    line-height:13px;
+  }
+  .homeApp :global(.home-popular-action){
+    min-height:36px;
+    padding-inline:3px;
+    font-size:11px;
+  }
+}
