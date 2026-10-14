@@ -15,39 +15,13 @@ const money=(value:number)=>new Intl.NumberFormat('ru-RU',{style:'currency',curr
 
 export function GuestHeader({tableId,navigate,unread=false,onTable}:{tableId?:string;navigate:(page:string)=>void;unread?:boolean;onTable:()=>void}){return <header className="guest-header"><div className={`guest-logo ${headerStyles.logo}`}><div className={headerStyles.lockup}><img className={headerStyles.monogram} src="/brand/mira-monogram.svg" alt="Монограмма MIRA LINK" draggable={false}/><span>MIRA LINK</span></div></div><div className="guest-header-controls">{tableId&&<button className="table-selector" onClick={onTable} aria-label={`Текущий стол ${tableId}`}><UtensilsCrossed/><span>Стол {tableId}</span><ChevronDown/></button>}<IconButton mode={guestProductionMode} variant="ghost" aria-label="Уведомления" onClick={()=>navigate('notifications')}><Bell/>{unread&&<i className="unread-dot"/>}</IconButton><IconButton mode={guestProductionMode} variant="ghost" aria-label="Профиль" onClick={()=>navigate('profile')}><UserRound/></IconButton></div></header>}
 
-export function RestaurantHero({brand=defaultBrand}:{brand?:BrandConfig}){
- const [slide,setSlide]=useState(0);
- const touch=useRef<number|null>(null);
- const move=(delta:number)=>setSlide(n=>(n+delta+brand.heroImages.length)%brand.heroImages.length);
- return <section className="restaurant-hero" aria-label="Ресторан" onTouchStart={e=>{touch.current=e.touches[0].clientX}} onTouchEnd={e=>{if(touch.current!==null){const delta=e.changedTouches[0].clientX-touch.current;if(Math.abs(delta)>40)move(delta<0?1:-1)}touch.current=null}}>
-  <img src={brand.heroImages[slide]} alt={`${brand.restaurantName} · ${slide+1}`} draggable={false}/>
-  <div className="restaurant-hero-copy"><span>РЕСТОРАН</span><h2>{brand.restaurantName}</h2><p>{brand.marketingContent[slide%brand.marketingContent.length]}</p></div>
-  <div className="hero-paging"><span>{slide+1}/{brand.heroImages.length}</span><button aria-label="Предыдущий слайд" onClick={()=>move(-1)}><ChevronLeft/></button><button aria-label="Следующий слайд" onClick={()=>move(1)}><ChevronRight/></button></div>
- </section>
-}
+export function RestaurantHero({brand=defaultBrand}:{brand?:BrandConfig}){const [slide,setSlide]=useState(0);const touch=useRef<number|null>(null);const move=(delta:number)=>setSlide(n=>(n+delta+brand.heroImages.length)%brand.heroImages.length);return <section className="restaurant-hero" aria-label="Ресторан" onTouchStart={e=>{touch.current=e.touches[0].clientX}} onTouchEnd={e=>{if(touch.current!==null){const delta=e.changedTouches[0].clientX-touch.current;if(Math.abs(delta)>40)move(delta<0?1:-1)}touch.current=null}}><img src={brand.heroImages[slide]} alt={`${brand.restaurantName} · ${slide+1}`} draggable={false}/><div className="restaurant-hero-copy"><span>РЕСТОРАН</span><h2>{brand.restaurantName}</h2><p>{brand.marketingContent[slide%brand.marketingContent.length]}</p></div><div className="hero-paging"><span>{slide+1}/{brand.heroImages.length}</span><button aria-label="Предыдущий слайд" onClick={()=>move(-1)}><ChevronLeft/></button><button aria-label="Следующий слайд" onClick={()=>move(1)}><ChevronRight/></button></div></section>}
 
 export const quickActions=[['menu','Меню','Блюда и напитки',UtensilsCrossed],['order','Заказ','Ваши позиции',ReceiptText],['bill','Счёт','Оплата за столом',Wallet],['waiter','Официант','Команда рядом',Bell],['promotions','Акции','Спецпредложения',Tag],['wifi','Wi-Fi','Сеть заведения',Wifi],['powerbank','Пауэрбанк','Зарядка рядом',BatteryCharging],['taxi','Такси','Поездка домой',Car]] as const;
 
 export function GuestHome({products,navigate,onProduct,promotion,favorites,onFavorite}:{products:Product[];navigate:(page:string)=>void;onProduct:(p:Product)=>void;promotion?:string;favorites:string[];onFavorite:(id:string)=>void}){
  const renderQuickAction=([page,title,caption,Icon]:(typeof quickActions)[number])=><button key={page} aria-label={title==='Меню'?'Меню — быстрое действие':title} onClick={()=>navigate(page)}><Icon/><span>{title}</span><small>{caption}</small></button>;
- return <>
-  <RestaurantHero/>
-  <nav className="guest-quick-actions" aria-label="Основные функции">{quickActions.slice(0,4).map(renderQuickAction)}</nav>
-  <button type="button" className={`guest-promo guest-promo-banner ${styles.promoBanner}`} aria-label="Посмотреть рекламное предложение" onClick={()=>navigate('promotions')}>
-   <img src={defaultBrand.promoImages[0]} alt=""/>
-   <span className="guest-promo-banner-shade" aria-hidden="true"/>
-   <span className="guest-promo-banner-copy"><small>СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ</small><strong>{promotion??'Обед в MIRA'}</strong></span>
-   <span className="promo-action" aria-hidden="true"><ArrowRight/></span>
-  </button>
-  <section className="guest-popular">
-   <div className="row"><h2>Популярное</h2><button className="guest-popular-more" type="button" onClick={()=>navigate('menu')}>Смотреть всё →</button></div>
-   <div className="popular-grid" aria-label="Популярное">{products.slice(0,6).map(p=><Card key={p.id} mode={guestProductionMode} className="home-popular-card">
-    <div className="home-popular-media"><img src={menuPresentation(p).image} alt=""/><IconButton mode={guestProductionMode} className="home-popular-favourite" aria-label={`В избранное: ${p.name}`} aria-pressed={favorites.includes(p.id)} onClick={()=>onFavorite(p.id)}><Heart/></IconButton></div>
-    <div className="home-popular-body"><h3>{p.name}</h3><strong>{p.weight} · {money(p.price)}</strong><Button size="l" mode={guestProductionMode} className="home-popular-action" fullWidth disabled={p.stopped} onClick={()=>onProduct(p)}>{p.stopped?'Недоступно':'Выбрать'}</Button></div>
-   </Card>)}</div>
-  </section>
-  <nav className={`guest-quick-actions ${styles.secondaryActions}`} aria-label="Дополнительные сервисы">{quickActions.slice(4).map(renderQuickAction)}</nav>
- </>;
+ return <><RestaurantHero/><nav className="guest-quick-actions" aria-label="Основные функции">{quickActions.slice(0,4).map(renderQuickAction)}</nav><button type="button" className={`guest-promo guest-promo-banner ${styles.promoBanner}`} aria-label="Посмотреть рекламное предложение" onClick={()=>navigate('promotions')}><img src={defaultBrand.promoImages[0]} alt=""/><span className="guest-promo-banner-shade" aria-hidden="true"/><span className="guest-promo-banner-copy"><small>СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ</small><strong>{promotion??'Больше приятных моментов'}</strong></span><span className="promo-action" aria-hidden="true"><ArrowRight/></span></button><section className="guest-popular"><div className="row"><h2>Популярное</h2><Button size="l" mode={guestProductionMode} variant="ghost" onClick={()=>navigate('menu')}>Смотреть всё →</Button></div><div className="popular-grid" aria-label="Популярное">{products.slice(0,6).map(p=><Card key={p.id} mode={guestProductionMode} className="home-popular-card"><div className="home-popular-media"><img src={menuPresentation(p).image} alt=""/><IconButton mode={guestProductionMode} className="home-popular-favourite" aria-label={`В избранное: ${p.name}`} aria-pressed={favorites.includes(p.id)} onClick={()=>onFavorite(p.id)}><Heart/></IconButton></div><div className="home-popular-body"><h3>{p.name}</h3><strong>{p.weight} · {money(p.price)}</strong><Button size="l" mode={guestProductionMode} className="home-popular-action" fullWidth disabled={p.stopped} onClick={()=>onProduct(p)}>{p.stopped?'Недоступно':'Выбрать'}</Button></div></Card>)}</div></section><nav className={`guest-quick-actions ${styles.secondaryActions}`} aria-label="Дополнительные сервисы">{quickActions.slice(4).map(renderQuickAction)}</nav></>;
 }
 
 export const guestHomeLayoutClass=styles.homeApp;
