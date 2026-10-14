@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { demoLoginPath, demoRedirect } from "@/lib/demo-auth/redirect";
 import { DEMO_SESSION_COOKIE, safeDemoReturnPath, verifyDemoSession } from "@/lib/demo-auth/session";
 
 const publicDemoPaths = new Set([
@@ -16,7 +17,7 @@ export async function proxy(request: NextRequest) {
     if (path === "/demo/login") {
       const session = await verifyDemoSession(request.cookies.get(DEMO_SESSION_COOKIE)?.value);
       if (session) {
-        return NextResponse.redirect(new URL(safeDemoReturnPath(request.nextUrl.searchParams.get("next")), request.url));
+        return demoRedirect(safeDemoReturnPath(request.nextUrl.searchParams.get("next")));
       }
     }
     return NextResponse.next();
@@ -25,9 +26,7 @@ export async function proxy(request: NextRequest) {
   const session = await verifyDemoSession(request.cookies.get(DEMO_SESSION_COOKIE)?.value);
   if (session) return NextResponse.next();
 
-  const login = new URL("/demo/login", request.url);
-  login.searchParams.set("next", safeDemoReturnPath(`${path}${request.nextUrl.search}`));
-  return NextResponse.redirect(login);
+  return demoRedirect(demoLoginPath(`${path}${request.nextUrl.search}`));
 }
 
 export const config = {

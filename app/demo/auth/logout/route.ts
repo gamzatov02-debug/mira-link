@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
 import { DEMO_SESSION_COOKIE } from "@/lib/demo-auth/session";
+import { demoRedirect } from "@/lib/demo-auth/redirect";
 
-export async function POST(request: Request) {
-  const response = NextResponse.redirect(new URL("/demo/login", request.url), 303);
+export async function POST() {
+  const response = demoRedirect("/demo/login", 303);
   response.cookies.set({
     name: DEMO_SESSION_COOKIE,
     value: "",

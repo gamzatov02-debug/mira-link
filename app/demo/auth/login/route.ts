@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import { verifyDemoCredentials } from "@/lib/demo-auth/password";
+import { demoLoginPath, demoRedirect } from "@/lib/demo-auth/redirect";
 import {
   createDemoSession,
   DEMO_SESSION_COOKIE,
@@ -15,14 +15,11 @@ export async function POST(request: Request) {
   const { username, valid } = verifyDemoCredentials(usernameValue, passwordValue);
 
   if (!valid) {
-    const login = new URL("/demo/login", request.url);
-    login.searchParams.set("error", "1");
-    login.searchParams.set("next", returnPath);
-    return NextResponse.redirect(login, 303);
+    return demoRedirect(demoLoginPath(returnPath, true), 303);
   }
 
   const token = await createDemoSession(username);
-  const response = NextResponse.redirect(new URL(returnPath, request.url), 303);
+  const response = demoRedirect(returnPath, 303);
   response.cookies.set({
     name: DEMO_SESSION_COOKIE,
     value: token,
