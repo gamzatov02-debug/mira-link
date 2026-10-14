@@ -18,3 +18,106 @@
 .empty{position:absolute;z-index:4;inset:0;display:grid;place-content:center;justify-items:center;gap:8px;color:var(--guest-text-muted);font-size:13px}.empty svg{width:24px}
 @media(max-width:359px){.map{min-height:254px}.detail{min-height:210px}}
 @media(prefers-reduced-motion:reduce){.pin{transition:none}}
+
+
+/* v2.1 premium map treatment */
+.map{
+  min-height:318px;
+  border-color:color-mix(in srgb,var(--guest-accent) 22%,var(--guest-border));
+  background:
+    radial-gradient(circle at 52% 52%,color-mix(in srgb,var(--guest-accent) 7%,transparent),transparent 28%),
+    linear-gradient(145deg,var(--guest-bottom-nav-bg,var(--guest-surface)),var(--guest-surface));
+}
+.blocks{
+  opacity:.62;
+  gap:9px;
+  transform:rotate(-5deg) scale(1.11);
+}
+.blocks span{
+  border-radius:10px;
+  background:color-mix(in srgb,var(--guest-surface-soft) 82%,transparent);
+}
+.streetHorizontal,.streetVertical{
+  background:color-mix(in srgb,var(--guest-text-muted) 13%,transparent);
+}
+.streetCurve{
+  border-color:color-mix(in srgb,var(--guest-text-muted) 13%,transparent);
+}
+
+.pin{
+  width:54px;
+  height:62px;
+  margin:-31px 0 0 -27px;
+  overflow:visible;
+  filter:drop-shadow(0 9px 15px rgba(0,0,0,.36));
+}
+.pinCore{
+  position:relative;
+  width:46px;
+  height:46px;
+  margin:4px;
+  overflow:hidden;
+  border:2px solid color-mix(in srgb,var(--guest-accent) 76%,var(--guest-border));
+  border-radius:50% 50% 50% 13px;
+  background:var(--guest-surface-elevated);
+}
+.pinCore img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:rotate(45deg) scale(1.38);
+  filter:saturate(.92) brightness(.86);
+}
+.pinGlyph{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  transform:rotate(45deg);
+  color:#fff;
+  background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.48));
+}
+.pinGlyph svg{
+  width:15px;
+  height:15px;
+  transform:none;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.6));
+}
+.selected{
+  z-index:9;
+  transform:scale(1.18);
+}
+.selected:hover{transform:scale(1.18) translateY(-2px)}
+.selected .pinCore{
+  background:var(--guest-surface-elevated);
+  color:#fff;
+  box-shadow:0 0 0 5px color-mix(in srgb,var(--guest-accent) 20%,transparent),0 0 22px color-mix(in srgb,var(--guest-accent) 30%,transparent);
+}
+.pinLabel{
+  position:absolute;
+  left:50%;
+  top:52px;
+  min-width:max-content;
+  max-width:145px;
+  padding:5px 8px;
+  transform:translateX(-50%);
+  overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--guest-accent) 48%,var(--guest-border));
+  border-radius:999px;
+  background:color-mix(in srgb,var(--guest-surface-elevated) 92%,transparent);
+  color:var(--guest-text-primary);
+  font-size:9px;
+  line-height:11px;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.demoBadge{display:none}
+
+@media(max-width:359px){
+  .map{min-height:286px}
+  .pinLabel{max-width:112px}
+}

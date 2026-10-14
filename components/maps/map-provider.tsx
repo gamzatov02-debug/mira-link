@@ -27,7 +27,7 @@ function VenueIcon({venue}:{venue:NearbyVenue}){
 
 function VenueMapMarker({venue,point,selected,onSelect}:{venue:NearbyVenue;point:{left:number;top:number};selected:boolean;onSelect?:()=>void}){
  const props={className:`${styles.pin} ${selected?styles.selected:''}`,style:{left:`${point.left}%`,top:`${point.top}%`},'data-venue-marker':venue.id};
- const content=<span className={styles.pinCore}>{selected?<span className={styles.monogram}>M</span>:<VenueIcon venue={venue}/>}</span>;
+ const content=<><span className={styles.pinCore}><img src={venue.venueImage} alt="" draggable={false}/><span className={styles.pinGlyph}><VenueIcon venue={venue}/></span></span>{selected&&<span className={styles.pinLabel}>{venue.name}</span>}</>;
  return onSelect?<button {...props} type="button" aria-label={`Выбрать ${venue.name}`} aria-pressed={selected} onClick={onSelect}>{content}</button>:<span {...props} role="img" aria-label={venue.name}>{content}</span>;
 }
 
@@ -35,7 +35,6 @@ function BrandedDemoMap({venues,selectedId,onSelect,detail=false}:MapProviderPro
  return <div className={`${styles.map} ${detail?styles.detail:''}`}>
   <div className={styles.blocks} aria-hidden>{Array.from({length:9},(_,index)=><span key={index}/>)}</div>
   <div className={styles.streetHorizontal} aria-hidden/><div className={styles.streetVertical} aria-hidden/><div className={styles.streetCurve} aria-hidden/>
-  <span className={styles.demoBadge}>Демокарта</span>
   {venues.map(venue=><VenueMapMarker key={venue.id} venue={venue} point={project(venues,venue)} selected={selectedId===venue.id} onSelect={onSelect?()=>onSelect(venue.id):undefined}/>)}
   {!venues.length&&<div className={styles.empty}><MapPin aria-hidden/><span>Нет мест по выбранным условиям</span></div>}
  </div>;

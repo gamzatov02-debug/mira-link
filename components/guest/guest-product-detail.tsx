@@ -6,7 +6,7 @@ import { BottomSheet } from "@/components/design-system"
 import type { MiraMode } from "@/components/design-system/tokens"
 import { useGuestTheme } from "@/components/guest-theme"
 import { MiraButton as Button, MiraInput as Input } from "@/components/mira"
-import { ProductImage, ProductInfo } from "@/components/mira-domain-ui"
+import { ProductImage } from "@/components/mira-domain-ui"
 import type { Modifier, Product } from "@/lib/domain/model"
 import { formatMoney } from "@/lib/domain/selectors"
 import { themeStyle } from "@/lib/guest-theme"
@@ -68,42 +68,66 @@ export function GuestProductDetail({
       open={open}
       onOpenChange={onOpenChange}
       description={description}
-      className={theme ? "guest-theme" : undefined}
+      className={theme ? "guest-theme guest-product-sheet" : "guest-product-sheet"}
       style={theme ? themeStyle(theme) : undefined}
       overlayStyle={theme ? { background: theme.colors.overlay } : undefined}
     >
       {product && (
-        <>
-          <ProductImage product={product} className="dish-detail-image" />
-          <ProductInfo product={product} />
-          <p>{formatMoney(product.price)} · {product.weight}</p>
-          {product.modifiers.map((modifier) => (
-            <label className="check-row" key={modifier.id}>
-              <input
-                type={modifier.required ? "radio" : "checkbox"}
-                name={modifier.group}
-                checked={modifierIds.includes(modifier.id)}
-                onChange={(event) => onModifierChange(modifier, event.target.checked)}
-              />
-              {modifier.name} {modifier.required ? "· обязательно" : ""} · {formatMoney(modifier.price)}
-            </label>
-          ))}
+        <div className="guest-product-detail">
+          <div className="guest-product-media">
+            <ProductImage product={product} className="dish-detail-image" />
+            <button type="button" className="guest-product-back" aria-label="Закрыть карточку блюда" onClick={() => onOpenChange(false)}>‹</button>
+          </div>
+
+          <div className="guest-product-copy">
+            <span className="guest-product-eyebrow">{product.category.toUpperCase()} · MIRA RESTAURANT</span>
+            <h2>{product.name}</h2>
+            <p className="guest-product-description">{product.description}</p>
+            <div className="guest-product-meta"><span>{product.weight}</span><span>Состав и аллергены — ниже</span></div>
+            <strong className="guest-product-base-price">{formatMoney(product.price)}</strong>
+          </div>
+
+          {product.modifiers.length > 0 && <section className="guest-product-modifiers" aria-label="Дополнения к блюду">
+            <h3>Добавки</h3>
+            {product.modifiers.map((modifier) => (
+              <label className="guest-product-modifier" key={modifier.id}>
+                <span>
+                  <input
+                    type={modifier.required ? "radio" : "checkbox"}
+                    name={modifier.group}
+                    checked={modifierIds.includes(modifier.id)}
+                    onChange={(event) => onModifierChange(modifier, event.target.checked)}
+                  />
+                  <span><strong>{modifier.name}</strong>{modifier.required && <small>Обязательно</small>}</span>
+                </span>
+                <strong>{modifier.price ? "+ " + formatMoney(modifier.price) : "Без доплаты"}</strong>
+              </label>
+            ))}
+          </section>}
+
+          <details className="guest-product-composition">
+            <summary>Состав и аллергены</summary>
+            <p>{product.ingredients}</p>
+            <small>Демонстрационный состав. Реальный состав и возможные следы аллергенов уточняйте у кухни.</small>
+          </details>
+
+          <div className="guest-product-comment">
+            <Input label="Комментарий к блюду" value={comment} onChange={(event) => onCommentChange(event.target.value)} />
+          </div>
+
           <div className="product-purchase">
             <div className="quantity-stepper" aria-label="Количество блюда">
               <Button className="outline" aria-label="Уменьшить количество" disabled={quantity <= 1} onClick={onDecrease}>−</Button>
               <output>{quantity}</output>
               <Button className="outline" aria-label="Увеличить количество" disabled={quantity >= 99} onClick={onIncrease}>+</Button>
             </div>
-            <Input label="Комментарий к блюду" value={comment} onChange={(event) => onCommentChange(event.target.value)} />
             <Button className="product-sticky-cta" disabled={!canSubmit} loading={busy} onClick={onSubmit}>
               {submitLabel}<span className="product-cta-price"> · {formatMoney(total)}</span>
             </Button>
-            <p className="product-price">{formatMoney(total)}</p>
           </div>
           {secondaryAction}
           {feedback}
-        </>
-      )}
-    </BottomSheet>
+        </div>
+      )}    </BottomSheet>
   )
 }

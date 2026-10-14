@@ -10,3 +10,212 @@
 .list{display:grid;gap:10px}
 @media(max-width:520px){.location{align-items:flex-start;flex-direction:column}.locationActions{width:100%}.locationActions button{flex:1}.screen{gap:12px}.heading h2{font-size:28px}}
 @media(max-width:359px){.preview{grid-template-columns:58px minmax(0,1fr);gap:8px;padding-left:8px}.preview>img{width:58px}.previewBody button{padding-inline:8px}.locationActions{flex-direction:column}}
+
+
+/* v2.1 approved Nearby composition */
+.heading{
+  padding:8px 2px 0;
+}
+.heading>span,.heading>p{display:none}
+.heading h2{
+  font-family:var(--restaurant-font);
+  font-size:28px;
+  line-height:34px;
+  font-weight:500;
+  letter-spacing:-.025em;
+}
+
+.location{
+  min-height:44px;
+  padding:0 4px 0 12px;
+  border-radius:999px;
+  background:var(--guest-surface);
+  box-shadow:none;
+}
+.location strong{
+  font-size:11px;
+  font-weight:500;
+  color:var(--guest-text-muted);
+}
+.location p{display:none}
+.locationActions{gap:0}
+.locationActions button{
+  min-height:40px;
+  padding-inline:12px;
+  border:0;
+  font-size:11px;
+}
+
+.filters{
+  gap:7px;
+  padding-bottom:4px;
+}
+.filters button{
+  min-height:36px;
+  padding:7px 13px;
+  font-size:11px;
+}
+
+.mapArea{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  box-shadow:0 18px 42px var(--color-shadow);
+}
+.mapArea :global(.venue-map){
+  display:block;
+  margin:0;
+}
+.mapArea :global(.venue-map > div){
+  min-height:318px;
+  border-radius:20px;
+}
+
+.mapArea :global(.venue-map > small){display:none}
+
+.preview{
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:14px;
+  z-index:12;
+  grid-template-columns:58px minmax(0,1fr);
+  width:auto;
+  min-height:82px;
+  margin:0;
+  padding:9px 40px 9px 9px;
+  border-color:color-mix(in srgb,var(--guest-accent) 72%,var(--guest-border));
+  border-radius:18px;
+  background:color-mix(in srgb,var(--guest-surface-elevated) 92%,transparent);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 12px 30px rgba(0,0,0,.34);
+}
+.preview>img{
+  width:58px;
+  height:64px;
+  border-radius:12px;
+}
+.previewBody small{
+  font-size:8px;
+  letter-spacing:.11em;
+}
+.previewBody strong{
+  font-family:var(--restaurant-font);
+  font-size:15px;
+  font-weight:500;
+}
+.previewBody>span{font-size:10px}
+.previewBody>div{margin-top:3px}
+.previewBody button{
+  min-height:32px;
+  padding:4px 10px;
+  font-size:10px;
+}
+.closePreview{
+  width:32px;
+  height:32px;
+}
+
+.listHeading{
+  margin-top:4px;
+}
+.listHeading h3{
+  font-size:20px;
+  line-height:24px;
+}
+.listHeading>span{
+  min-width:28px;
+  height:28px;
+  font-size:11px;
+}
+
+.list{
+  gap:9px;
+}
+
+@media(max-width:520px){
+  .location{align-items:center;flex-direction:row}
+  .locationActions{width:auto}
+  .locationActions button{flex:0 0 auto}
+  .screen{gap:12px}
+  .heading h2{font-size:28px}
+}
+@media(max-width:359px){
+  .preview{left:10px;right:10px;grid-template-columns:52px minmax(0,1fr)}
+  .preview>img{width:52px;height:60px}
+  .locationActions{flex-direction:row}
+}
+
+
+.locationTrigger{
+  justify-self:start;
+  min-height:32px;
+  padding:5px 10px;
+  border:1px solid var(--guest-border);
+  border-radius:999px;
+  background:var(--guest-surface);
+  color:var(--guest-text-muted);
+  font:500 10px/14px var(--font-body,Inter,sans-serif);
+}
+.locationTrigger:disabled{opacity:.55}
+
+.compactList{
+  display:grid;
+  gap:8px;
+}
+.compactVenue{
+  width:100%;
+  min-height:54px;
+  display:grid;
+  grid-template-columns:20px minmax(0,1fr) 20px;
+  align-items:center;
+  gap:10px;
+  padding:8px 10px;
+  border:1px solid var(--guest-border);
+  border-radius:14px;
+  background:var(--guest-surface);
+  color:var(--guest-text-primary);
+  text-align:left;
+}
+.compactVenue[data-selected="true"]{
+  border-color:var(--guest-accent);
+}
+.venueDot{
+  width:20px;
+  height:20px;
+  border:1px solid var(--guest-accent);
+  border-radius:50%;
+  position:relative;
+}
+.venueDot:after{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border-radius:50%;
+  background:var(--guest-accent);
+}
+.venueCopy{
+  display:grid;
+  gap:2px;
+  min-width:0;
+}
+.venueCopy strong{
+  overflow:hidden;
+  color:var(--guest-text-primary);
+  font-size:12px;
+  line-height:16px;
+  font-weight:600;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.venueCopy small{
+  color:var(--guest-text-muted);
+  font-size:9px;
+  line-height:12px;
+}
+.compactVenue>svg{
+  width:16px;
+  height:16px;
+  color:var(--guest-accent);
+}

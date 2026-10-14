@@ -4,6 +4,7 @@ import {useMemo,useState} from 'react';
 import {ArrowRight,ChevronRight,Tag} from 'lucide-react';
 import {BottomSheet,Button} from '@/components/design-system';
 import {guestProductionMode} from '@/components/guest/adapters/status';
+import {GuestCompactHeader} from '@/components/guest/guest-compact-header';
 import {menuPresentation} from '@/lib/menu-presentation';
 import {getGuestPromotions,promotionAvailability,promotionTypeLabel,type GuestPromotionFilter} from '@/lib/promotions';
 import {formatMoney} from '@/lib/domain/selectors';
@@ -24,7 +25,7 @@ function timingFor(promotion:Promotion){
  return [promotion.timeWindow,promotion.validity].filter(Boolean).join(' · ')||'Условия у заведения';
 }
 
-export function GuestPromotions({promotions,products,venueName,onOpenMenu,onOpenProduct}:{promotions:Promotion[];products:Product[];venueName:string;onOpenMenu:(category?:string)=>void;onOpenProduct:(product:Product)=>void}){
+export function GuestPromotions({promotions,products,venueName,navigate,onOpenMenu,onOpenProduct}:{promotions:Promotion[];products:Product[];venueName:string;navigate:(page:string)=>void;onOpenMenu:(category?:string)=>void;onOpenProduct:(product:Product)=>void}){
  const [filter,setFilter]=useState<GuestPromotionFilter>('all');
  const [selectedId,setSelectedId]=useState('');
  const visible=useMemo(()=>getGuestPromotions(promotions,filter),[filter,promotions]);
@@ -38,7 +39,7 @@ export function GuestPromotions({promotions,products,venueName,onOpenMenu,onOpen
   onOpenMenu(promotion.eligibleCategories?.[0]);
  };
  return <section className={styles.screen} aria-labelledby="guest-promotions-title">
-  <header className={styles.header}><h1 id="guest-promotions-title">Акции</h1><p>Специальные предложения<br/>от <strong>{venueName}</strong></p></header>
+  <GuestCompactHeader title="Акции" navigate={navigate} back menuOnly/><h1 id="guest-promotions-title" className={styles.visuallyHidden}>Акции</h1><p className={styles.subtitle}>Специальные предложения · <strong>{venueName}</strong></p>
   <nav className={styles.filters} aria-label="Категории акций">{filters.map(([id,label])=><button type="button" key={id} aria-pressed={filter===id} onClick={()=>setFilter(id)}>{label}</button>)}</nav>
   {!visible.length&&<div className={styles.empty}><Tag aria-hidden="true"/><h2>Сейчас специальных предложений нет</h2><p>Новые акции появятся здесь.</p><Button mode={guestProductionMode} size="l" onClick={()=>onOpenMenu()}>Перейти в меню</Button></div>}
   {featured&&<button type="button" className={styles.featured} onClick={()=>setSelectedId(featured.id)} aria-label={`Открыть акцию: ${featured.title}`}><img src={imageFor(featured,products)} alt=""/><span className={styles.featuredShade} aria-hidden="true"/><span className={styles.featuredBody}><span className={styles.badge}>{promotionTypeLabel(featured.type)}</span><h2>{featured.title}</h2><p>{featured.shortDescription??featured.description}</p><span className={styles.featuredMeta}><strong>{featured.benefit??(featured.price?formatMoney(featured.price):timingFor(featured))}</strong><span aria-hidden="true"><ArrowRight/></span></span></span></button>}
