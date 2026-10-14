@@ -1,0 +1,40 @@
+name: QA latest MIRA Home
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  home:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Start demo and capture Home
+        run: |
+          npm run dev -- --port 5173 > /tmp/mira-dev.log 2>&1 &
+          for i in {1..60}; do
+            curl -fsS http://localhost:5173/demo/guest/home >/dev/null && break
+            sleep 1
+          done
+          node --input-type=module <<'NODE'
+          import { chromium } from '@playwright/test';
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:390,height:844}});
+          await page.goto('http://localhost:5173/demo/guest/home',{waitUntil:'networkidle'});
+          await page.screenshot({path:'home-final.png',fullPage:true});
+          await browser.close();
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: home-final
+          path: home-final.png
