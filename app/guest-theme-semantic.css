@@ -1490,3 +1490,14 @@
   border-radius:2px;
   background:var(--color-accent-primary);
 }
+
+
+/* Final Home fit: match the latest user-provided 390px composition. */
+@media(max-width:767px){
+  .guest-theme .guest-header{
+    height:calc(58px + env(safe-area-inset-top));
+  }
+  .guest-theme .guest-logo{
+    height:34px;
+  }
+}
