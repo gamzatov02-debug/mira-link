@@ -10,7 +10,7 @@ export function demoLoginPath(nextValue: string | null | undefined, hasError = f
   return `/demo/login?${search.toString()}`;
 }
 
-export function demoRedirect(location: string, status: DemoRedirectStatus = 307) {
+function demoRedirectLocation(location: string) {
   const base = new URL("https://demo.invalid");
   const destination = new URL(location, base);
   const isRelativePath = location.startsWith("/") && !location.startsWith("//");
@@ -18,8 +18,27 @@ export function demoRedirect(location: string, status: DemoRedirectStatus = 307)
   if (!isRelativePath || destination.origin !== base.origin || !isDemoPath) {
     throw new Error("Invalid demo redirect path.");
   }
+  return `${destination.pathname}${destination.search}`;
+}
+
+export function demoRedirect(location: string, status: DemoRedirectStatus = 307) {
   return new NextResponse(null, {
     status,
-    headers: { Location: `${destination.pathname}${destination.search}` },
+    headers: { Location: demoRedirectLocation(location) },
   });
+}
+
+export function demoProxyRedirect(location: string) {
+  const netlifyOrigin = process.env.NETLIFY === "true"
+    ? process.env.DEPLOY_PRIME_URL ?? process.env.URL
+    : undefined;
+  const publicOrigin = process.env.DEMO_AUTH_PUBLIC_ORIGIN ?? process.env.RENDER_EXTERNAL_URL ?? netlifyOrigin;
+  if (!publicOrigin) {
+    throw new Error("Missing demo auth public origin.");
+  }
+  const origin = new URL(publicOrigin);
+  if (origin.protocol !== "https:" && origin.protocol !== "http:") {
+    throw new Error("Invalid demo auth public origin.");
+  }
+  return NextResponse.redirect(new URL(demoRedirectLocation(location), origin.origin));
 }
