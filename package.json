@@ -15,7 +15,8 @@
     "db:generate": "drizzle-kit generate",
     "test": "node scripts/test-domain.mjs",
     "test:e2e": "PLAYWRIGHT_BROWSERS_PATH=.test-runtime/browsers playwright test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:powerbank": "node scripts/test-powerbank.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

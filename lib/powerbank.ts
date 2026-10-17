@@ -1,6 +1,6 @@
 export type PowerbankProviderStatus='available'|'unavailable';
 export type PowerbankStationStatus='available'|'empty'|'unavailable'|'closed';
-export type PowerbankRentalStatus='active'|'returned';
+export type PowerbankRentalStatus='preparing'|'active'|'returning'|'returned'|'failed'|'closed';
 export type PowerbankDemoScenario='one'|'none'|'active'|'return'|'error';
 
 export type PowerbankProvider={
@@ -19,6 +19,7 @@ export type PowerbankTariff={
 
 export type PowerbankStation={
  id:string;
+ terminalQr?:string;
  providerId:string;
  venueId?:string;
  venueName:string;
@@ -47,7 +48,13 @@ export type PowerbankRental={
 };
 
 export type PowerbankStationQuery={venueId?:string;nearby?:boolean};
-export type StartPowerbankRentalRequest={stationId:string;guestReference?:string};
+export type StartPowerbankRentalRequest={stationId:string;guestReference?:string;idempotencyKey?:string};
+
+/** Exact identifiers only; never fall back to the venue's first station. */
+export function resolvePowerbankTerminal(stations:PowerbankStation[],qr:string){
+ const matches=stations.filter(station=>station.id===qr||station.terminalQr===qr);
+ return matches.length===1?matches[0]:undefined;
+}
 
 export interface PowerbankProviderAdapter{
  readonly provider:PowerbankProvider;
@@ -55,6 +62,7 @@ export interface PowerbankProviderAdapter{
  getStation(stationId:string):Promise<PowerbankStation|undefined>;
  getAvailability(stationId:string):Promise<Pick<PowerbankStation,'availableUnits'|'returnSlots'|'status'>|undefined>;
  getTariff(stationId:string):Promise<PowerbankTariff|undefined>;
+ resolveTerminal?(qr:string):Promise<PowerbankStation|undefined>;
  startRental(request:StartPowerbankRentalRequest):Promise<PowerbankRental>;
  getRental(rentalId:string):Promise<PowerbankRental|undefined>;
  getReturnStations(rental:PowerbankRental):Promise<PowerbankStation[]>;
@@ -78,6 +86,7 @@ export class DemoPowerbankProviderAdapter implements PowerbankProviderAdapter{
  async getStation(stationId:string){return this.stations.find(station=>station.id===stationId)}
  async getAvailability(stationId:string){const station=await this.getStation(stationId);return station?{availableUnits:station.availableUnits,returnSlots:station.returnSlots,status:station.status}:undefined}
  async getTariff(stationId:string){return (await this.getStation(stationId))?.tariff}
+ async resolveTerminal(qr:string){return resolvePowerbankTerminal(this.stations,qr)}
  async startRental({stationId}:StartPowerbankRentalRequest){
   const station=await this.getStation(stationId);
   if(!station||station.status!=='available'||!station.availableUnits)throw new Error('POWERBANK_STATION_UNAVAILABLE');
@@ -93,6 +102,8 @@ export class PowerbankService{
  constructor(adapters:PowerbankProviderAdapter[]){this.adapters=new Map(adapters.map(adapter=>[adapter.provider.id,adapter]))}
  registeredProviders(){return [...this.adapters.values()].map(adapter=>adapter.provider)}
  providers(){return this.registeredProviders().filter(provider=>provider.enabled)}
+ async resolveTerminal(providerId:string,qr:string){const adapter=this.adapters.get(providerId);if(!adapter?.provider.enabled)throw new Error('POWERBANK_PROVIDER_DISABLED');if(!adapter.resolveTerminal)throw new Error('POWERBANK_QR_UNSUPPORTED');return adapter.resolveTerminal(qr)}
+ async getRental(providerId:string,rentalId:string){const adapter=this.adapters.get(providerId);if(!adapter?.provider.enabled)throw new Error('POWERBANK_PROVIDER_DISABLED');return adapter.getRental(rentalId)}
  async getStations(query:PowerbankStationQuery){return (await Promise.all([...this.adapters.values()].filter(adapter=>adapter.provider.enabled&&adapter.provider.status==='available').map(adapter=>adapter.getStations(query)))).flat()}
  async startRental(providerId:string,request:StartPowerbankRentalRequest){const adapter=this.adapters.get(providerId);if(!adapter)throw new Error('POWERBANK_PROVIDER_NOT_REGISTERED');if(!adapter.provider.enabled)throw new Error('POWERBANK_PROVIDER_DISABLED');return adapter.startRental(request)}
  async getCompatibleReturnStations(rental:PowerbankRental){const adapter=this.adapters.get(rental.providerId);if(!adapter)return [];return (await adapter.getReturnStations(rental)).filter(station=>rental.compatibleProviderIds.includes(station.providerId))}
@@ -105,7 +116,7 @@ export const demoPowerbankProviders:PowerbankProvider[]=[
 ];
 
 export const demoPowerbankStations:PowerbankStation[]=[
- {id:'energo-mira-entry',providerId:'energo-demo',venueId:'mira',venueName:'MIRA Restaurant',title:'MIRA Restaurant',locationLabel:'У входа в ресторан',distanceMeters:20,availableUnits:6,returnSlots:2,tariff:{summary:'99 ₽ / первый час',detail:'Далее 50 ₽ / час'},image:stationImage,compatibleProviderIds:['energo-demo'],status:'available',recommended:true},
+ {id:'energo-mira-entry',terminalQr:'demo-terminal',providerId:'energo-demo',venueId:'mira',venueName:'MIRA Restaurant',title:'MIRA Restaurant',locationLabel:'У входа в ресторан',distanceMeters:20,availableUnits:6,returnSlots:2,tariff:{summary:'99 ₽ / первый час',detail:'Далее 50 ₽ / час'},image:stationImage,compatibleProviderIds:['energo-demo'],status:'available',recommended:true},
  {id:'provider-b-mira-bar',providerId:'provider-b-test',venueId:'mira',venueName:'MIRA Restaurant',title:'MIRA Restaurant',locationLabel:'У бара',distanceMeters:35,availableUnits:3,returnSlots:1,tariff:{summary:'79 ₽ / первый час'},image:stationImage,compatibleProviderIds:['provider-b-test'],status:'available'},
  {id:'energo-garden-return',providerId:'energo-demo',venueName:'Garden Cafe',title:'Garden Cafe',locationLabel:'Главный вход',distanceMeters:120,availableUnits:4,returnSlots:2,tariff:{summary:'99 ₽ / первый час',detail:'Далее 50 ₽ / час'},image:stationImage,compatibleProviderIds:['energo-demo'],status:'available'},
  {id:'provider-b-atelier-return',providerId:'provider-b-test',venueName:'Atelier',title:'Atelier',locationLabel:'Стойка хостес',distanceMeters:180,availableUnits:2,returnSlots:3,tariff:{summary:'79 ₽ / первый час'},image:stationImage,compatibleProviderIds:['provider-b-test'],status:'available'},

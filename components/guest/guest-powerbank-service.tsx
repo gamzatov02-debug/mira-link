@@ -3,7 +3,7 @@
 import {useEffect,useMemo,useRef,useState} from 'react';
 import {BatteryCharging,ChevronRight,MapPin,QrCode,RefreshCw,Route,ShieldCheck,Undo2,Zap} from 'lucide-react';
 import {MiraBottomSheet,MiraButton} from '@/components/mira';
-import {demoPowerbankService,loadDemoPowerbankView,type PowerbankDemoScenario,type PowerbankProvider,type PowerbankServiceView,type PowerbankStation} from '@/lib/powerbank';
+import {demoPowerbankService,loadDemoPowerbankView,resolvePowerbankTerminal,type PowerbankDemoScenario,type PowerbankProvider,type PowerbankServiceView,type PowerbankStation} from '@/lib/powerbank';
 import styles from './guest-powerbank-service.module.css';
 
 type VenueContext={id:string;name:string};
@@ -42,18 +42,20 @@ export function GuestPowerbankService({venue,activeRentalId,qrTerminalId,busy=fa
  const [selected,setSelected]=useState<PowerbankStation>();
  const [nearbyOpen,setNearbyOpen]=useState(false);
  const [starting,setStarting]=useState(false);
- const qrOpened=useRef(false);
+ const qrOpened=useRef<string|undefined>(undefined);
+ const [error,setError]=useState<string>();
  const venueId=venue?.id??'mira';
 
  useEffect(()=>{let live=true;void loadDemoPowerbankView(scenario,venueId,activeRentalId).then(next=>{if(live)setView(next)});return()=>{live=false}},[scenario,venueId,activeRentalId]);
  useEffect(()=>{if(activeRentalId)setScenario('active')},[activeRentalId]);
- useEffect(()=>{if(!qrTerminalId){qrOpened.current=false;return}if(!view||qrOpened.current||!view.currentStations[0])return;qrOpened.current=true;setSelected(view.currentStations[0])},[qrTerminalId,view]);
+ useEffect(()=>{if(!qrTerminalId){qrOpened.current=undefined;setSelected(undefined);return}if(!view||qrOpened.current===qrTerminalId)return;qrOpened.current=qrTerminalId;const station=resolvePowerbankTerminal([...view.currentStations,...view.nearbyStations],qrTerminalId);setSelected(station);setError(station?undefined:'Терминал не найден. Проверьте QR-код станции.')},[qrTerminalId,view]);
 
  const rentalProvider=useMemo(()=>view?.providers.find(provider=>provider.id===view.activeRental?.providerId),[view]);
  const startRental=async()=>{
   if(!selected)return;
-  setStarting(true);
+  setStarting(true);setError(undefined);
   try{await demoPowerbankService.startRental(selected.providerId,{stationId:selected.id});await onStartRental();setSelected(undefined);setScenario('active')}
+  catch{setError('Не удалось начать демонстрационную аренду. Попробуйте ещё раз.')}
   finally{setStarting(false)}
  };
 
@@ -63,6 +65,8 @@ export function GuestPowerbankService({venue,activeRentalId,qrTerminalId,busy=fa
  const heroStation=!showRental&&!showReturn&&!view.providerError&&scenario==='one'?view.currentStations[0]:undefined;
 
  return <section className={styles.screen} aria-labelledby="powerbank-title" data-powerbank-scenario={scenario}>
+  <p role="status">Демонстрационный режим · цены условные, списаний нет</p>
+  {error&&<p role="alert">{error}</p>}
   {heroStation?<header className={styles.hero}><div><span className={styles.contextLabel}>СЕРВИС MIRA LINK</span><h2 id="powerbank-title">Пауэрбанк</h2><p>Заряд всегда рядом</p></div><img src={heroStation.image} alt="Реальный терминал EnerGO" fetchPriority="high"/></header>:<header className={styles.pageTitle}><h2 id="powerbank-title">Пауэрбанк</h2></header>}
 
   {showRental&&<section className={styles.activeRental} aria-labelledby="active-rental-title">

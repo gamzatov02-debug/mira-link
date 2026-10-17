@@ -40,7 +40,7 @@ export function classifyGuestQrPayload(payload:string):GuestQrRoute{
  const value=payload.trim();
  const wifi=parseWifiQrPayload(value);
  if(wifi)return {kind:'wifi',wifi};
- if(/^MIRA:(POWERBANK|TERMINAL):/i.test(value))return {kind:'powerbank',terminalId:value.split(':').slice(2).join(':')||'demo-terminal'};
+ if(/^MIRA:(POWERBANK|TERMINAL):/i.test(value)){const terminalId=value.split(':').slice(2).join(':').trim();return terminalId?{kind:'powerbank',terminalId}:{kind:'invalid'}};
  try{
   const url=new URL(value,value.startsWith('/')?'https://mira-link.local':undefined);
   const isMiraRoute=url.protocol==='mira:'||url.pathname.startsWith('/demo/guest');
@@ -50,7 +50,7 @@ export function classifyGuestQrPayload(payload:string):GuestQrRoute{
   const tableId=/^\d+$/.test(tableValue)?Number(tableValue):0;
   if(venueId&&tableId)return {kind:'table',venueId,tableId,token:url.searchParams.get('token')?.trim()||`mira-table-${tableId}`};
   const terminalId=url.searchParams.get('terminalId')?.trim()??'';
-  if(url.searchParams.get('entry')==='terminal'||terminalId)return {kind:'powerbank',terminalId:terminalId||'demo-terminal'};
+  if(url.searchParams.get('entry')==='terminal'||terminalId)return terminalId?{kind:'powerbank',terminalId}:{kind:'invalid'};
  }catch{/* Unsupported payload remains invalid. */}
  return {kind:'invalid'};
 }

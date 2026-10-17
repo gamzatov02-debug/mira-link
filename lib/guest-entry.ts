@@ -15,7 +15,7 @@ export function resolveGuestEntry(initialPage:string,search:string):GuestEntryCo
   return {kind:'table',venueId,tableId,token:params.get('token')?.trim()||`mira-table-${tableId}`};
  }
  const terminalId=params.get('terminalId')?.trim()??'';
- if(entryType==='terminal'||terminalId)return {kind:'terminal',terminalId:terminalId||'demo-terminal'};
+ if(entryType==='terminal'||terminalId)return terminalId?{kind:'terminal',terminalId}:{kind:'route',page:'powerbank'};
  if(venueId)return {kind:'venue',venueId};
  if(initialPage&&initialPage!=='welcome')return {kind:'route',page:initialPage};
  return {kind:'default'};

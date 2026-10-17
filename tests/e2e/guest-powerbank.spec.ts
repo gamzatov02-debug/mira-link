@@ -131,3 +131,16 @@ test('Powerbank QR uses the canonical Guest service route',async({page})=>{
  await page.keyboard.press('Escape');
  await expect(page.getByRole('navigation',{name:'Основная навигация гостя'})).toBeVisible();
 });
+
+test('Unknown terminal never opens the first station confirmation',async({page})=>{
+ await page.goto('/demo/guest/powerbank?entry=terminal&terminalId=not-a-station');
+ await expect(page.getByRole('alert')).toContainText('Терминал не найден');
+ await expect(page.getByRole('dialog')).toHaveCount(0);
+ await expect(page.getByText('Демонстрационный режим · цены условные, списаний нет')).toBeVisible();
+});
+
+test('QR of another known station selects that station',async({page})=>{
+ await page.goto('/demo/guest/powerbank?entry=terminal&terminalId=energo-garden-return');
+ await expect(page.getByRole('dialog')).toContainText('Главный вход');
+ await expect(page.getByRole('dialog').getByRole('button',{name:'Начать аренду',exact:true})).toBeVisible();
+});
